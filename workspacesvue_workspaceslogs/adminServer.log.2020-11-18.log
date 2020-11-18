@@ -1,0 +1,14 @@
+2020-11-18 22:54:26.635 [main] INFO  com.dong.mingjiuzhang.MingJiuZhangApplication - Starting MingJiuZhangApplication on LAPTOP-8OUMTO0R with PID 13972 (D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\target\classes started by 半世晨晓&楠 in D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang)
+2020-11-18 22:54:26.640 [main] INFO  com.dong.mingjiuzhang.MingJiuZhangApplication - No active profile set, falling back to default profiles: default
+2020-11-18 22:54:29.548 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9092 (http)
+2020-11-18 22:54:29.570 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9092"]
+2020-11-18 22:54:29.571 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-18 22:54:29.571 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.37]
+2020-11-18 22:54:29.820 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-11-18 22:54:29.820 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3004 ms
+2020-11-18 22:54:30.468 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-18 22:54:30.675 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2020-11-18 22:54:31.263 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2020-11-18 22:54:32.658 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9092"]
+2020-11-18 22:54:32.706 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9092 (http) with context path ''
+2020-11-18 22:54:32.741 [main] INFO  com.dong.mingjiuzhang.MingJiuZhangApplication - Started MingJiuZhangApplication in 7.801 seconds (JVM running for 10.64)
