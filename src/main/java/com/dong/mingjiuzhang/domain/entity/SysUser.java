@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysUser extends Model<SysUser> {
+public class SysUser extends BaseUser {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,12 +33,6 @@ public class SysUser extends Model<SysUser> {
      * 姓名
      */
     private String name;
-
-    /**
-     * 登录名
-     */
-    @TableField("loginName")
-    private String loginName;
 
     /**
      * 密码
@@ -64,11 +58,4 @@ public class SysUser extends Model<SysUser> {
      * 修改时间
      */
     private LocalDateTime gmtModified;
-
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
-
 }

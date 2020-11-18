@@ -14,6 +14,6 @@ public class Constant {
 
     /**************************************** 用户相关常量 ****************************************/
     public static final String USER_ID = "userId";
-    public static final String USER_NAME = "userName";
+    public static final String USER_NAME = "username";
     public static final String NAME = "name";
 }

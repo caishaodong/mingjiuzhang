@@ -21,18 +21,12 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class User extends Model<User> {
+public class User extends BaseUser {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    /**
-     * 姓名
-     */
-    private String name;
-
     /**
      * 手机号
      */
@@ -79,9 +73,5 @@ public class User extends Model<User> {
     private LocalDateTime gmtModified;
 
 
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
 
 }
