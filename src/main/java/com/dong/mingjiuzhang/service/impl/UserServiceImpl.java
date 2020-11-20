@@ -6,6 +6,7 @@ import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
+import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
@@ -81,6 +82,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 生成token
         BaseUser baseUser = new BaseUser();
         BeanUtils.copyProperties(existUser, baseUser);
+        baseUser.setUserTypeEnum(UserTypeEnum.API_USER);
         String token = JwtUtil.createToken(baseUser);
         return token;
     }

@@ -5,12 +5,23 @@ import com.dong.mingjiuzhang.domain.entity.SysUser;
 
 /**
  * <p>
- * 用户表 服务类
+ * 活动表 服务类
  * </p>
  *
  * @author caishaodong
- * @since 2020-11-10
+ * @since 2020-11-20
  */
 public interface SysUserService extends IService<SysUser> {
 
+    SysUser getOkBySysUserId(Long sysUserId);
+
+    SysUser getOkByMobile(String mobile);
+
+    /**
+     * 登录
+     *
+     * @param existSysUser
+     * @return
+     */
+    String login(SysUser existSysUser);
 }

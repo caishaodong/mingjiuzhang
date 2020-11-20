@@ -1,35 +1,43 @@
 package com.dong.mingjiuzhang.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.time.LocalDateTime;
+import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 /**
  * <p>
- * 用户表
+ * 活动表
  * </p>
  *
  * @author caishaodong
- * @since 2020-11-10
+ * @since 2020-11-20
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysUser extends BaseUser {
+@TableName("t_sys_user")
+public class SysUser extends Model<SysUser> {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
     /**
-     * 姓名
+     * 用户名称
      */
-    private String name;
+    private String username;
+
+    /**
+     * 手机号
+     */
+    private String mobile;
 
     /**
      * 密码
@@ -37,22 +45,34 @@ public class SysUser extends BaseUser {
     private String password;
 
     /**
-     * 状态（0：正常，1：注销，2：冻结）
+     * 盐值
      */
-    private Boolean status;
+    private String salt;
 
     /**
-     * 是否删除（0：正常，1：删除）
+     * 用户头像
      */
-    private Boolean isDeleted;
+    private String avatar;
 
     /**
-     * 创建时间
+     * 是否删除：0否 1是
+     */
+    private Integer isDeleted;
+
+    /**
+     * 添加时间
      */
     private LocalDateTime gmtCreate;
 
     /**
-     * 修改时间
+     * 更新时间
      */
     private LocalDateTime gmtModified;
+
+
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
+
 }

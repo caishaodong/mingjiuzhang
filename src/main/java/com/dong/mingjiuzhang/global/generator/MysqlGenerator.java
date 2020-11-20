@@ -5,8 +5,11 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
+import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
@@ -20,7 +23,7 @@ import java.util.List;
  **/
 public class MysqlGenerator {
 
-    private static final String[] TABLE_NAME = {"t_user"};
+    private static final String[] TABLE_NAME = {"t_sys_user"};
 
     public static void main(String[] args) {
         // 代码生成器
@@ -56,6 +59,16 @@ public class MysqlGenerator {
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("Mjz@20201120");
+        dsc.setTypeConvert(new MySqlTypeConvert(){
+            @Override
+            public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
+                // tinyint转化为int
+                if (fieldType.toLowerCase().contains("tinyint")) {
+                    return DbColumnType.INTEGER;
+                }
+                return super.processTypeConvert(globalConfig, fieldType);
+            }
+        });
         autoGenerator.setDataSource(dsc);
 
         // 包配置
