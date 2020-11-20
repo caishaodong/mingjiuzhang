@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import io.github.yedaxia.apidocs.Ignore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -46,16 +47,19 @@ public class User extends Model<User> {
     /**
      * 用户密码
      */
+    @Ignore
     private String password;
 
     /**
      * 盐值
      */
+    @Ignore
     private String salt;
 
     /**
      * 支付密码
      */
+    @Ignore
     private String payPassword;
 
     /**

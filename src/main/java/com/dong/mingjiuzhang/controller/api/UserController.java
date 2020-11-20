@@ -31,7 +31,7 @@ import java.util.Objects;
  * @since 2020-11-20
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("api/user")
 public class UserController extends BaseController {
     @Autowired
     private RedisService redisService;
