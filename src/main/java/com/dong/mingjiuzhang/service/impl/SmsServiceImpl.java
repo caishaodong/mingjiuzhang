@@ -2,6 +2,8 @@ package com.dong.mingjiuzhang.service.impl;
 
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsSendDTO;
+import com.dong.mingjiuzhang.global.config.redis.RedisKey;
+import com.dong.mingjiuzhang.global.config.redis.RedisService;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.MsgTypeEnum;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
@@ -24,6 +26,8 @@ import java.util.Objects;
 public class SmsServiceImpl implements SmsService {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisService redisService;
 
     /**
      * 发送短信
@@ -53,6 +57,8 @@ public class SmsServiceImpl implements SmsService {
         String content = "";
         // 获取短信验证码
         String smsCode = StringUtil.getSmsCode();
+        // 缓存key
+        String cacheKey = "";
         if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.REGISTER.getType())) {
             // 注册
             if (Objects.nonNull(existUser)) {
@@ -61,6 +67,7 @@ public class SmsServiceImpl implements SmsService {
             // 获取注册短信模板
             content = "注册短信验证码：%s";
             content = String.format(content, smsCode);
+            cacheKey = RedisKey.API_REGISTER_CODE_KEY + smsSendDTO.getMobile();
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.LOGIN.getType())) {
             // 登录
             if (Objects.isNull(existUser)) {
@@ -69,6 +76,7 @@ public class SmsServiceImpl implements SmsService {
             // 获取登录短信模板
             content = "登录短信验证码：%s";
             content = String.format(content, smsCode);
+            cacheKey = RedisKey.API_LOGIN_CODE_KEY + smsSendDTO.getMobile();
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.PASSWORD.getType())) {
             // 修改密码
             if (Objects.isNull(existUser)) {
@@ -77,10 +85,14 @@ public class SmsServiceImpl implements SmsService {
             // 获取修改密码短信模板
             content = "修改短信验证码：%s";
             content = String.format(content, smsCode);
+            cacheKey = RedisKey.API_PASSWORD_CODE_KEY + smsSendDTO.getMobile();
+        } else {
+            throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         // 发送短信
         SmsUtil.sendMessage(smsSendDTO.getMobile(), content);
         // 缓存短信验证码
+        redisService.setString(cacheKey, smsCode, 5 * 60);
     }
 
     /**
@@ -95,6 +107,8 @@ public class SmsServiceImpl implements SmsService {
             // 登录
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.PASSWORD.getType())) {
             // 修改密码
+        } else {
+            throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
     }
 }

@@ -15,6 +15,7 @@ import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class LoginApiController extends BaseController {
      * @param registerDTO
      * @return
      */
-    @RequestMapping("/register")
+    @PutMapping("/register")
     public ResponseResult register(@RequestBody RegisterDTO registerDTO) {
         // 参数校验
         registerDTO.paramCheck();
@@ -58,7 +59,7 @@ public class LoginApiController extends BaseController {
      * @param passwordLoginDTO
      * @return
      */
-    @RequestMapping("/passwordLogin")
+    @PutMapping("/passwordLogin")
     public ResponseResult passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
         // 参数校验
         passwordLoginDTO.paramCheck();
@@ -84,7 +85,7 @@ public class LoginApiController extends BaseController {
      * @param smsLoginDTO
      * @return
      */
-    @RequestMapping("/smsLogin")
+    @PutMapping("/smsLogin")
     public ResponseResult smsLogin(SmsLoginDTO smsLoginDTO) {
         String token = "";
         return success(token);
@@ -95,7 +96,7 @@ public class LoginApiController extends BaseController {
      *
      * @return
      */
-    @RequestMapping("/logout")
+    @PutMapping("/logout")
     public ResponseResult logout() {
         return success();
     }

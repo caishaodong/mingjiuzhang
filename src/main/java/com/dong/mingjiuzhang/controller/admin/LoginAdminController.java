@@ -4,6 +4,7 @@ import com.dong.mingjiuzhang.domain.entity.dto.PasswordLoginDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsLoginDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class LoginAdminController extends BaseController {
      * @param passwordLoginDTO
      * @return
      */
-    @RequestMapping("/passwordLogin")
+    @PutMapping("/passwordLogin")
     public ResponseResult passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
         String token = "";
         return success(token);
@@ -35,7 +36,7 @@ public class LoginAdminController extends BaseController {
      * @param smsLoginDTO
      * @return
      */
-    @RequestMapping("/smsLogin")
+    @PutMapping("/smsLogin")
     public ResponseResult smsLogin(SmsLoginDTO smsLoginDTO) {
         String token = "";
         return success(token);
@@ -46,7 +47,7 @@ public class LoginAdminController extends BaseController {
      *
      * @return
      */
-    @RequestMapping("/logout")
+    @PutMapping("/logout")
     public ResponseResult logout() {
         return success();
     }
