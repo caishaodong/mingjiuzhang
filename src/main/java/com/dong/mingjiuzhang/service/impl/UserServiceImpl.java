@@ -7,6 +7,7 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
+import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
 import com.dong.mingjiuzhang.mapper.UserMapper;
@@ -59,6 +60,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = new User();
         BeanUtils.copyProperties(registerDTO, user);
         ReflectUtil.setCreateInfo(user, User.class);
+        String salt = DigestUtil.generateSalt();
+        user.setSalt(salt);
+        user.setPassword(DigestUtil.digestString(user.getPassword(), salt));
         save(user);
 
         // 生成token
@@ -89,9 +93,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      */
     @Override
     public void updatePassword(Long userId, PasswordUpdateDTO passwordUpdateDTO) {
+        String salt = DigestUtil.generateSalt();
         User user = new User();
         user.setId(userId);
-        user.setPassword(passwordUpdateDTO.getNewPassword());
+        user.setSalt(salt);
+        user.setPassword(DigestUtil.digestString(passwordUpdateDTO.getNewPassword(), salt));
         this.updateById(user);
     }
 }

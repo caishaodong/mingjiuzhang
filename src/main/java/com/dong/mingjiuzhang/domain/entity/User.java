@@ -89,14 +89,14 @@ public class User extends Model<User> {
     private String studyNumber;
 
     /**
-     * 年级
+     * 年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）
      */
     private String grade;
 
     /**
      * 性别 1:男,2:女
      */
-    private Boolean sex;
+    private Integer sex;
 
     /**
      * 省编码
@@ -141,7 +141,7 @@ public class User extends Model<User> {
     /**
      * 是否是会员：0不是  1是
      */
-    private Boolean isMember;
+    private Integer isMember;
 
     /**
      * 商户地址
@@ -151,7 +151,7 @@ public class User extends Model<User> {
     /**
      * 是否删除：0否 1是
      */
-    private Boolean isDeleted;
+    private Integer isDeleted;
 
     /**
      * 创建时间

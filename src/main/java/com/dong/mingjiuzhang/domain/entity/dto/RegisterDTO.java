@@ -32,7 +32,7 @@ public class RegisterDTO {
      */
     private String mobile;
     /**
-     * 年级
+     * 年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）
      */
     private String grade;
     /**
