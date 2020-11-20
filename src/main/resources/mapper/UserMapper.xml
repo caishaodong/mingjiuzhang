@@ -14,7 +14,7 @@
         <result column="email" property="email" />
         <result column="mobile" property="mobile" />
         <result column="card_id" property="cardId" />
-        <result column="user_avatar" property="userAvatar" />
+        <result column="avatar" property="avatar" />
         <result column="study_number" property="studyNumber" />
         <result column="grade" property="grade" />
         <result column="sex" property="sex" />
@@ -35,7 +35,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, identity, username, password, salt, pay_password, real_name, email, mobile, card_id, user_avatar, study_number, grade, sex, province_code, city_code, area_code, province, city, area, total_integral, integral, is_member, user_image, is_deleted, gmt_create, gmt_modified
+        id, identity, username, password, salt, pay_password, real_name, email, mobile, card_id, avatar, study_number, grade, sex, province_code, city_code, area_code, province, city, area, total_integral, integral, is_member, user_image, is_deleted, gmt_create, gmt_modified
     </sql>
 
 </mapper>

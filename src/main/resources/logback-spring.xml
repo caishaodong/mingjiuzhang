@@ -2,8 +2,9 @@
 <configuration debug="false">
 
     <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
-    <property name="LOG_HOME" value="D:\logs" />
-    <property name="PROJECT_NAME" value="adminServer" />
+    <property resource="application.properties"/>
+    <springProperty scope="context" name="LOG_HOME" source="logback.log.home"/>
+    <property name="PROJECT_NAME" value="mingjiuzhang" />
 
     <!--控制台日志， 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -48,7 +49,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.vue.adminserver" additivity="false">
+    <logger name="com.dong.mingjiuzhang" additivity="false">
         <level value="DEBUG" />
         <!-- appender-ref 可选节点。作用：指定日志输出某个appender，如果没有指定，则不输出。 -->
         <appender-ref ref="STDOUT" />

@@ -81,7 +81,7 @@ public class User extends Model<User> {
     /**
      * 图像url
      */
-    private String userAvatar;
+    private String avatar;
 
     /**
      * 学号
