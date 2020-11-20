@@ -28,7 +28,7 @@ public class PasswordLoginDTO {
         if (StringUtil.isBlank(this.mobile) || StringUtil.isBlank(this.password)) {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
-        if (StringUtil.isMobile(this.mobile)) {
+        if (!StringUtil.isMobile(this.mobile)) {
             throw new BusinessException(BusinessEnum.MOBILE_FORMAT_ERROR);
         }
     }

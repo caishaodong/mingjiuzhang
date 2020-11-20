@@ -65,4 +65,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         BeanUtils.copyProperties(user, baseUser);
         return JwtUtil.createToken(baseUser);
     }
+
+    /**
+     * 密码登录
+     *
+     * @param existUser
+     */
+    @Override
+    public String login(User existUser) {
+        // 生成token
+        BaseUser baseUser = new BaseUser();
+        BeanUtils.copyProperties(existUser, baseUser);
+        String token = JwtUtil.createToken(baseUser);
+        return token;
+    }
 }

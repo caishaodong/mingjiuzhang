@@ -23,6 +23,7 @@ public enum BusinessEnum {
     NOT_LOGIN(408, "请重新登录"),
     MOBILE_FORMAT_ERROR(409, "手机号格式不正确"),
     HAVE_NO_PERMISSION(410, "暂无权限访问该资源"),
+    SMS_CODE_INVALID(411, "请重新获取验证码"),
     ;
     private Integer code;
     private String desc;

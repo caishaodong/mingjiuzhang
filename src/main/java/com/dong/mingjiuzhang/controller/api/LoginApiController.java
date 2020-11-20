@@ -1,19 +1,18 @@
 package com.dong.mingjiuzhang.controller.api;
 
-import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordLoginDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsLoginDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
+import com.dong.mingjiuzhang.global.config.redis.RedisKey;
+import com.dong.mingjiuzhang.global.config.redis.RedisService;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
-import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +31,8 @@ import java.util.Objects;
 public class LoginApiController extends BaseController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisService redisService;
 
     /**
      * 用户注册
@@ -72,10 +73,8 @@ public class LoginApiController extends BaseController {
         if (StringUtil.equals(DigestUtil.digestString(passwordLoginDTO.getPassword(), existUser.getSalt()), existUser.getMobile())) {
             throw new BusinessException(BusinessEnum.LOGIN_NAME_OR_PASSWORD_ERROR);
         }
-        // 生成token
-        BaseUser baseUser = new BaseUser();
-        BeanUtils.copyProperties(existUser, baseUser);
-        String token = JwtUtil.createToken(baseUser);
+        // 登录
+        String token = userService.login(existUser);
         return success(token);
     }
 
@@ -87,7 +86,17 @@ public class LoginApiController extends BaseController {
      */
     @PutMapping("/smsLogin")
     public ResponseResult smsLogin(SmsLoginDTO smsLoginDTO) {
-        String token = "";
+        User existUser = userService.getOkByMobile(smsLoginDTO.getMobile());
+        if (Objects.isNull(existUser)) {
+            throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
+        }
+        // 校验验证码是否正确
+        String smsCode = redisService.getString(RedisKey.API_LOGIN_CODE_KEY + smsLoginDTO.getMobile());
+        if (StringUtil.equals(smsCode, smsLoginDTO.getCode())) {
+            throw new BusinessException(BusinessEnum.SMS_CODE_INVALID);
+        }
+        // 登录
+        String token = userService.login(existUser);
         return success(token);
     }
 

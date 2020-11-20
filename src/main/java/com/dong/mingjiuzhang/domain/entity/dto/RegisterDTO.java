@@ -54,7 +54,7 @@ public class RegisterDTO {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         // 用户手机号校验
-        if (StringUtil.isMobile(this.mobile)) {
+        if (!StringUtil.isMobile(this.mobile)) {
             throw new BusinessException(BusinessEnum.MOBILE_FORMAT_ERROR);
         }
         // 用户身份校验

@@ -28,7 +28,8 @@ public class SmsLoginDTO {
         if (StringUtil.isBlank(smsLoginDTO.mobile) || StringUtil.isBlank(smsLoginDTO.code)) {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
-        if (StringUtil.isMobile(smsLoginDTO.mobile)) {
+        // 手机号格式校验
+        if (!StringUtil.isMobile(smsLoginDTO.mobile)) {
             throw new BusinessException(BusinessEnum.MOBILE_FORMAT_ERROR);
         }
     }

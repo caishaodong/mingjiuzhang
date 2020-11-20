@@ -37,4 +37,11 @@ public interface UserService extends IService<User> {
      * @return
      */
     String register(RegisterDTO registerDTO);
+
+    /**
+     * 密码登录
+     *
+     * @param existUser
+     */
+    String login(User existUser);
 }

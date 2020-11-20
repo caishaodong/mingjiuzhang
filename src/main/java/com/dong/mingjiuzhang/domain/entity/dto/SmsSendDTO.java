@@ -34,7 +34,7 @@ public class SmsSendDTO {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         // 手机号格式校验
-        if (StringUtil.isMobile(this.mobile)) {
+        if (!StringUtil.isMobile(this.mobile)) {
             throw new BusinessException(BusinessEnum.MOBILE_FORMAT_ERROR);
         }
         // 短信类型校验

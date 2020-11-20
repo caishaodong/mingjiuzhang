@@ -23,15 +23,15 @@ public class RedisService {
         stringRedisTemplate.opsForValue().set(key, value, second, TimeUnit.SECONDS);
     }
 
-    public void getString(String key) {
-        stringRedisTemplate.opsForValue().get(key);
+    public String getString(String key) {
+        return stringRedisTemplate.opsForValue().get(key);
     }
 
-    public void setHash(String key, String hashKey, String value) {
+    public void setHash(String key, String hashKey, Object value) {
         redisTemplate.opsForHash().put(key, hashKey, value);
     }
 
-    public void getHash(String key, String hashKey) {
-        redisTemplate.opsForHash().get(key, hashKey);
+    public Object getHash(String key, String hashKey) {
+        return redisTemplate.opsForHash().get(key, hashKey);
     }
 }
