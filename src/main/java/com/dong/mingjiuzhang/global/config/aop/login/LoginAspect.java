@@ -1,6 +1,5 @@
 package com.dong.mingjiuzhang.global.config.aop.login;
 
-import com.dong.mingjiuzhang.global.constant.Constant;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
@@ -62,17 +61,7 @@ public class LoginAspect implements InitializingBean {
      * @return
      */
     public Long getUserId(HttpServletRequest request) {
-        return getUserIdFromSession(request);
-    }
-
-    /**
-     * 从session中获取userId
-     *
-     * @param request
-     * @return
-     */
-    public Long getUserIdFromSession(HttpServletRequest request) {
-        return (Long) request.getSession().getAttribute(Constant.USER_ID);
+        return getUserIdFromRequestHeader(request);
     }
 
     /**

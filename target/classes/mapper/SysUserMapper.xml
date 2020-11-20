@@ -6,7 +6,7 @@
     <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.SysUser">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="loginName" property="loginName" />
+        <result column="username" property="username" />
         <result column="password" property="password" />
         <result column="status" property="status" />
         <result column="is_deleted" property="isDeleted" />

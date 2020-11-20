@@ -21,6 +21,7 @@ public enum BusinessEnum {
     USER_CANCEL(406, "该账号已注销"),
     USER_FROZEN(406, "该账号已冻结"),
     NOT_LOGIN(406, "请重新登录"),
+    MOBILE_FORMAT_ERROR(407, "手机号格式不正确"),
     ;
     private Integer code;
     private String desc;

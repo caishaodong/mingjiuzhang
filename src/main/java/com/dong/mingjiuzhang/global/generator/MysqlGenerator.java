@@ -20,7 +20,7 @@ import java.util.List;
  **/
 public class MysqlGenerator {
 
-    private static final String[] TABLE_NAME = {"sys_user"};
+    private static final String[] TABLE_NAME = {"t_user"};
 
     public static void main(String[] args) {
         // 代码生成器
@@ -52,15 +52,15 @@ public class MysqlGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true");
+        dsc.setUrl("jdbc:mysql://42.192.90.32:3306/mjz?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("Mjz@20201120");
         autoGenerator.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.dong.empty");
+        pc.setParent("com.dong.mingjiuzhang");
         pc.setEntity("domain.entity");
         pc.setService("service");
         pc.setServiceImpl("service.impl");

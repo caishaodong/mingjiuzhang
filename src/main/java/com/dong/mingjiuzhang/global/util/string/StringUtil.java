@@ -12,6 +12,11 @@ import java.util.Objects;
  * @Description
  **/
 public class StringUtil {
+    /**
+     * 手机号格式
+     */
+    private static final String PHONE_NUMBER_REGEX = "^1[0-9]{10}$";
+
     public static boolean isBlank(String str) {
         return str == null || "".equals(str.trim());
     }
@@ -60,5 +65,18 @@ public class StringUtil {
             sb.append(isBlank(str) ? "" : str);
         }
         return sb.toString();
+    }
+
+    /**
+     * 校验手机号格式是否正确
+     *
+     * @param mobile
+     * @return
+     */
+    public static boolean isMobile(String mobile) {
+        if (isBlank(mobile)) {
+            return false;
+        }
+        return mobile.matches(PHONE_NUMBER_REGEX);
     }
 }

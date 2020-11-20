@@ -1,16 +1,17 @@
 package com.dong.mingjiuzhang.controller;
 
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 用户表 前端控制器
+ * 用户信息表 前端控制器
  * </p>
  *
  * @author caishaodong
- * @since 2020-11-10
+ * @since 2020-11-20
  */
 @Controller
 @RequestMapping("/user")
