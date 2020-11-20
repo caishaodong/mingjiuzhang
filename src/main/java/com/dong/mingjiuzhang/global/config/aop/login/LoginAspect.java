@@ -33,6 +33,9 @@ public class LoginAspect implements InitializingBean {
     @Value("${free.login.uri}")
     private String FREE_LOGIN_URI;
 
+    private static final String API_REQUEST_URI_PREFIX = "api/";
+    private static final String ADMIN_REQUEST_URI_PREFIX = "admin/";
+
     /**
      * 免登URI集合
      */
@@ -46,10 +49,23 @@ public class LoginAspect implements InitializingBean {
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String requestURI = request.getRequestURI();
+        // 资源请求路径校验
+        if (!requestURI.startsWith(API_REQUEST_URI_PREFIX) && !requestURI.startsWith(ADMIN_REQUEST_URI_PREFIX)) {
+            throw new BusinessException(BusinessEnum.HAVE_NO_PERMISSION);
+        }
 
         Long userId = getUserId(request);
         if (!FREE_LOGIN_URI_LIST.contains(requestURI) && Objects.isNull(userId)) {
             throw new BusinessException(BusinessEnum.NOT_LOGIN);
+        }
+
+        // 获取token
+        String token = request.getHeader(JwtUtil.TOKEN_HEADER);
+        // 校验用户token跟请求路径是否匹配
+        if (requestURI.startsWith(API_REQUEST_URI_PREFIX) && !token.startsWith(JwtUtil.API_TOKEN_PREFIX)) {
+            throw new BusinessException(BusinessEnum.HAVE_NO_PERMISSION);
+        } else if (requestURI.startsWith(ADMIN_REQUEST_URI_PREFIX) && !token.startsWith(JwtUtil.ADMIN_TOKEN_PREFIX)) {
+            throw new BusinessException(BusinessEnum.HAVE_NO_PERMISSION);
         }
         return proceedingJoinPoint.proceed();
     }

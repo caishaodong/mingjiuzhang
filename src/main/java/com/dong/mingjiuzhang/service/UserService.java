@@ -2,6 +2,7 @@ package com.dong.mingjiuzhang.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.User;
+import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 
 /**
  * <p>
@@ -29,4 +30,11 @@ public interface UserService extends IService<User> {
      */
     User getOkByMobile(String mobile);
 
+    /**
+     * 用户注册
+     *
+     * @param registerDTO
+     * @return
+     */
+    String register(RegisterDTO registerDTO);
 }

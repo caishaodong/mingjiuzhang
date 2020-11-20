@@ -2,10 +2,14 @@ package com.dong.mingjiuzhang.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
+import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
+import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
 import com.dong.mingjiuzhang.mapper.UserMapper;
 import com.dong.mingjiuzhang.service.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,5 +43,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getOkByMobile(String mobile) {
         return getOne(new LambdaQueryWrapper<User>().eq(User::getMobile, mobile).eq(User::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
+    /**
+     * 用户注册
+     *
+     * @param registerDTO
+     * @return
+     */
+    @Override
+    public String register(RegisterDTO registerDTO) {
+        // 保存用户信息
+        User user = new User();
+        BeanUtils.copyProperties(registerDTO, user);
+        save(user);
+
+        // 生成token
+        BaseUser baseUser = new BaseUser();
+        BeanUtils.copyProperties(user, baseUser);
+        return JwtUtil.createToken(baseUser);
     }
 }

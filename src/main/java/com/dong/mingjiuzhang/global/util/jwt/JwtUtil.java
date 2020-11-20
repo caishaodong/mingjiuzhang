@@ -44,8 +44,8 @@ public class JwtUtil {
     /**
      * token前缀
      */
-    private static final String API_TOKEN_PREFIX = "api_";
-    private static final String ADMIN_TOKEN_PREFIX = "admin_";
+    public static final String API_TOKEN_PREFIX = "api_";
+    public static final String ADMIN_TOKEN_PREFIX = "admin_";
 
     /**
      * 生成token

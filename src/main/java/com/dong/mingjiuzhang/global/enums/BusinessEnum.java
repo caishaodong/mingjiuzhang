@@ -19,9 +19,10 @@ public enum BusinessEnum {
     LOGIN_NAME_IS_EMPTY(404, "用户名不能为空"),
     PASSWORD_IS_EMPTY(405, "密码不能为空"),
     USER_CANCEL(406, "该账号已注销"),
-    USER_FROZEN(406, "该账号已冻结"),
-    NOT_LOGIN(406, "请重新登录"),
-    MOBILE_FORMAT_ERROR(407, "手机号格式不正确"),
+    USER_FROZEN(407, "该账号已冻结"),
+    NOT_LOGIN(408, "请重新登录"),
+    MOBILE_FORMAT_ERROR(409, "手机号格式不正确"),
+    HAVE_NO_PERMISSION(410, "暂无权限访问该资源"),
     ;
     private Integer code;
     private String desc;

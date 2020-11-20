@@ -24,11 +24,11 @@ public class PasswordLoginDTO {
     /**
      * 参数校验
      */
-    public static void paramCheck(PasswordLoginDTO passwordLoginDTO) {
-        if (StringUtil.isBlank(passwordLoginDTO.mobile) || StringUtil.isBlank(passwordLoginDTO.password)) {
+    public void paramCheck() {
+        if (StringUtil.isBlank(this.mobile) || StringUtil.isBlank(this.password)) {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
-        if (StringUtil.isMobile(passwordLoginDTO.mobile)) {
+        if (StringUtil.isMobile(this.mobile)) {
             throw new BusinessException(BusinessEnum.MOBILE_FORMAT_ERROR);
         }
     }

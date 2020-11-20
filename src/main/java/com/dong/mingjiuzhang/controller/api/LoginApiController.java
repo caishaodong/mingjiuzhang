@@ -3,6 +3,7 @@ package com.dong.mingjiuzhang.controller.api;
 import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordLoginDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsLoginDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
@@ -32,6 +33,21 @@ public class LoginApiController extends BaseController {
     private UserService userService;
 
     /**
+     * 用户注册
+     *
+     * @param registerDTO
+     * @return
+     */
+    @RequestMapping("/register")
+    public ResponseResult register(@RequestBody RegisterDTO registerDTO) {
+        // 参数校验
+        registerDTO.paramCheck();
+        // 用户注册
+        String token = userService.register(registerDTO);
+        return success(token);
+    }
+
+    /**
      * 密码登录
      *
      * @param passwordLoginDTO
@@ -40,7 +56,7 @@ public class LoginApiController extends BaseController {
     @RequestMapping("/passwordLogin")
     public ResponseResult passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
         // 参数校验
-        PasswordLoginDTO.paramCheck(passwordLoginDTO);
+        passwordLoginDTO.paramCheck();
         // 校验用户是否存在
         User existUser = userService.getOkByMobile(passwordLoginDTO.getMobile());
         if (Objects.isNull(existUser)) {
