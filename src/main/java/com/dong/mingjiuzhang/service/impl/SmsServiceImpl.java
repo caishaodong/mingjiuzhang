@@ -76,7 +76,7 @@ public class SmsServiceImpl implements SmsService {
             // 获取登录短信模板
             content = "登录短信验证码：%s";
             content = String.format(content, smsCode);
-            cacheKey = RedisKey.API_LOGIN_CODE_KEY + smsSendDTO.getMobile();
+            cacheKey = RedisKey.API_LOGIN_CODE_KEY + existUser.getId();
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.PASSWORD.getType())) {
             // 修改密码
             if (Objects.isNull(existUser)) {
@@ -85,7 +85,7 @@ public class SmsServiceImpl implements SmsService {
             // 获取修改密码短信模板
             content = "修改短信验证码：%s";
             content = String.format(content, smsCode);
-            cacheKey = RedisKey.API_PASSWORD_CODE_KEY + smsSendDTO.getMobile();
+            cacheKey = RedisKey.API_PASSWORD_CODE_KEY + existUser.getId();
         } else {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
+import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
@@ -78,5 +79,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         BeanUtils.copyProperties(existUser, baseUser);
         String token = JwtUtil.createToken(baseUser);
         return token;
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param userId
+     * @param passwordUpdateDTO
+     */
+    @Override
+    public void updatePassword(Long userId, PasswordUpdateDTO passwordUpdateDTO) {
+        User user = new User();
+        user.setId(userId);
+        user.setPassword(passwordUpdateDTO.getNewPassword());
+        this.updateById(user);
     }
 }

@@ -2,6 +2,7 @@ package com.dong.mingjiuzhang.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.User;
+import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 
 /**
@@ -44,4 +45,12 @@ public interface UserService extends IService<User> {
      * @param existUser
      */
     String login(User existUser);
+
+    /**
+     * 修改密码
+     *
+     * @param userId
+     * @param passwordUpdateDTO
+     */
+    void updatePassword(Long userId, PasswordUpdateDTO passwordUpdateDTO);
 }
