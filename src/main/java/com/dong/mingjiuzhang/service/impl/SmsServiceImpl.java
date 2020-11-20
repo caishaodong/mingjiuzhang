@@ -1,5 +1,6 @@
 package com.dong.mingjiuzhang.service.impl;
 
+import com.dong.mingjiuzhang.domain.entity.SysUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsSendDTO;
 import com.dong.mingjiuzhang.global.config.redis.RedisKey;
@@ -11,6 +12,7 @@ import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.sms.SmsUtil;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.SmsService;
+import com.dong.mingjiuzhang.service.SysUserService;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ import java.util.Objects;
 public class SmsServiceImpl implements SmsService {
     @Autowired
     private UserService userService;
+    @Autowired
+    private SysUserService sysUserService;
     @Autowired
     private RedisService redisService;
 
@@ -59,6 +63,7 @@ public class SmsServiceImpl implements SmsService {
         String smsCode = StringUtil.getSmsCode();
         // 缓存key
         String cacheKey = "";
+
         if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.REGISTER.getType())) {
             // 注册
             if (Objects.nonNull(existUser)) {
@@ -101,10 +106,26 @@ public class SmsServiceImpl implements SmsService {
      * @param smsSendDTO
      */
     public void adminSmsSend(SmsSendDTO smsSendDTO) {
+        // 获取用户信息
+        SysUser existSysUser = sysUserService.getOkByMobile(smsSendDTO.getMobile());
+        // 短信内容
+        String content = "";
+        // 获取短信验证码
+        String smsCode = StringUtil.getSmsCode();
+        // 缓存key
+        String cacheKey = "";
+
         if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.REGISTER.getType())) {
             // 注册
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.LOGIN.getType())) {
             // 登录
+            if (Objects.isNull(existSysUser)) {
+                throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
+            }
+            // 获取登录短信模板
+            content = "管理台登录短信验证码：%s";
+            content = String.format(content, smsCode);
+            cacheKey = RedisKey.ADMIN_LOGIN_CODE_KEY + existSysUser.getId();
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.PASSWORD.getType())) {
             // 修改密码
         } else {
