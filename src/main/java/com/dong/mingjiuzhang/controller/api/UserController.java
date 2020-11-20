@@ -1,6 +1,7 @@
 package com.dong.mingjiuzhang.controller.api;
 
 
+import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
@@ -13,6 +14,7 @@ import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,6 +64,26 @@ public class UserController extends BaseController {
         // 修改密码
         userService.updatePassword(userId, passwordUpdateDTO);
         return success();
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/geInfo")
+    public ResponseResult<User> updatePassword(HttpServletRequest request) {
+        // 获取用户id
+        Long userId = JwtUtil.getUserIdByToken(request.getHeader(JwtUtil.TOKEN_HEADER));
+        if (Objects.isNull(userId)) {
+            throw new BusinessException(BusinessEnum.NOT_LOGIN);
+        }
+        User user = userService.getOkById(userId);
+        if (Objects.isNull(user)) {
+            throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
+        }
+        return success(user);
     }
 
 }
