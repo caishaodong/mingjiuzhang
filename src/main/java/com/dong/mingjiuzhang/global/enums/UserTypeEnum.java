@@ -1,5 +1,7 @@
 package com.dong.mingjiuzhang.global.enums;
 
+import com.dong.mingjiuzhang.global.util.string.StringUtil;
+
 /**
  * @Author caishaodong
  * @Date 2020-11-18 22:58
@@ -31,5 +33,25 @@ public enum UserTypeEnum {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    /**
+     * 根据类型获取用户类型枚举
+     *
+     * @param type
+     * @return
+     */
+    public static UserTypeEnum getUserTypeEnumByType(String type) {
+        if (StringUtil.isBlank(type)) {
+            return null;
+        }
+        UserTypeEnum userTypeEnum = null;
+        for (UserTypeEnum typeEnum : UserTypeEnum.values()) {
+            if (StringUtil.equals(typeEnum.getType(), type)) {
+                userTypeEnum = typeEnum;
+                break;
+            }
+        }
+        return userTypeEnum;
     }
 }

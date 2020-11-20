@@ -79,4 +79,19 @@ public class StringUtil {
         }
         return mobile.matches(PHONE_NUMBER_REGEX);
     }
+
+    /**
+     * 生成6位数短信验证码
+     *
+     * @return
+     */
+    public static String getSmsCode() {
+        return String.valueOf((int) ((Math.random() * 9 + 1) * 100000));
+    }
+
+
+    public static void main(String[] args) {
+        String content = "登录短信验证码：%s";
+        System.out.println(String.format(content, getSmsCode()));
+    }
 }

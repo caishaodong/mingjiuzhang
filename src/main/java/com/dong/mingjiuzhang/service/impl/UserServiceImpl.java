@@ -7,6 +7,7 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
+import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
 import com.dong.mingjiuzhang.mapper.UserMapper;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -56,6 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 保存用户信息
         User user = new User();
         BeanUtils.copyProperties(registerDTO, user);
+        ReflectUtil.setCreateInfo(user, User.class);
         save(user);
 
         // 生成token

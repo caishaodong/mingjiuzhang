@@ -3,6 +3,8 @@ package com.dong.mingjiuzhang.controller.common;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsSendDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
+import com.dong.mingjiuzhang.service.SmsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("sms/")
 public class SmsController extends BaseController {
+    @Autowired
+    private SmsService smsService;
 
     /**
      * 发送短信
@@ -22,9 +26,12 @@ public class SmsController extends BaseController {
      * @param smsSendDTO
      * @return
      */
-    @RequestMapping("/send")
-    public ResponseResult smsSend(@RequestBody SmsSendDTO smsSendDTO) {
+    @RequestMapping("/sendCode")
+    public ResponseResult smsSendCode(@RequestBody SmsSendDTO smsSendDTO) {
+        // 参数校验
+        smsSendDTO.paramCheck();
         // 发送短信
+        smsService.smsSendCode(smsSendDTO);
         return success();
     }
 }

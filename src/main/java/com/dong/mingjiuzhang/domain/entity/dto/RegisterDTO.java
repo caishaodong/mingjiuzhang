@@ -1,9 +1,12 @@
 package com.dong.mingjiuzhang.domain.entity.dto;
 
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
+import com.dong.mingjiuzhang.global.enums.UserIdentityEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import lombok.Data;
+
+import java.util.Objects;
 
 /**
  * @Author caishaodong
@@ -12,6 +15,10 @@ import lombok.Data;
  **/
 @Data
 public class RegisterDTO {
+    /**
+     * 用户身份：teacher老师，student学生
+     */
+    private String identity;
     /**
      * 昵称
      */
@@ -46,8 +53,15 @@ public class RegisterDTO {
                 || StringUtil.isBlank(this.provinceCode) || StringUtil.isBlank(this.cityCode) || StringUtil.isBlank(this.areaCode)) {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
+        // 用户手机号校验
         if (StringUtil.isMobile(this.mobile)) {
             throw new BusinessException(BusinessEnum.MOBILE_FORMAT_ERROR);
+        }
+        // 用户身份校验
+        if (StringUtil.isBlank(this.identity)) {
+            this.setIdentity(UserIdentityEnum.STUDENT.getIdentity());
+        } else if (Objects.isNull(UserIdentityEnum.getUserIdentityEnumByIdentity(this.getIdentity()))) {
+            throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
     }
 }

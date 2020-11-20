@@ -42,6 +42,11 @@ public class LoginApiController extends BaseController {
     public ResponseResult register(@RequestBody RegisterDTO registerDTO) {
         // 参数校验
         registerDTO.paramCheck();
+        // 校验用户是否存在
+        User existUser = userService.getOkByMobile(registerDTO.getMobile());
+        if (Objects.nonNull(existUser)) {
+            throw new BusinessException(BusinessEnum.MOBILE_EXIST);
+        }
         // 用户注册
         String token = userService.register(registerDTO);
         return success(token);
