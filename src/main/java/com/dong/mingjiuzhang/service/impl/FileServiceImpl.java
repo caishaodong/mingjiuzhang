@@ -1,13 +1,11 @@
-package com.dong.mingjiuzhang.controller.common;
+package com.dong.mingjiuzhang.service.impl;
 
 import com.dong.mingjiuzhang.global.ResponseResult;
-import com.dong.mingjiuzhang.global.base.BaseController;
+import com.dong.mingjiuzhang.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,25 +13,21 @@ import java.io.*;
 
 /**
  * @Author caishaodong
- * @Date 2020-11-20 23:12
+ * @Date 2020-11-21 15:18
  * @Description
  **/
-@Controller
-@RequestMapping("api/file")
-public class FileController extends BaseController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileController.class);
-
-    @Value("${file.upload.path}")
-    private String uploadPath;
+@Service
+public class FileServiceImpl implements FileService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileServiceImpl.class);
 
     /**
-     * 文件上传
+     * 上传文件
      *
-     * @param file 上传文件
+     * @param file
      * @return
      */
-    @RequestMapping("/upload")
-    public ResponseResult<String> upload(@RequestParam("file") MultipartFile file) {
+    @Override
+    public String upload(MultipartFile file, String uploadPath) {
         InputStream in = null;
         OutputStream out = null;
         try {
@@ -43,7 +37,7 @@ public class FileController extends BaseController {
             FileCopyUtils.copy(in, out);
         } catch (Exception e) {
             LOGGER.error("文件上传失败", e);
-            return error();
+            return "";
         } finally {
             if (in != null) {
                 try {
@@ -61,6 +55,6 @@ public class FileController extends BaseController {
             }
         }
         String filePath = "";
-        return success(filePath);
+        return filePath;
     }
 }

@@ -27,12 +27,12 @@ public class SmsService {
      * @param smsTemplateEnum
      */
     @Async
-    public void sendMessage(String mobile, SmsTemplateEnum smsTemplateEnum, String... templateParams) {
+    public void sendMessage(String mobile, SmsTemplateEnum smsTemplateEnum, String session, String... templateParams) {
         if (!StringUtil.isMobile(mobile) || Objects.isNull(smsTemplateEnum)) {
             return;
         }
         // 发送短信
-        SendSmsResponse sendSmsResponse = TencentSmsUtil.sendSms(mobile, smsTemplateEnum, "", templateParams);
+        SendSmsResponse sendSmsResponse = TencentSmsUtil.sendSms(mobile, smsTemplateEnum, session, templateParams);
         // 保存短信记录
         sendSmsLogService.save(sendSmsResponse);
     }

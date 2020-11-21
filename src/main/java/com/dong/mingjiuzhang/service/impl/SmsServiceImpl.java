@@ -5,12 +5,12 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsSendDTO;
 import com.dong.mingjiuzhang.global.config.redis.RedisKey;
 import com.dong.mingjiuzhang.global.config.redis.RedisService;
+import com.dong.mingjiuzhang.global.config.sms.SmsService;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.MsgTypeEnum;
 import com.dong.mingjiuzhang.global.enums.SmsTemplateEnum;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
-import com.dong.mingjiuzhang.global.config.sms.SmsService;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.SysUserService;
 import com.dong.mingjiuzhang.service.UserService;
@@ -59,8 +59,6 @@ public class SmsServiceImpl implements com.dong.mingjiuzhang.service.SmsService 
     public void apiSmsSend(SmsSendDTO smsSendDTO) {
         // 获取用户信息
         User existUser = userService.getOkByMobile(smsSendDTO.getMobile());
-        // 短信内容
-        String content = "";
         // 获取短信验证码
         String smsCode = StringUtil.getSmsCode();
         // 缓存key
@@ -96,7 +94,7 @@ public class SmsServiceImpl implements com.dong.mingjiuzhang.service.SmsService 
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         // 发送短信
-        smsService.sendMessage(smsSendDTO.getMobile(), smsTemplateEnum);
+        smsService.sendMessage(smsSendDTO.getMobile(), smsTemplateEnum, "", smsCode);
         // 缓存短信验证码
         redisService.setString(cacheKey, smsCode, 5 * 60);
     }

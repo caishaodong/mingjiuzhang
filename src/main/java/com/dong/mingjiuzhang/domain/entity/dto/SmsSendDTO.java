@@ -21,7 +21,7 @@ public class SmsSendDTO {
      */
     private String mobile;
     /**
-     * 短信类型（login:登录，password:修改密码）
+     * 短信类型（register：注册，login:登录，password:修改密码）
      */
     private String msgType;
     /**

@@ -15,6 +15,6 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/sys-user")
-public class SysUserController {
+public class SysUserAdminController {
 
 }
