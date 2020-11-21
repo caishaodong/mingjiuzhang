@@ -7,6 +7,8 @@
         <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="mobile" property="mobile" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
         <result column="avatar" property="avatar" />
         <result column="is_deleted" property="isDeleted" />
         <result column="gmt_create" property="gmtCreate" />
@@ -15,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, username, mobile, avatar, is_deleted, gmt_create, gmt_modified
+        id, username, mobile, password, salt, avatar, is_deleted, gmt_create, gmt_modified
     </sql>
 
 </mapper>
