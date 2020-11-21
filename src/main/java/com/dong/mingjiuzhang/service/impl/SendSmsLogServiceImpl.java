@@ -2,6 +2,7 @@ package com.dong.mingjiuzhang.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.SendSmsLog;
+import com.dong.mingjiuzhang.global.config.sms.TencentSmsUtil;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
@@ -46,7 +47,7 @@ public class SendSmsLogServiceImpl extends ServiceImpl<SendSmsLogMapper, SendSms
             SendSmsLog sendSmsLog = new SendSmsLog();
             sendSmsLog.setRequestId(requestId);
             sendSmsLog.setSerialNo(sendStatus.getSerialNo());
-            sendSmsLog.setMobile(sendStatus.getPhoneNumber());
+            sendSmsLog.setMobile(getSimpleMobile(sendStatus.getPhoneNumber()));
             sendSmsLog.setFee(sendStatus.getFee());
             sendSmsLog.setSessionContext(sendStatus.getSessionContext());
             sendSmsLog.setCode(sendStatus.getCode());
@@ -60,5 +61,18 @@ public class SendSmsLogServiceImpl extends ServiceImpl<SendSmsLogMapper, SendSms
         if (!CollectionUtils.isEmpty(list)) {
             this.saveBatch(list);
         }
+    }
+
+    /**
+     * 获取简单格式手机号
+     *
+     * @param phoneNumber
+     * @return
+     */
+    public static String getSimpleMobile(String phoneNumber) {
+        if (StringUtil.isBlank(phoneNumber)) {
+            return phoneNumber;
+        }
+        return phoneNumber.startsWith(TencentSmsUtil.CN_CODE) ? phoneNumber.substring(TencentSmsUtil.CN_CODE.length()) : phoneNumber;
     }
 }

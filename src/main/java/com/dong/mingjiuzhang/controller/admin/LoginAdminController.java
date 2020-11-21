@@ -49,7 +49,7 @@ public class LoginAdminController extends BaseController {
             throw new BusinessException(BusinessEnum.LOGIN_NAME_OR_PASSWORD_ERROR);
         }
         // 校验密码是否正确
-        if (StringUtil.equals(DigestUtil.digestString(passwordLoginDTO.getPassword(), existSysUser.getSalt()), existSysUser.getMobile())) {
+        if (!StringUtil.equals(DigestUtil.digestString(passwordLoginDTO.getPassword(), existSysUser.getSalt()), existSysUser.getPassword())) {
             throw new BusinessException(BusinessEnum.LOGIN_NAME_OR_PASSWORD_ERROR);
         }
         // 登录

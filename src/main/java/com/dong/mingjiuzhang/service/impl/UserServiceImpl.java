@@ -6,6 +6,7 @@ import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
@@ -56,7 +57,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return
      */
     @Override
-    public String register(RegisterDTO registerDTO) {
+    public UserApiLoginVo register(RegisterDTO registerDTO) {
         // 保存用户信息
         User user = new User();
         BeanUtils.copyProperties(registerDTO, user);
@@ -66,10 +67,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setPassword(DigestUtil.digestString(user.getPassword(), salt));
         save(user);
 
+        // 封账返回用户信息
+        UserApiLoginVo userApiLoginVo = new UserApiLoginVo();
+        BeanUtils.copyProperties(user, userApiLoginVo);
+
         // 生成token
         BaseUser baseUser = new BaseUser();
         BeanUtils.copyProperties(user, baseUser);
-        return JwtUtil.createToken(baseUser);
+        userApiLoginVo.setToken(JwtUtil.createToken(baseUser));
+        return userApiLoginVo;
     }
 
     /**
@@ -78,13 +84,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @param existUser
      */
     @Override
-    public String login(User existUser) {
+    public UserApiLoginVo login(User existUser) {
+        // 封账返回用户信息
+        UserApiLoginVo userApiLoginVo = new UserApiLoginVo();
+        BeanUtils.copyProperties(existUser, userApiLoginVo);
         // 生成token
         BaseUser baseUser = new BaseUser();
         BeanUtils.copyProperties(existUser, baseUser);
         baseUser.setUserTypeEnum(UserTypeEnum.API_USER);
         String token = JwtUtil.createToken(baseUser);
-        return token;
+        userApiLoginVo.setToken(token);
+        return userApiLoginVo;
     }
 
     /**

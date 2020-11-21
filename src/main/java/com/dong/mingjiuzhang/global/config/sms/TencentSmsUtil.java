@@ -17,7 +17,7 @@ import com.tencentcloudapi.sms.v20190711.models.SendSmsResponse;
  * @Description
  **/
 public class TencentSmsUtil {
-    private static final String CN_CODE = "+86";
+    public static final String CN_CODE = "+86";
 
     /**
      * 获取SmsClient

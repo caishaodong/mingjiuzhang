@@ -33,15 +33,15 @@ public class LoginAspect implements InitializingBean {
     @Value("${free.login.uri}")
     private String FREE_LOGIN_URI;
 
-    private static final String API_REQUEST_URI_PREFIX = "api/";
-    private static final String ADMIN_REQUEST_URI_PREFIX = "admin/";
+    private static final String API_REQUEST_URI_PREFIX = "/api/";
+    private static final String ADMIN_REQUEST_URI_PREFIX = "/admin/";
 
     /**
      * 免登URI集合
      */
     private List<String> FREE_LOGIN_URI_LIST = new ArrayList<>();
 
-    @Pointcut("execution(public * com.dong.mingjiuzhang.controller.*.*(..))")
+    @Pointcut("execution(public * com.dong.mingjiuzhang.controller..*.*(..))")
     public void login() {
     }
 

@@ -1,12 +1,11 @@
 package com.dong.mingjiuzhang.service.impl;
 
-import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -19,6 +18,9 @@ import java.io.*;
 @Service
 public class FileServiceImpl implements FileService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileServiceImpl.class);
+
+    @Value("${static.file.prefix}")
+    private String staticFilePrefix;
 
     /**
      * 上传文件
@@ -54,7 +56,7 @@ public class FileServiceImpl implements FileService {
                 }
             }
         }
-        String filePath = "";
+        String filePath = staticFilePrefix + file.getOriginalFilename();
         return filePath;
     }
 }

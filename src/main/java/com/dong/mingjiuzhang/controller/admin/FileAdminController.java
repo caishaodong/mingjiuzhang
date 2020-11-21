@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date 2020-09-18 15:16
  * @Description 管理台文件上传
  **/
-@Controller
+@RestController
 @RequestMapping("admin/file")
 public class FileAdminController extends BaseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileAdminController.class);
@@ -36,6 +36,7 @@ public class FileAdminController extends BaseController {
     @RequestMapping("/upload")
     public ResponseResult<String> upload(@RequestParam("file") MultipartFile file) {
         String filePath = fileService.upload(file, uploadPath);
+        LOGGER.info("admin upload file, filePath=" + filePath);
         return success(filePath);
     }
 }

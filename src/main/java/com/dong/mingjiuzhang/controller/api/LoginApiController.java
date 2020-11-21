@@ -4,6 +4,7 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordLoginDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsLoginDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.config.redis.RedisKey;
@@ -14,10 +15,7 @@ import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -40,8 +38,8 @@ public class LoginApiController extends BaseController {
      * @param registerDTO
      * @return
      */
-    @PutMapping("/register")
-    public ResponseResult register(@RequestBody RegisterDTO registerDTO) {
+    @PostMapping("/register")
+    public ResponseResult<UserApiLoginVo> register(@RequestBody RegisterDTO registerDTO) {
         // 参数校验
         registerDTO.paramCheck();
         // 校验用户是否存在
@@ -50,8 +48,8 @@ public class LoginApiController extends BaseController {
             throw new BusinessException(BusinessEnum.MOBILE_EXIST);
         }
         // 用户注册
-        String token = userService.register(registerDTO);
-        return success(token);
+        UserApiLoginVo userApiLoginVo = userService.register(registerDTO);
+        return success(userApiLoginVo);
     }
 
     /**
@@ -61,7 +59,7 @@ public class LoginApiController extends BaseController {
      * @return
      */
     @PutMapping("/passwordLogin")
-    public ResponseResult passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
+    public ResponseResult<UserApiLoginVo> passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
         // 参数校验
         passwordLoginDTO.paramCheck();
         // 校验用户是否存在
@@ -70,12 +68,12 @@ public class LoginApiController extends BaseController {
             throw new BusinessException(BusinessEnum.LOGIN_NAME_OR_PASSWORD_ERROR);
         }
         // 校验密码是否正确
-        if (StringUtil.equals(DigestUtil.digestString(passwordLoginDTO.getPassword(), existUser.getSalt()), existUser.getMobile())) {
+        if (!StringUtil.equals(DigestUtil.digestString(passwordLoginDTO.getPassword(), existUser.getSalt()), existUser.getPassword())) {
             throw new BusinessException(BusinessEnum.LOGIN_NAME_OR_PASSWORD_ERROR);
         }
         // 登录
-        String token = userService.login(existUser);
-        return success(token);
+        UserApiLoginVo userApiLoginVo = userService.login(existUser);
+        return success(userApiLoginVo);
     }
 
     /**
@@ -85,7 +83,7 @@ public class LoginApiController extends BaseController {
      * @return
      */
     @PutMapping("/smsLogin")
-    public ResponseResult smsLogin(@RequestBody SmsLoginDTO smsLoginDTO) {
+    public ResponseResult<UserApiLoginVo> smsLogin(@RequestBody SmsLoginDTO smsLoginDTO) {
         User existUser = userService.getOkByMobile(smsLoginDTO.getMobile());
         if (Objects.isNull(existUser)) {
             throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
@@ -97,10 +95,10 @@ public class LoginApiController extends BaseController {
             throw new BusinessException(BusinessEnum.SMS_CODE_INVALID);
         }
         // 登录
-        String token = userService.login(existUser);
+        UserApiLoginVo userApiLoginVo = userService.login(existUser);
         // 删除验证码
         redisService.deleteString(key);
-        return success(token);
+        return success(userApiLoginVo);
     }
 
     /**

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
 
 /**
  * <p>
@@ -37,14 +38,14 @@ public interface UserService extends IService<User> {
      * @param registerDTO
      * @return
      */
-    String register(RegisterDTO registerDTO);
+    UserApiLoginVo register(RegisterDTO registerDTO);
 
     /**
      * 密码登录
      *
      * @param existUser
      */
-    String login(User existUser);
+    UserApiLoginVo login(User existUser);
 
     /**
      * 修改密码
