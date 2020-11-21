@@ -27,7 +27,7 @@ public class JApiDocsConfig {
         // 项目根目录
         config.setProjectPath(projectPath);
         // 项目名称
-        config.setProjectName("AdminServer");
+        config.setProjectName("MingJiuZhang");
         // 声明该API的版本
         config.setApiVersion("V1.0");
         // 生成API 文档所在目录

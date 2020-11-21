@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author caishaodong
  * @Date 2020-09-18 15:16
- * @Description 短信
+ * @Description 短信管理
  **/
 @RestController
 @RequestMapping("sms/")

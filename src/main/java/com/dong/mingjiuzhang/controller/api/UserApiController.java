@@ -23,16 +23,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 /**
- * <p>
- * 用户信息表 前端控制器
- * </p>
- *
- * @author caishaodong
- * @since 2020-11-20
- */
+ * @Author caishaodong
+ * @Date 2020-09-18 15:16
+ * @Description API用户管理
+ **/
 @Controller
 @RequestMapping("api/user")
-public class UserController extends BaseController {
+public class UserApiController extends BaseController {
     @Autowired
     private RedisService redisService;
     @Autowired

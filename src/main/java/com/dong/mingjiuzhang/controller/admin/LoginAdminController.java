@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * @Author caishaodong
  * @Date 2020-09-18 15:16
- * @Description 系统用户登入登出
+ * @Description 管理台用户登入登出
  **/
 @RestController
 @RequestMapping("admin/")
@@ -70,12 +70,15 @@ public class LoginAdminController extends BaseController {
             throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
         }
         // 校验验证码是否正确
-        String smsCode = redisService.getString(RedisKey.ADMIN_LOGIN_CODE_KEY + smsLoginDTO.getMobile());
+        String key = RedisKey.ADMIN_LOGIN_CODE_KEY + existSysUser.getId();
+        String smsCode = redisService.getString(key);
         if (StringUtil.equals(smsCode, smsLoginDTO.getCode())) {
             throw new BusinessException(BusinessEnum.SMS_CODE_INVALID);
         }
         // 登录
         String token = sysUserService.login(existSysUser);
+        // 删除验证码
+        redisService.deleteString(key);
         return success(token);
     }
 
