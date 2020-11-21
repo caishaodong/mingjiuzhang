@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.mingjiuzhang.mapper.SendSmsLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.SendSmsLog">
+        <id column="id" property="id" />
+        <result column="request_id" property="requestId" />
+        <result column="serial_no" property="serialNo" />
+        <result column="mobile" property="mobile" />
+        <result column="fee" property="fee" />
+        <result column="session_context" property="sessionContext" />
+        <result column="code" property="code" />
+        <result column="message" property="message" />
+        <result column="is_success" property="isSuccess" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, request_id, serial_no, mobile, fee, session_context, code, message, is_success, is_deleted, gmt_create, gmt_modified
+    </sql>
+
+</mapper>

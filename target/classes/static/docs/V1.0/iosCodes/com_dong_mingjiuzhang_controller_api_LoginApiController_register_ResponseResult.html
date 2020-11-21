@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface ResponseResult : NSObject
+
+//
+@property (nonatomic, strong) NSInteger code;
+//
+@property (nonatomic, assign) NSString message;
+//
+@property (nonatomic, strong) UserApiLoginVo data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface UserApiLoginVo : NSObject
+
+//
+@property (nonatomic, strong) unknow log;
+//用户ID
+@property (nonatomic, strong) long id;
+//用户身份：teacher老师，student学生
+@property (nonatomic, assign) NSString identity;
+//昵称
+@property (nonatomic, assign) NSString username;
+//真实姓名
+@property (nonatomic, assign) NSString realName;
+//电子邮件
+@property (nonatomic, assign) NSString email;
+//手机号码
+@property (nonatomic, assign) NSString mobile;
+//证件ID
+@property (nonatomic, assign) NSString cardId;
+//图像url
+@property (nonatomic, assign) NSString avatar;
+//学号
+@property (nonatomic, assign) NSString studyNumber;
+//年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）
+@property (nonatomic, assign) NSString grade;
+//性别 1:男,2:女
+@property (nonatomic, strong) NSInteger sex;
+//省编码
+@property (nonatomic, assign) NSString provinceCode;
+//市编码
+@property (nonatomic, assign) NSString cityCode;
+//区编码
+@property (nonatomic, assign) NSString areaCode;
+//省
+@property (nonatomic, assign) NSString province;
+//市
+@property (nonatomic, assign) NSString city;
+//区
+@property (nonatomic, assign) NSString area;
+//用户历史总积分
+@property (nonatomic, strong) long totalIntegral;
+//用户当前积分
+@property (nonatomic, strong) long integral;
+//是否是会员：0不是  1是
+@property (nonatomic, strong) NSInteger isMember;
+//商户地址
+@property (nonatomic, assign) NSString userImage;
+//是否删除：0否 1是
+@property (nonatomic, strong) NSInteger isDeleted;
+//创建时间
+@property (nonatomic, assign) NSString gmtCreate;
+//更新时间
+@property (nonatomic, assign) NSString gmtModified;
+//用户token
+@property (nonatomic, assign) NSString token;
+
+
+@end
+</xmp>
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

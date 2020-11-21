@@ -1,0 +1,98 @@
+十一月 21, 2020 6:21:35 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find java src paths:  [D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\]
+十一月 21, 2020 6:21:35 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: project type not set, try to figure out...
+十一月 21, 2020 6:21:35 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start find controllers in path : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : FileAdminController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : LoginAdminController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : FileApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : LoginApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : UserApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: find controller file : SmsController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : FileAdminController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : FileAdminController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : LoginAdminController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : LoginAdminController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : FileApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : FileApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : LoginApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : LoginApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : UserApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : UserApiController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to parse controller file : SmsController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: we think T should not be an enum type
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils warn
+警告: warning!! Cannot find java file , in java file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java, className : T, we cannot found more information of it, you've better to make it a JavaBean
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to parse controller file : SmsController.java
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs start...
+十一月 21, 2020 6:21:36 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\admin\FileAdminController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\admin\FileAdminController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\admin\LoginAdminController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\admin\LoginAdminController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\FileApiController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\FileApiController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\LoginApiController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\LoginApiController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\UserApiController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\UserApiController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: start to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\common\SmsController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: success to generate docs for controller file : D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\common\SmsController.java
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate index start !!!
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate index done !!!
+十一月 21, 2020 6:21:37 下午 io.github.yedaxia.apidocs.LogUtils info
+信息: info: generate api docs done !!!
