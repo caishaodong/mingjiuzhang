@@ -7,11 +7,11 @@ import com.dong.mingjiuzhang.global.config.redis.RedisKey;
 import com.dong.mingjiuzhang.global.config.redis.RedisService;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.MsgTypeEnum;
+import com.dong.mingjiuzhang.global.enums.SmsTemplateEnum;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
-import com.dong.mingjiuzhang.global.util.sms.SmsUtil;
+import com.dong.mingjiuzhang.global.config.sms.SmsService;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
-import com.dong.mingjiuzhang.service.SmsService;
 import com.dong.mingjiuzhang.service.SysUserService;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +25,15 @@ import java.util.Objects;
  * @Description 短信服务
  **/
 @Service
-public class SmsServiceImpl implements SmsService {
+public class SmsServiceImpl implements com.dong.mingjiuzhang.service.SmsService {
     @Autowired
     private UserService userService;
     @Autowired
     private SysUserService sysUserService;
     @Autowired
     private RedisService redisService;
+    @Autowired
+    private SmsService smsService;
 
     /**
      * 发送短信
@@ -63,6 +65,8 @@ public class SmsServiceImpl implements SmsService {
         String smsCode = StringUtil.getSmsCode();
         // 缓存key
         String cacheKey = "";
+        // 短信模板
+        SmsTemplateEnum smsTemplateEnum = null;
 
         if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.REGISTER.getType())) {
             // 注册
@@ -70,8 +74,7 @@ public class SmsServiceImpl implements SmsService {
                 throw new BusinessException(BusinessEnum.MOBILE_EXIST);
             }
             // 获取注册短信模板
-            content = "注册短信验证码：%s";
-            content = String.format(content, smsCode);
+            smsTemplateEnum = SmsTemplateEnum.REGISTER;
             cacheKey = RedisKey.API_REGISTER_CODE_KEY + smsSendDTO.getMobile();
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.LOGIN.getType())) {
             // 登录
@@ -79,8 +82,7 @@ public class SmsServiceImpl implements SmsService {
                 throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
             }
             // 获取登录短信模板
-            content = "登录短信验证码：%s";
-            content = String.format(content, smsCode);
+            smsTemplateEnum = SmsTemplateEnum.LOGIN;
             cacheKey = RedisKey.API_LOGIN_CODE_KEY + existUser.getId();
         } else if (StringUtil.equals(smsSendDTO.getMsgType(), MsgTypeEnum.PASSWORD.getType())) {
             // 修改密码
@@ -88,14 +90,13 @@ public class SmsServiceImpl implements SmsService {
                 throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
             }
             // 获取修改密码短信模板
-            content = "修改短信验证码：%s";
-            content = String.format(content, smsCode);
+            smsTemplateEnum = SmsTemplateEnum.PASSWORD;
             cacheKey = RedisKey.API_PASSWORD_CODE_KEY + existUser.getId();
         } else {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         // 发送短信
-        SmsUtil.sendMessage(smsSendDTO.getMobile(), content);
+        smsService.sendMessage(smsSendDTO.getMobile(), smsTemplateEnum);
         // 缓存短信验证码
         redisService.setString(cacheKey, smsCode, 5 * 60);
     }
