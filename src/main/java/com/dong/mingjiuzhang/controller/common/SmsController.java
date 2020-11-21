@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description 短信管理
  **/
 @RestController
-@RequestMapping("sms/")
+@RequestMapping("anonymous/sms/")
 public class SmsController extends BaseController {
     @Autowired
     private SmsService smsService;

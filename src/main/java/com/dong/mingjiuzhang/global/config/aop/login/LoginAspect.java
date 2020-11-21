@@ -35,6 +35,7 @@ public class LoginAspect implements InitializingBean {
 
     private static final String API_REQUEST_URI_PREFIX = "/api/";
     private static final String ADMIN_REQUEST_URI_PREFIX = "/admin/";
+    private static final String ANONYMOUS_REQUEST_URI_PREFIX = "/anonymous/";
 
     /**
      * 免登URI集合
@@ -49,6 +50,12 @@ public class LoginAspect implements InitializingBean {
     public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String requestURI = request.getRequestURI();
+
+        // 匿名接口
+        if (requestURI.startsWith(ANONYMOUS_REQUEST_URI_PREFIX)) {
+            return proceedingJoinPoint.proceed();
+        }
+
         // 资源请求路径校验
         if (!requestURI.startsWith(API_REQUEST_URI_PREFIX) && !requestURI.startsWith(ADMIN_REQUEST_URI_PREFIX)) {
             throw new BusinessException(BusinessEnum.HAVE_NO_PERMISSION);

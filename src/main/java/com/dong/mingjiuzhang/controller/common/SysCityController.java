@@ -14,15 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * <p>
- * 中国省市区地名表 前端控制器
- * </p>
- *
- * @author caishaodong
- * @since 2020-11-21
- */
+ * @Author caishaodong
+ * @Date 2020-11-20 23:12
+ * @Description 中国省市区地区表
+ **/
 @RestController
-@RequestMapping("/sysCity")
+@RequestMapping("anonymous/sysCity")
 public class SysCityController extends BaseController {
     @Autowired
     private SysCityService sysCityService;

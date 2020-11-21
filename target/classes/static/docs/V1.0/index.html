@@ -120,6 +120,20 @@
                     </a>
             </div>
         </div>
+        <div class="panel">
+            <div id="heading6" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse6" aria-controls="collapse6">
+                <i class="glyphicon glyphicon-align-justify"></i> 中国省市区地区表
+            </div>
+            <div id="collapse6" class="collapse " aria-labelledby="heading6">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SysCityController.html#getNameByAreaCode">
+                        根据地区编码获取地区名称
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SysCityController.html#getCityListByParentCode">
+                        根据父级城市编码获取子级城市数据（获取省份时，parentCode传1）
+                    </a>
+            </div>
+        </div>
 </div>    </div>
     <div class="book-body">
         <div class="body-inner">
@@ -141,6 +155,7 @@
                                 <a href="com_dong_mingjiuzhang_controller_api_LoginApiController.html" class="list-group-item">API登入登出</a>
                                 <a href="com_dong_mingjiuzhang_controller_api_UserApiController.html" class="list-group-item">API用户管理</a>
                                 <a href="com_dong_mingjiuzhang_controller_common_SmsController.html" class="list-group-item">短信管理</a>
+                                <a href="com_dong_mingjiuzhang_controller_common_SysCityController.html" class="list-group-item">中国省市区地区表</a>
                         </div>
                     </div>
                 </div>
@@ -167,6 +182,8 @@
         {name: 'API用户管理.修改密码', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
         {name: 'API用户管理.获取用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
         {name: '短信管理.发送短信', url: 'com_dong_mingjiuzhang_controller_common_SmsController.html#smsSendCode'},
+        {name: '中国省市区地区表.根据地区编码获取地区名称', url: 'com_dong_mingjiuzhang_controller_common_SysCityController.html#getNameByAreaCode'},
+        {name: '中国省市区地区表.根据父级城市编码获取子级城市数据（获取省份时，parentCode传1）', url: 'com_dong_mingjiuzhang_controller_common_SysCityController.html#getCityListByParentCode'},
     ];
 
 

@@ -37,6 +37,8 @@ com\dong\mingjiuzhang\global\config\sms\SmsResponse.class
 com\dong\mingjiuzhang\global\util\file\excel\Test.class
 com\dong\mingjiuzhang\global\config\aop\permission\Permission.class
 com\dong\mingjiuzhang\global\util\encryption\RSAUtils.class
+com\dong\mingjiuzhang\service\SysCityService.class
+com\dong\mingjiuzhang\domain\entity\SysCity.class
 com\dong\mingjiuzhang\global\util\file\download\zip\ZipDownLoadUtil.class
 com\dong\mingjiuzhang\global\util\decimal\DecimalUtil.class
 com\dong\mingjiuzhang\domain\entity\dto\SmsLoginDTO.class
@@ -65,6 +67,7 @@ com\dong\mingjiuzhang\global\config\interceptor\InterceptorConfig.class
 com\dong\mingjiuzhang\global\util\geo\GeoHash.class
 com\dong\mingjiuzhang\global\constant\NumberConstants.class
 com\dong\mingjiuzhang\global\enums\UserStatusEnum.class
+com\dong\mingjiuzhang\service\impl\SysCityServiceImpl.class
 com\dong\mingjiuzhang\global\config\aop\permission\PermissionAspect.class
 com\dong\mingjiuzhang\domain\entity\dto\SmsSendDTO.class
 com\dong\mingjiuzhang\global\util\page\PageUtil.class
@@ -82,6 +85,7 @@ com\dong\mingjiuzhang\global\util\geo\DisUtil2.class
 com\dong\mingjiuzhang\domain\entity\vo\UserApiLoginVo.class
 com\dong\mingjiuzhang\domain\entity\BaseUser.class
 com\dong\mingjiuzhang\global\config\redis\RedisConfig.class
+com\dong\mingjiuzhang\mapper\SysCityMapper.class
 com\dong\mingjiuzhang\global\util\file\excel\TailMapListUtil.class
 com\dong\mingjiuzhang\global\util\geo\MysqlGeoUtil.class
 com\dong\mingjiuzhang\MingJiuZhangApplication.class
@@ -90,6 +94,7 @@ com\dong\mingjiuzhang\global\config\sms\TencentSmsUtil.class
 com\dong\mingjiuzhang\service\impl\UserServiceImpl.class
 com\dong\mingjiuzhang\global\util\file\FileUtil.class
 com\dong\mingjiuzhang\service\SysUserService.class
+com\dong\mingjiuzhang\controller\common\SysCityController.class
 com\dong\mingjiuzhang\global\config\wrapper\ResponseBodyReturnValueWrapper.class
 com\dong\mingjiuzhang\global\config\redis\RedisKey.class
 com\dong\mingjiuzhang\global\ResponseResult.class
