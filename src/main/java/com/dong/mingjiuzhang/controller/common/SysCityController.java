@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @Author caishaodong
  * @Date 2020-11-20 23:12
- * @Description 中国省市区地区表
+ * @Description (公共)中国省市区地区表
  **/
 @RestController
 @RequestMapping("anonymous/sysCity")

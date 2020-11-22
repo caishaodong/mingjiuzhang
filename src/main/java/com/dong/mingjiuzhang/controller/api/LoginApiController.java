@@ -22,7 +22,7 @@ import java.util.Objects;
 /**
  * @Author caishaodong
  * @Date 2020-09-18 15:16
- * @Description API登入登出
+ * @Description (API)登入登出
  **/
 @RestController
 @RequestMapping("api/")

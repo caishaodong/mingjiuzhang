@@ -22,7 +22,7 @@ import java.util.Objects;
 /**
  * @Author caishaodong
  * @Date 2020-11-22 13:27
- * @Description 代理信息
+ * @Description (API)代理信息
  **/
 @RestController
 @RequestMapping("admin/agentInfo")

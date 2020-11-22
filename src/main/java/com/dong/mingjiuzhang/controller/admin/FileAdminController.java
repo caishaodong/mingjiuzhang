@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * @Author caishaodong
  * @Date 2020-09-18 15:16
- * @Description 管理台文件上传
+ * @Description (管理台)文件上传
  **/
 @RestController
 @RequestMapping("admin/file")

@@ -107,12 +107,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         // 生成token
         BaseUser baseUser = new BaseUser();
         BeanUtils.copyProperties(user, baseUser);
+        baseUser.setUserTypeEnum(UserTypeEnum.API_USER);
         userApiLoginVo.setToken(JwtUtil.createToken(baseUser));
         return userApiLoginVo;
     }
 
     /**
-     * 密码登录
+     * 登录
      *
      * @param existUser
      */

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 问题回复
+ * (API)问题回复
  *
  * @author caishaodong
  * @since 2020-11-22

@@ -183,7 +183,7 @@ public class JwtUtil {
 //
 //        Map<String, Claim> claimMap = verifyToken(token);
 //        System.out.println(getUserByClaimMap(claimMap));
-        System.out.println(getNoPrefixToken("admin_sdfsdfgsgsg"));
+        System.out.println(getNoPrefixToken("api_eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDY2NTc4MDIsInVzZXJJZCI6MiwiaWF0IjoxNjA2MDUzMDAyLCJ1c2VybmFtZSI6InpsZyJ9.oYELTk3CRfxqbJE8XsrNdtu-wojiCnGi6qQNL8h0crM"));
 
     }
 }

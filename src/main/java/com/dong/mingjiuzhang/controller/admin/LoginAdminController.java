@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * @Author caishaodong
  * @Date 2020-09-18 15:16
- * @Description 管理台用户登入登出
+ * @Description (管理台)登入登出
  **/
 @RestController
 @RequestMapping("admin/")

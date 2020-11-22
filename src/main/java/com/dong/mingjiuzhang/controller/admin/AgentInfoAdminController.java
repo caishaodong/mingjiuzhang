@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author caishaodong
  * @Date 2020-11-22 13:27
- * @Description 代理信息
+ * @Description (管理台)代理信息
  **/
 @RestController
 @RequestMapping("admin/agentInfo")

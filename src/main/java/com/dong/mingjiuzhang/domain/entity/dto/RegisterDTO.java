@@ -38,19 +38,19 @@ public class RegisterDTO {
     /**
      * 省编码
      */
-    private String provinceCode;
+    private Integer provinceCode;
     /**
      * 市编码
      */
-    private String cityCode;
+    private Integer cityCode;
     /**
      * 区编码
      */
-    private String areaCode;
+    private Integer areaCode;
 
     public void paramCheck() {
         if (StringUtil.isBlank(this.username) || StringUtil.isBlank(this.password) || StringUtil.isBlank(this.mobile) || StringUtil.isBlank(this.grade)
-                || StringUtil.isBlank(this.provinceCode) || StringUtil.isBlank(this.cityCode) || StringUtil.isBlank(this.areaCode)) {
+                || Objects.isNull(this.provinceCode) || Objects.isNull(this.cityCode) || Objects.isNull(this.areaCode)) {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         // 用户手机号校验

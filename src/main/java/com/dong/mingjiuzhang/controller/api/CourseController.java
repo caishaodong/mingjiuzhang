@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * 课程
+ * (API)课程
  *
  * @author caishaodong
  * @since 2020-11-22

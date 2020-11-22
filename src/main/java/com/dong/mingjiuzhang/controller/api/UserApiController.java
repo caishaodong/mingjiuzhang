@@ -25,7 +25,7 @@ import java.util.Objects;
 /**
  * @Author caishaodong
  * @Date 2020-09-18 15:16
- * @Description API用户管理
+ * @Description (API)用户管理
  **/
 @Controller
 @RequestMapping("api/user")

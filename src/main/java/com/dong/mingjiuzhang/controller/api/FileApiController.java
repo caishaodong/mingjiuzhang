@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * @Author caishaodong
  * @Date 2020-11-20 23:12
- * @Description API文件上传
+ * @Description (API)文件上传
  **/
 @RestController
 @RequestMapping("api/file")
