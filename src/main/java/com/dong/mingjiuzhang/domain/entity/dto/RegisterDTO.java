@@ -16,7 +16,7 @@ import java.util.Objects;
 @Data
 public class RegisterDTO {
     /**
-     * 用户身份：teacher老师，student学生
+     * 用户身份：老师，学生
      */
     private String identity;
     /**

@@ -52,7 +52,7 @@ public class LoginAspect implements InitializingBean {
         String requestURI = request.getRequestURI();
 
         // 匿名接口
-        if (requestURI.startsWith(ANONYMOUS_REQUEST_URI_PREFIX)) {
+        if (requestURI.startsWith(ANONYMOUS_REQUEST_URI_PREFIX) || FREE_LOGIN_URI_LIST.contains(requestURI)) {
             return proceedingJoinPoint.proceed();
         }
 
@@ -62,7 +62,7 @@ public class LoginAspect implements InitializingBean {
         }
 
         Long userId = getUserId(request);
-        if (!FREE_LOGIN_URI_LIST.contains(requestURI) && Objects.isNull(userId)) {
+        if (Objects.isNull(userId)) {
             throw new BusinessException(BusinessEnum.NOT_LOGIN);
         }
 

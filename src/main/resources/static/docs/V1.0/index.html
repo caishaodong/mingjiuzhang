@@ -82,7 +82,7 @@
             </div>
             <div id="collapse3" class="collapse " aria-labelledby="heading3">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseCateController.html#list">
-                        获取所有类目列表（不分页）
+                        获取所有课程类目列表（不分页）
                     </a>
             </div>
         </div>
@@ -93,7 +93,7 @@
             </div>
             <div id="collapse4" class="collapse " aria-labelledby="heading4">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseController.html#list">
-                        根据系列id获取所有课程列表
+                        根据系列id获取课程列表（不分页）
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo">
                         根据课程id获取课程详细信息
@@ -107,7 +107,7 @@
             </div>
             <div id="collapse5" class="collapse " aria-labelledby="heading5">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list">
-                        根据课程类目id获取系列列表（不分页）
+                        根据课程类目id获取课程系列列表（不分页）
                     </a>
             </div>
         </div>
@@ -156,9 +156,26 @@
         <div class="panel">
             <div id="heading9" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse9" aria-controls="collapse9">
-                <i class="glyphicon glyphicon-align-justify"></i> API用户管理
+                <i class="glyphicon glyphicon-align-justify"></i> 问题
             </div>
             <div id="collapse9" class="collapse " aria-labelledby="heading9">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_ProblemApiController.html#save">
+                        提交问题
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_ProblemApiController.html#pageList">
+                        获取问题列表（分页）
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_ProblemApiController.html#getProblemInfo">
+                        根据问题id获取问题及回复信息
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading10" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse10" aria-controls="collapse10">
+                <i class="glyphicon glyphicon-align-justify"></i> API用户管理
+            </div>
+            <div id="collapse10" class="collapse " aria-labelledby="heading10">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword">
                         修改密码
                     </a>
@@ -171,22 +188,22 @@
             </div>
         </div>
         <div class="panel">
-            <div id="heading10" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse10" aria-controls="collapse10">
+            <div id="heading11" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse11" aria-controls="collapse11">
                 <i class="glyphicon glyphicon-align-justify"></i> 短信管理
             </div>
-            <div id="collapse10" class="collapse " aria-labelledby="heading10">
+            <div id="collapse11" class="collapse " aria-labelledby="heading11">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SmsController.html#smsSendCode">
                         发送短信
                     </a>
             </div>
         </div>
         <div class="panel">
-            <div id="heading11" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse11" aria-controls="collapse11">
+            <div id="heading12" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse12" aria-controls="collapse12">
                 <i class="glyphicon glyphicon-align-justify"></i> 中国省市区地区表
             </div>
-            <div id="collapse11" class="collapse " aria-labelledby="heading11">
+            <div id="collapse12" class="collapse " aria-labelledby="heading12">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SysCityController.html#getNameByAreaCode">
                         根据地区编码获取地区名称
                     </a>
@@ -219,6 +236,7 @@
                                 <a href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html" class="list-group-item">作业</a>
                                 <a href="com_dong_mingjiuzhang_controller_api_FileApiController.html" class="list-group-item">API文件上传</a>
                                 <a href="com_dong_mingjiuzhang_controller_api_LoginApiController.html" class="list-group-item">API登入登出</a>
+                                <a href="com_dong_mingjiuzhang_controller_api_ProblemApiController.html" class="list-group-item">问题</a>
                                 <a href="com_dong_mingjiuzhang_controller_api_UserApiController.html" class="list-group-item">API用户管理</a>
                                 <a href="com_dong_mingjiuzhang_controller_common_SmsController.html" class="list-group-item">短信管理</a>
                                 <a href="com_dong_mingjiuzhang_controller_common_SysCityController.html" class="list-group-item">中国省市区地区表</a>
@@ -241,16 +259,19 @@
         {name: '管理台用户登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#smsLogin'},
         {name: '管理台用户登入登出.登出', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#logout'},
         {name: '代理信息.提交代理信息', url: 'com_dong_mingjiuzhang_controller_api_AgentInfoApiController.html#save'},
-        {name: '课程类目.获取所有类目列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseCateController.html#list'},
-        {name: '课程.根据系列id获取所有课程列表', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#list'},
+        {name: '课程类目.获取所有课程类目列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseCateController.html#list'},
+        {name: '课程.根据系列id获取课程列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#list'},
         {name: '课程.根据课程id获取课程详细信息', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo'},
-        {name: '课程系列.根据课程类目id获取系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
+        {name: '课程系列.根据课程类目id获取课程系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
         {name: '作业.上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
         {name: 'API文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_api_FileApiController.html#upload'},
         {name: 'API登入登出.用户注册', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#register'},
         {name: 'API登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},
         {name: 'API登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#smsLogin'},
         {name: 'API登入登出.登出', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#logout'},
+        {name: '问题.提交问题', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#save'},
+        {name: '问题.获取问题列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#pageList'},
+        {name: '问题.根据问题id获取问题及回复信息', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#getProblemInfo'},
         {name: 'API用户管理.修改密码', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
         {name: 'API用户管理.获取用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
         {name: 'API用户管理.修改用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updateAvatar'},

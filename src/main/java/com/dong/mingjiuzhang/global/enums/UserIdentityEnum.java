@@ -9,8 +9,8 @@ import com.dong.mingjiuzhang.global.util.string.StringUtil;
  **/
 public enum UserIdentityEnum {
 
-    TEACHER("teacher", "老师"),
-    STUDENT("student", "学生");
+    TEACHER("老师", "teacher"),
+    STUDENT("学生", "student");
 
     private String identity;
     private String desc;

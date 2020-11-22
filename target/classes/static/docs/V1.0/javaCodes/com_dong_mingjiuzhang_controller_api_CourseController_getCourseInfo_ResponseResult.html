@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ResponseResult implements Serializable{
+
+    private int code; //
+    private String message; //
+    private CourseVo data; //
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    public CourseVo getData(){
+        return data;
+    }
+
+    public void setData(CourseVo data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class CourseVo implements Serializable{
+
+    private unknow log; //
+    private long id; //课程ID
+    private long courseCateId; //课程类目id
+    private long courseSeriesId; //课程系列id
+    private int isPayment; //是否付费 0：否 是：1
+    private double coursePrice; //课程价格
+    private String videoUrl; //视频url
+    private String courseName; //课程名称
+    private String gmtStartShow; //课程结束展示时间
+    private String gmtEndShow; //课程开始展示时间
+    private String synopsis; //简介
+    private String courseSeriesName; //课程系列名称
+    private double courseSeriesPrice; //课程系列价格
+    private double courseSeriesGroupPrice; //课程系列拼团价格
+    private String gmtStartUpload; //开始上传时间
+    private String gmtEndUpload; //结束上传时间
+    private String gmtStartEffect; //开始有效开始时间
+    private String gmtEndEffect; //结束有效结束时间
+    private String courseSpecial; //课程期类（春季课程，夏季课程，秋季课程）
+    private String courseEdition; //课程版本（基础课，专题课）
+    private String feedbackMode; //反馈方式
+    private String content; //内容
+    private int sort; //排序
+    private String gmtCreate; //创建时间
+    private String gmtModified; //更新时间
+
+    public unknow getLog(){
+        return log;
+    }
+
+    public void setLog(unknow log){
+        this.log = log;
+    }
+
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getCourseCateId(){
+        return courseCateId;
+    }
+
+    public void setCourseCateId(long courseCateId){
+        this.courseCateId = courseCateId;
+    }
+
+    public long getCourseSeriesId(){
+        return courseSeriesId;
+    }
+
+    public void setCourseSeriesId(long courseSeriesId){
+        this.courseSeriesId = courseSeriesId;
+    }
+
+    public int getIsPayment(){
+        return isPayment;
+    }
+
+    public void setIsPayment(int isPayment){
+        this.isPayment = isPayment;
+    }
+
+    public double getCoursePrice(){
+        return coursePrice;
+    }
+
+    public void setCoursePrice(double coursePrice){
+        this.coursePrice = coursePrice;
+    }
+
+    public String getVideoUrl(){
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl){
+        this.videoUrl = videoUrl;
+    }
+
+    public String getCourseName(){
+        return courseName;
+    }
+
+    public void setCourseName(String courseName){
+        this.courseName = courseName;
+    }
+
+    public String getGmtStartShow(){
+        return gmtStartShow;
+    }
+
+    public void setGmtStartShow(String gmtStartShow){
+        this.gmtStartShow = gmtStartShow;
+    }
+
+    public String getGmtEndShow(){
+        return gmtEndShow;
+    }
+
+    public void setGmtEndShow(String gmtEndShow){
+        this.gmtEndShow = gmtEndShow;
+    }
+
+    public String getSynopsis(){
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis){
+        this.synopsis = synopsis;
+    }
+
+    public String getCourseSeriesName(){
+        return courseSeriesName;
+    }
+
+    public void setCourseSeriesName(String courseSeriesName){
+        this.courseSeriesName = courseSeriesName;
+    }
+
+    public double getCourseSeriesPrice(){
+        return courseSeriesPrice;
+    }
+
+    public void setCourseSeriesPrice(double courseSeriesPrice){
+        this.courseSeriesPrice = courseSeriesPrice;
+    }
+
+    public double getCourseSeriesGroupPrice(){
+        return courseSeriesGroupPrice;
+    }
+
+    public void setCourseSeriesGroupPrice(double courseSeriesGroupPrice){
+        this.courseSeriesGroupPrice = courseSeriesGroupPrice;
+    }
+
+    public String getGmtStartUpload(){
+        return gmtStartUpload;
+    }
+
+    public void setGmtStartUpload(String gmtStartUpload){
+        this.gmtStartUpload = gmtStartUpload;
+    }
+
+    public String getGmtEndUpload(){
+        return gmtEndUpload;
+    }
+
+    public void setGmtEndUpload(String gmtEndUpload){
+        this.gmtEndUpload = gmtEndUpload;
+    }
+
+    public String getGmtStartEffect(){
+        return gmtStartEffect;
+    }
+
+    public void setGmtStartEffect(String gmtStartEffect){
+        this.gmtStartEffect = gmtStartEffect;
+    }
+
+    public String getGmtEndEffect(){
+        return gmtEndEffect;
+    }
+
+    public void setGmtEndEffect(String gmtEndEffect){
+        this.gmtEndEffect = gmtEndEffect;
+    }
+
+    public String getCourseSpecial(){
+        return courseSpecial;
+    }
+
+    public void setCourseSpecial(String courseSpecial){
+        this.courseSpecial = courseSpecial;
+    }
+
+    public String getCourseEdition(){
+        return courseEdition;
+    }
+
+    public void setCourseEdition(String courseEdition){
+        this.courseEdition = courseEdition;
+    }
+
+    public String getFeedbackMode(){
+        return feedbackMode;
+    }
+
+    public void setFeedbackMode(String feedbackMode){
+        this.feedbackMode = feedbackMode;
+    }
+
+    public String getContent(){
+        return content;
+    }
+
+    public void setContent(String content){
+        this.content = content;
+    }
+
+    public int getSort(){
+        return sort;
+    }
+
+    public void setSort(int sort){
+        this.sort = sort;
+    }
+
+    public String getGmtCreate(){
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(String gmtCreate){
+        this.gmtCreate = gmtCreate;
+    }
+
+    public String getGmtModified(){
+        return gmtModified;
+    }
+
+    public void setGmtModified(String gmtModified){
+        this.gmtModified = gmtModified;
+    }
+
+}
+</pre>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

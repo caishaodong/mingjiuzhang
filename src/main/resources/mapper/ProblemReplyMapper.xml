@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.mingjiuzhang.mapper.ProblemReplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.ProblemReply">
+        <id column="id" property="id"/>
+        <result column="problem_id" property="problemId"/>
+        <result column="user_id" property="userId"/>
+        <result column="problem_reply_content" property="problemReplyContent"/>
+        <result column="problem_reply_image" property="problemReplyImage"/>
+        <result column="problem__reply_status" property="problemReplyStatus"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, problem_id, user_id, problem_reply_content, problem_reply_image, problem__reply_status, is_deleted, gmt_create, gmt_modified
+    </sql>
+    <select id="getListByProblemId" resultType="com.dong.mingjiuzhang.domain.entity.vo.ProblemReplyVO">
+        SELECT r.id, r.user_id, u.username, u.avatar, r.problem_reply_content, r.problem_reply_image, r.gmt_create
+        FROM t_problem_reply r
+        LEFT JOIN t_user u ON r.user_id = u.id
+        WHERE r.is_deleted = 0 AND r.problem__reply_status = 1 AND r.problem_id = #{problemId}
+        ORDER BY r.gmt_create DESC
+    </select>
+
+</mapper>

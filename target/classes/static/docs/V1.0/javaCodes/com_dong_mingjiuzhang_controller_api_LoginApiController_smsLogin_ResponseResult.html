@@ -12,7 +12,7 @@ public class ResponseResult implements Serializable{
 
     private int code; //
     private String message; //
-    private UserApiLoginVo data; //
+    private UserApiLoginVO data; //
 
     public int getCode(){
         return code;
@@ -30,11 +30,11 @@ public class ResponseResult implements Serializable{
         this.message = message;
     }
 
-    public UserApiLoginVo getData(){
+    public UserApiLoginVO getData(){
         return data;
     }
 
-    public void setData(UserApiLoginVo data){
+    public void setData(UserApiLoginVO data){
         this.data = data;
     }
 
@@ -43,7 +43,7 @@ public class ResponseResult implements Serializable{
 
 
 <pre class="prettyprint lang-java">
-public class UserApiLoginVo implements Serializable{
+public class UserApiLoginVO implements Serializable{
 
     private unknow log; //
     private long id; //用户ID

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface ResponseResult : NSObject
+
+//
+@property (nonatomic, strong) NSInteger code;
+//
+@property (nonatomic, assign) NSString message;
+//
+@property (nonatomic, strong) CourseVo data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface CourseVo : NSObject
+
+//
+@property (nonatomic, strong) unknow log;
+//课程ID
+@property (nonatomic, strong) long id;
+//课程类目id
+@property (nonatomic, strong) long courseCateId;
+//课程系列id
+@property (nonatomic, strong) long courseSeriesId;
+//是否付费 0：否 是：1
+@property (nonatomic, strong) NSInteger isPayment;
+//课程价格
+@property (nonatomic, strong) double coursePrice;
+//视频url
+@property (nonatomic, assign) NSString videoUrl;
+//课程名称
+@property (nonatomic, assign) NSString courseName;
+//课程结束展示时间
+@property (nonatomic, assign) NSString gmtStartShow;
+//课程开始展示时间
+@property (nonatomic, assign) NSString gmtEndShow;
+//简介
+@property (nonatomic, assign) NSString synopsis;
+//课程系列名称
+@property (nonatomic, assign) NSString courseSeriesName;
+//课程系列价格
+@property (nonatomic, strong) double courseSeriesPrice;
+//课程系列拼团价格
+@property (nonatomic, strong) double courseSeriesGroupPrice;
+//开始上传时间
+@property (nonatomic, assign) NSString gmtStartUpload;
+//结束上传时间
+@property (nonatomic, assign) NSString gmtEndUpload;
+//开始有效开始时间
+@property (nonatomic, assign) NSString gmtStartEffect;
+//结束有效结束时间
+@property (nonatomic, assign) NSString gmtEndEffect;
+//课程期类（春季课程，夏季课程，秋季课程）
+@property (nonatomic, assign) NSString courseSpecial;
+//课程版本（基础课，专题课）
+@property (nonatomic, assign) NSString courseEdition;
+//反馈方式
+@property (nonatomic, assign) NSString feedbackMode;
+//内容
+@property (nonatomic, assign) NSString content;
+//排序
+@property (nonatomic, strong) NSInteger sort;
+//创建时间
+@property (nonatomic, assign) NSString gmtCreate;
+//更新时间
+@property (nonatomic, assign) NSString gmtModified;
+
+
+@end
+</xmp>
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

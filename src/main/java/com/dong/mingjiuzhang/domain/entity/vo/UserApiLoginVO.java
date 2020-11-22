@@ -9,7 +9,7 @@ import lombok.Data;
  * @Description
  **/
 @Data
-public class UserApiLoginVo extends User {
+public class UserApiLoginVO extends User {
     /**
      * 用户token
      */

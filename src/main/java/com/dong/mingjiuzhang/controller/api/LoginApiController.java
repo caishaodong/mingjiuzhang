@@ -4,7 +4,7 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordLoginDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.SmsLoginDTO;
-import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
+import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.config.redis.RedisKey;
@@ -39,7 +39,7 @@ public class LoginApiController extends BaseController {
      * @return
      */
     @PostMapping("/register")
-    public ResponseResult<UserApiLoginVo> register(@RequestBody RegisterDTO registerDTO) {
+    public ResponseResult<UserApiLoginVO> register(@RequestBody RegisterDTO registerDTO) {
         // 参数校验
         registerDTO.paramCheck();
         // 校验用户是否存在
@@ -48,7 +48,7 @@ public class LoginApiController extends BaseController {
             throw new BusinessException(BusinessEnum.MOBILE_EXIST);
         }
         // 用户注册
-        UserApiLoginVo userApiLoginVo = userService.register(registerDTO);
+        UserApiLoginVO userApiLoginVo = userService.register(registerDTO);
         return success(userApiLoginVo);
     }
 
@@ -59,7 +59,7 @@ public class LoginApiController extends BaseController {
      * @return
      */
     @PutMapping("/passwordLogin")
-    public ResponseResult<UserApiLoginVo> passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
+    public ResponseResult<UserApiLoginVO> passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
         // 参数校验
         passwordLoginDTO.paramCheck();
         // 校验用户是否存在
@@ -72,7 +72,7 @@ public class LoginApiController extends BaseController {
             throw new BusinessException(BusinessEnum.LOGIN_NAME_OR_PASSWORD_ERROR);
         }
         // 登录
-        UserApiLoginVo userApiLoginVo = userService.login(existUser);
+        UserApiLoginVO userApiLoginVo = userService.login(existUser);
         return success(userApiLoginVo);
     }
 
@@ -83,7 +83,7 @@ public class LoginApiController extends BaseController {
      * @return
      */
     @PutMapping("/smsLogin")
-    public ResponseResult<UserApiLoginVo> smsLogin(@RequestBody SmsLoginDTO smsLoginDTO) {
+    public ResponseResult<UserApiLoginVO> smsLogin(@RequestBody SmsLoginDTO smsLoginDTO) {
         User existUser = userService.getOkByMobile(smsLoginDTO.getMobile());
         if (Objects.isNull(existUser)) {
             throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
@@ -95,7 +95,7 @@ public class LoginApiController extends BaseController {
             throw new BusinessException(BusinessEnum.SMS_CODE_INVALID);
         }
         // 登录
-        UserApiLoginVo userApiLoginVo = userService.login(existUser);
+        UserApiLoginVO userApiLoginVo = userService.login(existUser);
         // 删除验证码
         redisService.deleteString(key);
         return success(userApiLoginVo);

@@ -5,7 +5,7 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.UserUpdateDTO;
-import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
+import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVO;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,14 +49,14 @@ public interface UserService extends IService<User> {
      * @param registerDTO
      * @return
      */
-    UserApiLoginVo register(RegisterDTO registerDTO);
+    UserApiLoginVO register(RegisterDTO registerDTO);
 
     /**
      * 密码登录
      *
      * @param existUser
      */
-    UserApiLoginVo login(User existUser);
+    UserApiLoginVO login(User existUser);
 
     /**
      * 修改密码

@@ -8,7 +8,7 @@ import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.UserUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.SysCityVO;
-import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
+import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVO;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
@@ -90,7 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return
      */
     @Override
-    public UserApiLoginVo register(RegisterDTO registerDTO) {
+    public UserApiLoginVO register(RegisterDTO registerDTO) {
         // 保存用户信息
         User user = new User();
         BeanUtils.copyProperties(registerDTO, user);
@@ -101,7 +101,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         save(user);
 
         // 封账返回用户信息
-        UserApiLoginVo userApiLoginVo = new UserApiLoginVo();
+        UserApiLoginVO userApiLoginVo = new UserApiLoginVO();
         BeanUtils.copyProperties(user, userApiLoginVo);
 
         // 生成token
@@ -117,9 +117,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @param existUser
      */
     @Override
-    public UserApiLoginVo login(User existUser) {
+    public UserApiLoginVO login(User existUser) {
         // 封账返回用户信息
-        UserApiLoginVo userApiLoginVo = new UserApiLoginVo();
+        UserApiLoginVO userApiLoginVo = new UserApiLoginVO();
         BeanUtils.copyProperties(existUser, userApiLoginVo);
         // 生成token
         BaseUser baseUser = new BaseUser();
