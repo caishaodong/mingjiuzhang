@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
-import com.dong.mingjiuzhang.domain.entity.dto.UpdateUserDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.UserUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -32,6 +34,14 @@ public interface UserService extends IService<User> {
      * @return
      */
     User getOkByMobile(String mobile);
+
+    /**
+     * 根据token获取用户信息
+     *
+     * @param request
+     * @return
+     */
+    User getUserByToken(HttpServletRequest request);
 
     /**
      * 用户注册
@@ -61,5 +71,5 @@ public interface UserService extends IService<User> {
      *
      * @param user
      */
-    void updateUser(UpdateUserDTO updateUserDTO, User user);
+    void updateUser(UserUpdateDTO userUpdateDTO, User user);
 }

@@ -6,11 +6,13 @@ import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
-import com.dong.mingjiuzhang.domain.entity.dto.UpdateUserDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.UserUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.SysCityVO;
 import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
+import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
+import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
@@ -21,6 +23,9 @@ import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 
 /**
  * <p>
@@ -56,6 +61,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getOkByMobile(String mobile) {
         return getOne(new LambdaQueryWrapper<User>().eq(User::getMobile, mobile).eq(User::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
+    /**
+     * 根据用户token获取User信息
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public User getUserByToken(HttpServletRequest request) {
+        // 获取用户id
+        Long userId = JwtUtil.getUserIdByToken(request.getHeader(JwtUtil.TOKEN_HEADER));
+        if (Objects.isNull(userId)) {
+            throw new BusinessException(BusinessEnum.NOT_LOGIN);
+        }
+        User user = this.getOkById(userId);
+        if (Objects.isNull(user)) {
+            throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
+        }
+        return user;
     }
 
     /**
@@ -124,23 +149,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     /**
      * 修改用户信息
      *
-     * @param updateUserDTO
+     * @param userUpdateDTO
      * @param user
      */
     @Override
-    public void updateUser(UpdateUserDTO updateUserDTO, User user) {
+    public void updateUser(UserUpdateDTO userUpdateDTO, User user) {
         // 修改头像
-        if (StringUtil.equals(updateUserDTO.getType(), "avatar")) {
-            user.setAvatar(updateUserDTO.getAvatar());
+        if (StringUtil.equals(userUpdateDTO.getType(), "avatar")) {
+            user.setAvatar(userUpdateDTO.getAvatar());
         }
         // 修改昵称
-        if (StringUtil.equals(updateUserDTO.getType(), "username")) {
-            user.setUsername(updateUserDTO.getUsername());
+        if (StringUtil.equals(userUpdateDTO.getType(), "username")) {
+            user.setUsername(userUpdateDTO.getUsername());
         }
         // 修改地区
-        if (StringUtil.equals(updateUserDTO.getType(), "area")) {
+        if (StringUtil.equals(userUpdateDTO.getType(), "area")) {
             // 根据区县编码获取上机编码
-            SysCityVO sysCityVO = sysCityService.getSysCityByAreaCode(updateUserDTO.getAreaCode());
+            SysCityVO sysCityVO = sysCityService.getSysCityByAreaCode(userUpdateDTO.getAreaCode());
             user.setProvinceCode(sysCityVO.getProvinceCode());
             user.setProvince(sysCityVO.getProvince());
             user.setCityCode(sysCityVO.getCityCode());

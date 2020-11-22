@@ -13,7 +13,7 @@ import java.util.Objects;
  * @Description 更改用户头像入参
  **/
 @Data
-public class UpdateUserDTO {
+public class UserUpdateDTO {
     /**
      * 修改类型（avatar修改头像，username修改昵称，area修改地区）（必选，其他参数根据类型选择）
      */

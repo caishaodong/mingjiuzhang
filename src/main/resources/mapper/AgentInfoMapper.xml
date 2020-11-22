@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.mingjiuzhang.mapper.AgentInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.AgentInfo">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="company_name" property="companyName" />
+        <result column="cert_id" property="certId" />
+        <result column="principal_name" property="principalName" />
+        <result column="mobile" property="mobile" />
+        <result column="card_id" property="cardId" />
+        <result column="agent_area" property="agentArea" />
+        <result column="per_train_number" property="perTrainNumber" />
+        <result column="agent_address" property="agentAddress" />
+        <result column="status" property="status" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, company_name, cert_id, principal_name, mobile, card_id, agent_area, per_train_number, agent_address, status, is_deleted, gmt_create, gmt_modified
+    </sql>
+
+</mapper>

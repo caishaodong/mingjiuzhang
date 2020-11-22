@@ -67,20 +67,78 @@
         <div class="panel">
             <div id="heading2" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse2" aria-controls="collapse2">
-                <i class="glyphicon glyphicon-align-justify"></i> API文件上传
+                <i class="glyphicon glyphicon-align-justify"></i> 代理信息
             </div>
             <div id="collapse2" class="collapse " aria-labelledby="heading2">
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_FileApiController.html#upload">
-                        文件上传
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_AgentInfoApiController.html#save">
+                        提交代理信息
                     </a>
             </div>
         </div>
         <div class="panel">
             <div id="heading3" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse3" aria-controls="collapse3">
+                <i class="glyphicon glyphicon-align-justify"></i> 课程类目
+            </div>
+            <div id="collapse3" class="collapse " aria-labelledby="heading3">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseCateController.html#list">
+                        获取所有类目列表（不分页）
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading4" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse4" aria-controls="collapse4">
+                <i class="glyphicon glyphicon-align-justify"></i> 课程
+            </div>
+            <div id="collapse4" class="collapse " aria-labelledby="heading4">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseController.html#list">
+                        根据系列id获取所有课程列表
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo">
+                        根据课程id获取课程详细信息
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading5" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse5" aria-controls="collapse5">
+                <i class="glyphicon glyphicon-align-justify"></i> 课程系列
+            </div>
+            <div id="collapse5" class="collapse " aria-labelledby="heading5">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list">
+                        根据课程类目id获取系列列表（不分页）
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading6" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse6" aria-controls="collapse6">
+                <i class="glyphicon glyphicon-align-justify"></i> 作业
+            </div>
+            <div id="collapse6" class="collapse " aria-labelledby="heading6">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save">
+                        上传作业
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading7" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse7" aria-controls="collapse7">
+                <i class="glyphicon glyphicon-align-justify"></i> API文件上传
+            </div>
+            <div id="collapse7" class="collapse " aria-labelledby="heading7">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_FileApiController.html#upload">
+                        文件上传
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading8" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse8" aria-controls="collapse8">
                 <i class="glyphicon glyphicon-align-justify"></i> API登入登出
             </div>
-            <div id="collapse3" class="collapse in " aria-labelledby="heading3">
+            <div id="collapse8" class="collapse in " aria-labelledby="heading8">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_LoginApiController.html#register">
                         用户注册
                     </a>
@@ -96,36 +154,39 @@
             </div>
         </div>
         <div class="panel">
-            <div id="heading4" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse4" aria-controls="collapse4">
+            <div id="heading9" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse9" aria-controls="collapse9">
                 <i class="glyphicon glyphicon-align-justify"></i> API用户管理
             </div>
-            <div id="collapse4" class="collapse " aria-labelledby="heading4">
+            <div id="collapse9" class="collapse " aria-labelledby="heading9">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword">
                         修改密码
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword">
                         获取用户信息
                     </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_UserApiController.html#updateAvatar">
+                        修改用户信息
+                    </a>
             </div>
         </div>
         <div class="panel">
-            <div id="heading5" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse5" aria-controls="collapse5">
+            <div id="heading10" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse10" aria-controls="collapse10">
                 <i class="glyphicon glyphicon-align-justify"></i> 短信管理
             </div>
-            <div id="collapse5" class="collapse " aria-labelledby="heading5">
+            <div id="collapse10" class="collapse " aria-labelledby="heading10">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SmsController.html#smsSendCode">
                         发送短信
                     </a>
             </div>
         </div>
         <div class="panel">
-            <div id="heading6" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse6" aria-controls="collapse6">
+            <div id="heading11" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse11" aria-controls="collapse11">
                 <i class="glyphicon glyphicon-align-justify"></i> 中国省市区地区表
             </div>
-            <div id="collapse6" class="collapse " aria-labelledby="heading6">
+            <div id="collapse11" class="collapse " aria-labelledby="heading11">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SysCityController.html#getNameByAreaCode">
                         根据地区编码获取地区名称
                     </a>
@@ -182,9 +243,9 @@
 		"studyNumber":"string //学号",
 		"grade":"string //年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）",
 		"sex":"int //性别 1:男,2:女",
-		"provinceCode":"string //省编码",
-		"cityCode":"string //市编码",
-		"areaCode":"string //区编码",
+		"provinceCode":"int //省编码",
+		"cityCode":"int //市编码",
+		"areaCode":"int //区编码",
 		"province":"string //省",
 		"city":"string //市",
 		"area":"string //区",
@@ -237,9 +298,9 @@
 		"studyNumber":"string //学号",
 		"grade":"string //年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）",
 		"sex":"int //性别 1:男,2:女",
-		"provinceCode":"string //省编码",
-		"cityCode":"string //市编码",
-		"areaCode":"string //区编码",
+		"provinceCode":"int //省编码",
+		"cityCode":"int //市编码",
+		"areaCode":"int //区编码",
 		"province":"string //省",
 		"city":"string //市",
 		"area":"string //区",
@@ -292,9 +353,9 @@
 		"studyNumber":"string //学号",
 		"grade":"string //年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）",
 		"sex":"int //性别 1:男,2:女",
-		"provinceCode":"string //省编码",
-		"cityCode":"string //市编码",
-		"areaCode":"string //区编码",
+		"provinceCode":"int //省编码",
+		"cityCode":"int //市编码",
+		"areaCode":"int //区编码",
 		"province":"string //省",
 		"city":"string //市",
 		"area":"string //区",
@@ -357,6 +418,12 @@
             {name: '管理台用户登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#passwordLogin'},
             {name: '管理台用户登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#smsLogin'},
             {name: '管理台用户登入登出.登出', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#logout'},
+            {name: '代理信息.提交代理信息', url: 'com_dong_mingjiuzhang_controller_api_AgentInfoApiController.html#save'},
+            {name: '课程类目.获取所有类目列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseCateController.html#list'},
+            {name: '课程.根据系列id获取所有课程列表', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#list'},
+            {name: '课程.根据课程id获取课程详细信息', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo'},
+            {name: '课程系列.根据课程类目id获取系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
+            {name: '作业.上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
             {name: 'API文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_api_FileApiController.html#upload'},
             {name: 'API登入登出.用户注册', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#register'},
             {name: 'API登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},
@@ -364,6 +431,7 @@
             {name: 'API登入登出.登出', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#logout'},
             {name: 'API用户管理.修改密码', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
             {name: 'API用户管理.获取用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
+            {name: 'API用户管理.修改用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updateAvatar'},
             {name: '短信管理.发送短信', url: 'com_dong_mingjiuzhang_controller_common_SmsController.html#smsSendCode'},
             {name: '中国省市区地区表.根据地区编码获取地区名称', url: 'com_dong_mingjiuzhang_controller_common_SysCityController.html#getNameByAreaCode'},
             {name: '中国省市区地区表.根据父级城市编码获取子级城市数据（获取省份时，parentCode传1）', url: 'com_dong_mingjiuzhang_controller_common_SysCityController.html#getCityListByParentCode'},

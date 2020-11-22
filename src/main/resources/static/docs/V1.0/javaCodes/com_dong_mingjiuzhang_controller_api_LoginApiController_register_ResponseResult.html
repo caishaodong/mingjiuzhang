@@ -57,9 +57,9 @@ public class UserApiLoginVo implements Serializable{
     private String studyNumber; //学号
     private String grade; //年级（0其他，1一年级，2二年级，3三年级，4四年级，5五年级，6六年级，7七年级，8八年级）
     private int sex; //性别 1:男,2:女
-    private String provinceCode; //省编码
-    private String cityCode; //市编码
-    private String areaCode; //区编码
+    private int provinceCode; //省编码
+    private int cityCode; //市编码
+    private int areaCode; //区编码
     private String province; //省
     private String city; //市
     private String area; //区
@@ -168,27 +168,27 @@ public class UserApiLoginVo implements Serializable{
         this.sex = sex;
     }
 
-    public String getProvinceCode(){
+    public int getProvinceCode(){
         return provinceCode;
     }
 
-    public void setProvinceCode(String provinceCode){
+    public void setProvinceCode(int provinceCode){
         this.provinceCode = provinceCode;
     }
 
-    public String getCityCode(){
+    public int getCityCode(){
         return cityCode;
     }
 
-    public void setCityCode(String cityCode){
+    public void setCityCode(int cityCode){
         this.cityCode = cityCode;
     }
 
-    public String getAreaCode(){
+    public int getAreaCode(){
         return areaCode;
     }
 
-    public void setAreaCode(String areaCode){
+    public void setAreaCode(int areaCode){
         this.areaCode = areaCode;
     }
 

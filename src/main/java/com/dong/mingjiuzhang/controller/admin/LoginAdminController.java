@@ -40,7 +40,7 @@ public class LoginAdminController extends BaseController {
      * @return
      */
     @PutMapping("/passwordLogin")
-    public ResponseResult passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
+    public ResponseResult<String> passwordLogin(@RequestBody PasswordLoginDTO passwordLoginDTO) {
         // 参数校验
         passwordLoginDTO.paramCheck();
         // 校验用户是否存在
@@ -64,7 +64,7 @@ public class LoginAdminController extends BaseController {
      * @return
      */
     @PutMapping("/smsLogin")
-    public ResponseResult smsLogin(SmsLoginDTO smsLoginDTO) {
+    public ResponseResult<String> smsLogin(SmsLoginDTO smsLoginDTO) {
         SysUser existSysUser = sysUserService.getOkByMobile(smsLoginDTO.getMobile());
         if (Objects.isNull(existSysUser)) {
             throw new BusinessException(BusinessEnum.USER_NOT_EXIST);

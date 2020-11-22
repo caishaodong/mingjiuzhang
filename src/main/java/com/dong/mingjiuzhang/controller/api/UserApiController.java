@@ -3,14 +3,13 @@ package com.dong.mingjiuzhang.controller.api;
 
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
-import com.dong.mingjiuzhang.domain.entity.dto.UpdateUserDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.UserUpdateDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.config.redis.RedisKey;
 import com.dong.mingjiuzhang.global.config.redis.RedisService;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
-import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
 import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,10 @@ public class UserApiController extends BaseController {
     public ResponseResult updatePassword(HttpServletRequest request, @RequestBody PasswordUpdateDTO passwordUpdateDTO) {
         // 参数校验
         passwordUpdateDTO.paramCheck();
-        User user = getUserByToken(request);
+        User user = userService.getUserByToken(request);
+        if (Objects.isNull(user)) {
+            throw new BusinessException(BusinessEnum.NOT_LOGIN);
+        }
 
         // 校验短信验证码
         String msgCode = redisService.getString(RedisKey.API_PASSWORD_CODE_KEY + user.getId());
@@ -69,7 +71,10 @@ public class UserApiController extends BaseController {
      */
     @GetMapping("/getInfo")
     public ResponseResult<User> updatePassword(HttpServletRequest request) {
-        User user = getUserByToken(request);
+        User user = userService.getUserByToken(request);
+        if (Objects.isNull(user)) {
+            throw new BusinessException(BusinessEnum.NOT_LOGIN);
+        }
         return success(user);
     }
 
@@ -77,37 +82,21 @@ public class UserApiController extends BaseController {
      * 修改用户信息
      *
      * @param request
-     * @param updateUserDTO
+     * @param userUpdateDTO
      * @return
      */
     @PutMapping("/update")
-    public ResponseResult updateAvatar(HttpServletRequest request, @RequestBody UpdateUserDTO updateUserDTO) {
+    public ResponseResult updateAvatar(HttpServletRequest request, @RequestBody UserUpdateDTO userUpdateDTO) {
         // 参数校验
-        updateUserDTO.paramCheck();
-        User user = getUserByToken(request);
-
-        // 修改用户信息
-        userService.updateUser(updateUserDTO, user);
-        return success();
-    }
-
-    /**
-     * 根据用户token获取User信息
-     *
-     * @param request
-     * @return
-     */
-    public User getUserByToken(HttpServletRequest request) {
-        // 获取用户id
-        Long userId = JwtUtil.getUserIdByToken(request.getHeader(JwtUtil.TOKEN_HEADER));
-        if (Objects.isNull(userId)) {
+        userUpdateDTO.paramCheck();
+        User user = userService.getUserByToken(request);
+        if (Objects.isNull(user)) {
             throw new BusinessException(BusinessEnum.NOT_LOGIN);
         }
-        User user = userService.getOkById(userId);
-        if (Objects.isNull(user)) {
-            throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
-        }
-        return user;
+
+        // 修改用户信息
+        userService.updateUser(userUpdateDTO, user);
+        return success();
     }
 
 
