@@ -50,7 +50,7 @@
         <div class="panel">
             <div id="heading1" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse1" aria-controls="collapse1">
-                <i class="glyphicon glyphicon-align-justify"></i> (管理台)用户登入登出
+                <i class="glyphicon glyphicon-align-justify"></i> (管理台)登入登出
             </div>
             <div id="collapse1" class="collapse " aria-labelledby="heading1">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#passwordLogin">
@@ -119,6 +119,9 @@
             <div id="collapse6" class="collapse " aria-labelledby="heading6">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save">
                         上传作业
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList">
+                        获取上传作业列表（分页）
                     </a>
             </div>
         </div>
@@ -293,15 +296,16 @@
 
     var search_source_data = [
             {name: '(管理台)文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_admin_FileAdminController.html#upload'},
-            {name: '(管理台)用户登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#passwordLogin'},
-            {name: '(管理台)用户登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#smsLogin'},
-            {name: '(管理台)用户登入登出.登出', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#logout'},
+            {name: '(管理台)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#passwordLogin'},
+            {name: '(管理台)登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#smsLogin'},
+            {name: '(管理台)登入登出.登出', url: 'com_dong_mingjiuzhang_controller_admin_LoginAdminController.html#logout'},
             {name: '(API)代理信息.提交代理信息', url: 'com_dong_mingjiuzhang_controller_api_AgentInfoApiController.html#save'},
             {name: '(API)课程类目.获取所有课程类目列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseCateController.html#list'},
             {name: '(API)课程.根据系列id获取课程列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#list'},
             {name: '(API)课程.根据课程id获取课程详细信息', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo'},
             {name: '(API)课程系列.根据课程类目id获取课程系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
             {name: '(API)作业.上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
+            {name: '(API)作业.获取上传作业列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList'},
             {name: '(API)文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_api_FileApiController.html#upload'},
             {name: '(API)登入登出.用户注册', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#register'},
             {name: '(API)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},

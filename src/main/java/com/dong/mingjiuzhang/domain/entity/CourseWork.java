@@ -60,6 +60,11 @@ public class CourseWork extends Model<CourseWork> {
     private String workImage;
 
     /**
+     * 老师id
+     */
+    private Long teacherId;
+
+    /**
      * 是否删除：0否 1是
      */
     private Integer isDeleted;

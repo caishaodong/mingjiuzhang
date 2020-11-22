@@ -1,9 +1,12 @@
 package com.dong.mingjiuzhang.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.Course;
 import com.dong.mingjiuzhang.domain.entity.CourseSeries;
+import com.dong.mingjiuzhang.domain.entity.CourseWork;
+import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseVo;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
@@ -71,6 +74,17 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         copyCourse(courseVo, course);
         copyCourseSeries(courseVo, courseSeries);
         return courseVo;
+    }
+
+    /**
+     * 获取上传作业列表（分页）
+     *
+     * @param courseWorkSearchDTO
+     * @return
+     */
+    @Override
+    public IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO) {
+        return this.baseMapper.pageList(courseWorkSearchDTO);
     }
 
     /**
