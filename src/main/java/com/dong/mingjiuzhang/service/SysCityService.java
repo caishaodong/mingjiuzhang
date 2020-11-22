@@ -1,7 +1,8 @@
 package com.dong.mingjiuzhang.service;
 
-import com.dong.mingjiuzhang.domain.entity.SysCity;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dong.mingjiuzhang.domain.entity.SysCity;
+import com.dong.mingjiuzhang.domain.entity.vo.SysCityVO;
 
 import java.util.List;
 
@@ -29,5 +30,21 @@ public interface SysCityService extends IService<SysCity> {
      * @return
      */
     List<SysCity> getCityListByParentCode(Integer parentCode);
+
+    /**
+     * 根据编码获取城市
+     *
+     * @param code
+     * @return
+     */
+    SysCity getSysCityByCode(Integer code);
+
+    /**
+     * 根据区县编码获取城市信息
+     *
+     * @param areaCode
+     * @return
+     */
+    SysCityVO getSysCityByAreaCode(Integer areaCode);
 
 }

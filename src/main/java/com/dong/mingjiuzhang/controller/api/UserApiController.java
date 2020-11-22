@@ -3,6 +3,7 @@ package com.dong.mingjiuzhang.controller.api;
 
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.UpdateUserDTO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.config.redis.RedisKey;
@@ -45,13 +46,10 @@ public class UserApiController extends BaseController {
     public ResponseResult updatePassword(HttpServletRequest request, @RequestBody PasswordUpdateDTO passwordUpdateDTO) {
         // 参数校验
         passwordUpdateDTO.paramCheck();
-        // 获取用户id
-        Long userId = JwtUtil.getUserIdByToken(request.getHeader(JwtUtil.TOKEN_HEADER));
-        if (Objects.isNull(userId)) {
-            throw new BusinessException(BusinessEnum.NOT_LOGIN);
-        }
-        // 获取短信验证码
-        String msgCode = redisService.getString(RedisKey.API_PASSWORD_CODE_KEY + userId);
+        User user = getUserByToken(request);
+
+        // 校验短信验证码
+        String msgCode = redisService.getString(RedisKey.API_PASSWORD_CODE_KEY + user.getId());
         if (StringUtil.isBlank(msgCode)) {
             throw new BusinessException(BusinessEnum.SMS_CODE_INVALID);
         }
@@ -59,7 +57,7 @@ public class UserApiController extends BaseController {
             throw new BusinessException(BusinessEnum.SMS_CODE_ERROR);
         }
         // 修改密码
-        userService.updatePassword(userId, passwordUpdateDTO);
+        userService.updatePassword(user.getId(), passwordUpdateDTO);
         return success();
     }
 
@@ -69,8 +67,37 @@ public class UserApiController extends BaseController {
      * @param request
      * @return
      */
-    @GetMapping("/geInfo")
+    @GetMapping("/getInfo")
     public ResponseResult<User> updatePassword(HttpServletRequest request) {
+        User user = getUserByToken(request);
+        return success(user);
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @param request
+     * @param updateUserDTO
+     * @return
+     */
+    @PutMapping("/update")
+    public ResponseResult updateAvatar(HttpServletRequest request, @RequestBody UpdateUserDTO updateUserDTO) {
+        // 参数校验
+        updateUserDTO.paramCheck();
+        User user = getUserByToken(request);
+
+        // 修改用户信息
+        userService.updateUser(updateUserDTO, user);
+        return success();
+    }
+
+    /**
+     * 根据用户token获取User信息
+     *
+     * @param request
+     * @return
+     */
+    public User getUserByToken(HttpServletRequest request) {
         // 获取用户id
         Long userId = JwtUtil.getUserIdByToken(request.getHeader(JwtUtil.TOKEN_HEADER));
         if (Objects.isNull(userId)) {
@@ -80,7 +107,8 @@ public class UserApiController extends BaseController {
         if (Objects.isNull(user)) {
             throw new BusinessException(BusinessEnum.USER_NOT_EXIST);
         }
-        return success(user);
+        return user;
     }
+
 
 }

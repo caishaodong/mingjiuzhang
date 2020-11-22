@@ -6,15 +6,20 @@ import com.dong.mingjiuzhang.domain.entity.BaseUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PasswordUpdateDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.RegisterDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.UpdateUserDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.SysCityVO;
 import com.dong.mingjiuzhang.domain.entity.vo.UserApiLoginVo;
 import com.dong.mingjiuzhang.global.enums.UserTypeEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.encryption.DigestUtil;
 import com.dong.mingjiuzhang.global.util.jwt.JwtUtil;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
+import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.mapper.UserMapper;
+import com.dong.mingjiuzhang.service.SysCityService;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,6 +32,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    @Autowired
+    private SysCityService sysCityService;
 
     /**
      * 根据id获取用户信息
@@ -110,6 +118,36 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setId(userId);
         user.setSalt(salt);
         user.setPassword(DigestUtil.digestString(passwordUpdateDTO.getNewPassword(), salt));
+        this.updateById(user);
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @param updateUserDTO
+     * @param user
+     */
+    @Override
+    public void updateUser(UpdateUserDTO updateUserDTO, User user) {
+        // 修改头像
+        if (StringUtil.equals(updateUserDTO.getType(), "avatar")) {
+            user.setAvatar(updateUserDTO.getAvatar());
+        }
+        // 修改昵称
+        if (StringUtil.equals(updateUserDTO.getType(), "username")) {
+            user.setUsername(updateUserDTO.getUsername());
+        }
+        // 修改地区
+        if (StringUtil.equals(updateUserDTO.getType(), "area")) {
+            // 根据区县编码获取上机编码
+            SysCityVO sysCityVO = sysCityService.getSysCityByAreaCode(updateUserDTO.getAreaCode());
+            user.setProvinceCode(sysCityVO.getProvinceCode());
+            user.setProvince(sysCityVO.getProvince());
+            user.setCityCode(sysCityVO.getCityCode());
+            user.setCity(sysCityVO.getCity());
+            user.setAreaCode(sysCityVO.getAreaCode());
+            user.setArea(sysCityVO.getArea());
+        }
         this.updateById(user);
     }
 }

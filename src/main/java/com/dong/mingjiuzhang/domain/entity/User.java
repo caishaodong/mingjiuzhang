@@ -105,17 +105,17 @@ public class User extends Model<User> {
     /**
      * 省编码
      */
-    private String provinceCode;
+    private Integer provinceCode;
 
     /**
      * 市编码
      */
-    private String cityCode;
+    private Integer cityCode;
 
     /**
      * 区编码
      */
-    private String areaCode;
+    private Integer areaCode;
 
     /**
      * 省
