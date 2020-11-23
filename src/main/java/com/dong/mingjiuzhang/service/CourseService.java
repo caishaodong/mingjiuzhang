@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.Course;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
-import com.dong.mingjiuzhang.domain.entity.vo.CourseVo;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 
@@ -37,7 +37,7 @@ public interface CourseService extends IService<Course> {
      * @param courseId
      * @return
      */
-    CourseVo getCourseInfoByCourseId(Long courseId);
+    CourseVO getCourseInfoByCourseId(Long courseId);
 
     /**
      * 获取上传作业列表（分页）

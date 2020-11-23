@@ -98,6 +98,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         String salt = DigestUtil.generateSalt();
         user.setSalt(salt);
         user.setPassword(DigestUtil.digestString(user.getPassword(), salt));
+        // 根据城市编码获取名称
+        SysCityVO sysCityVO = sysCityService.getSysCityByAreaCode(registerDTO.getAreaCode());
+        user.setProvinceCode(sysCityVO.getProvinceCode());
+        user.setProvince(sysCityVO.getProvince());
+        user.setCityCode(sysCityVO.getCityCode());
+        user.setCity(sysCityVO.getCity());
+        user.setAreaCode(sysCityVO.getAreaCode());
+        user.setArea(sysCityVO.getArea());
         save(user);
 
         // 封账返回用户信息

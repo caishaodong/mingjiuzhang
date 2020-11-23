@@ -15,6 +15,7 @@
         <result column="answer_image" property="answerImage" />
         <result column="gmt_start_effect" property="gmtStartEffect" />
         <result column="gmt_end_effect" property="gmtEndEffect" />
+        <result column="integral" property="integral" />
         <result column="is_deleted" property="isDeleted" />
         <result column="gmt_create" property="gmtCreate" />
         <result column="gmt_modified" property="gmtModified" />
@@ -22,7 +23,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, activity_id, grade, type, title, title_image, request_option, answer, answer_image, gmt_start_effect, gmt_end_effect, is_deleted, gmt_create, gmt_modified
+        id, activity_id, grade, type, title, title_image, request_option, answer, answer_image, gmt_start_effect, gmt_end_effect, integral, is_deleted, gmt_create, gmt_modified
     </sql>
 
 </mapper>

@@ -34,6 +34,8 @@ import java.util.stream.Collectors;
 @Service
 public class ActivityUserIntegralServiceImpl extends ServiceImpl<ActivityUserIntegralMapper, ActivityUserIntegral> implements ActivityUserIntegralService {
 
+    public static final Integer DEFAULT_INTEGRAL = 5;
+
     @Autowired
     private ActivityUserIntegralService activityUserIntegralService;
     @Autowired
@@ -89,7 +91,7 @@ public class ActivityUserIntegralServiceImpl extends ServiceImpl<ActivityUserInt
     public void answerRequest(User user, ActivityAnswerRequestDTO activityAnswerRequestDTO) {
         ActivityRequest activityRequest = activityRequestService.getOkById(activityAnswerRequestDTO.getActivityRequestId());
         Integer addIntegral = Objects.equals(activityAnswerRequestDTO.getIsCorrect(), YesNoEnum.YES.getValue()) ?
-                ((Objects.isNull(activityRequest.getIntegral()) || Objects.equals(activityRequest.getIntegral(), 0)) ? 50 : activityRequest.getIntegral())
+                ((Objects.isNull(activityRequest.getIntegral()) || Objects.equals(activityRequest.getIntegral(), 0)) ? DEFAULT_INTEGRAL : activityRequest.getIntegral())
                 : 0;
         // 判断用户是否参加过活动，没有的话，增加记录和积分，有的话，增加积分
         ActivityUserIntegral activityUserIntegral = activityUserIntegralService.getOne(new LambdaQueryWrapper<ActivityUserIntegral>()

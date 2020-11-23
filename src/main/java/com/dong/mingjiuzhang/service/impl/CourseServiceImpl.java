@@ -7,7 +7,7 @@ import com.dong.mingjiuzhang.domain.entity.Course;
 import com.dong.mingjiuzhang.domain.entity.CourseSeries;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
-import com.dong.mingjiuzhang.domain.entity.vo.CourseVo;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
@@ -60,7 +60,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
      * @return
      */
     @Override
-    public CourseVo getCourseInfoByCourseId(Long courseId) {
+    public CourseVO getCourseInfoByCourseId(Long courseId) {
         // 获取课程信息
         Course course = this.getOKById(courseId);
         if (Objects.isNull(course)) {
@@ -72,7 +72,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
 
-        CourseVo courseVo = new CourseVo();
+        CourseVO courseVo = new CourseVO();
         copyCourse(courseVo, course);
         copyCourseSeries(courseVo, courseSeries);
         return courseVo;
@@ -119,7 +119,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
      * @param courseVo
      * @param course
      */
-    public void copyCourse(CourseVo courseVo, Course course) {
+    public void copyCourse(CourseVO courseVo, Course course) {
         courseVo.setId(course.getId());
         courseVo.setCourseCateId(course.getCourseCateId());
         courseVo.setCourseSeriesId(course.getCourseSeriesId());
@@ -141,7 +141,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
      * @param courseVo
      * @param courseSeries
      */
-    public void copyCourseSeries(CourseVo courseVo, CourseSeries courseSeries) {
+    public void copyCourseSeries(CourseVO courseVo, CourseSeries courseSeries) {
         courseVo.setCourseSeriesName(courseSeries.getCourseSeriesName());
         courseVo.setCourseSeriesGroupPrice(courseSeries.getCourseSeriesGroupPrice());
         courseVo.setGmtStartUpload(courseSeries.getGmtStartUpload());

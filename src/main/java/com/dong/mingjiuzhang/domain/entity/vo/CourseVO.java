@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("t_course")
-public class CourseVo extends Model<CourseVo> {
+public class CourseVO extends Model<CourseVO> {
 
     private static final long serialVersionUID = 1L;
 

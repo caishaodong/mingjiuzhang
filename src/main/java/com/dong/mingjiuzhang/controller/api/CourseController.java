@@ -2,7 +2,7 @@ package com.dong.mingjiuzhang.controller.api;
 
 
 import com.dong.mingjiuzhang.domain.entity.Course;
-import com.dong.mingjiuzhang.domain.entity.vo.CourseVo;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseVO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.service.CourseService;
@@ -45,8 +45,8 @@ public class CourseController extends BaseController {
      * @return
      */
     @GetMapping("getCourseInfo/{courseId}")
-    public ResponseResult<CourseVo> getCourseInfo(@PathVariable("courseId") Long courseId) {
-        CourseVo courseVo = courseService.getCourseInfoByCourseId(courseId);
+    public ResponseResult<CourseVO> getCourseInfo(@PathVariable("courseId") Long courseId) {
+        CourseVO courseVo = courseService.getCourseInfoByCourseId(courseId);
         return success(courseVo);
     }
 
