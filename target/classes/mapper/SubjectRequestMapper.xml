@@ -4,27 +4,37 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.SubjectRequest">
-        <id column="id" property="id" />
-        <result column="subject_dict_id" property="subjectDictId" />
-        <result column="subject_first_dict_id" property="subjectFirstDictId" />
-        <result column="subject_second_dict_id" property="subjectSecondDictId" />
-        <result column="subject_cate_id" property="subjectCateId" />
-        <result column="type" property="type" />
-        <result column="title" property="title" />
-        <result column="title_image" property="titleImage" />
-        <result column="request_option" property="requestOption" />
-        <result column="answer" property="answer" />
-        <result column="answer_image" property="answerImage" />
-        <result column="activity_id" property="activityId" />
-        <result column="sort" property="sort" />
-        <result column="is_deleted" property="isDeleted" />
-        <result column="gmt_create" property="gmtCreate" />
-        <result column="gmt_modified" property="gmtModified" />
+        <id column="id" property="id"/>
+        <result column="subject_dict_id" property="subjectDictId"/>
+        <result column="subject_first_dict_id" property="subjectFirstDictId"/>
+        <result column="subject_second_dict_id" property="subjectSecondDictId"/>
+        <result column="subject_cate_id" property="subjectCateId"/>
+        <result column="type" property="type"/>
+        <result column="title" property="title"/>
+        <result column="title_image" property="titleImage"/>
+        <result column="request_option" property="requestOption"/>
+        <result column="answer" property="answer"/>
+        <result column="answer_image" property="answerImage"/>
+        <result column="activity_id" property="activityId"/>
+        <result column="sort" property="sort"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_modified" property="gmtModified"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, subject_dict_id, subject_first_dict_id, subject_second_dict_id, subject_cate_id, type, title, title_image, request_option, answer, answer_image, activity_id, sort, is_deleted, gmt_create, gmt_modified
     </sql>
+    <select id="getListBySubjectCateId" resultType="com.dong.mingjiuzhang.domain.entity.vo.SubjectRequestVO">
+        SELECT r.*, d.subject_dict_name, f.subject_first_dict_name, s.subject_second_dict_name, c.subject_cate_name
+        FROM t_subject_request r
+        LEFT JOIN t_subject_dict d ON r.subject_dict_id = d.id
+        LEFT JOIN t_subject_first_dict f ON r.subject_first_dict_id = f.id
+        LEFT JOIN t_subject_second_dict s ON r.subject_second_dict_id = s.id
+        LEFT JOIN t_subject_cate c ON r.subject_cate_id = c.id
+        WHERE r.is_deleted = 0 AND r.subject_cate_id = #{subjectCateId}
+        ORDER BY r.sort, r.id
+    </select>
 
 </mapper>

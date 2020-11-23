@@ -23,7 +23,7 @@ import java.util.List;
  **/
 public class MysqlGenerator {
 
-    private static final String[] TABLE_NAME = {"t_subject_dict", "t_subject_first_dict", "t_subject_second_dict", "t_subject_cate", "t_subject_request"};
+    private static final String[] TABLE_NAME = {"t_answer", "t_answer_log"};
 
     public static void main(String[] args) {
         // 代码生成器

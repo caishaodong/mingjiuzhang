@@ -21,6 +21,11 @@ import java.util.List;
 @Service
 public class SubjectSecondDictServiceImpl extends ServiceImpl<SubjectSecondDictMapper, SubjectSecondDict> implements SubjectSecondDictService {
 
+    @Override
+    public SubjectSecondDict getOkById(Long id) {
+        return this.getOne(new LambdaQueryWrapper<SubjectSecondDict>().eq(SubjectSecondDict::getId, id).eq(SubjectSecondDict::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
     /**
      * 根据一级类目获取二级类目列表
      *

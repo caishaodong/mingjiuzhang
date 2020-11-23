@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface SubjectSecondDictService extends IService<SubjectSecondDict> {
 
+    SubjectSecondDict getOkById(Long id);
+
     /**
      * 根据一级类目获取二级类目列表
      *

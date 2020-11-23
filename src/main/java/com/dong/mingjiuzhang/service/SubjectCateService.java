@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface SubjectCateService extends IService<SubjectCate> {
 
+    SubjectCate getOkById(Long id);
+
     /**
      * 根据二级类目获取分类列表
      *

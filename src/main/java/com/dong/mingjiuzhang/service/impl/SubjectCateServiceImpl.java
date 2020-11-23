@@ -21,6 +21,11 @@ import java.util.List;
 @Service
 public class SubjectCateServiceImpl extends ServiceImpl<SubjectCateMapper, SubjectCate> implements SubjectCateService {
 
+    @Override
+    public SubjectCate getOkById(Long id) {
+        return this.getOne(new LambdaQueryWrapper<SubjectCate>().eq(SubjectCate::getId, id).eq(SubjectCate::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
     /**
      * 根据二级类目获取分类列表
      *

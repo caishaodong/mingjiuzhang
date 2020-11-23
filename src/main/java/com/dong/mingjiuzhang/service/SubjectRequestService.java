@@ -16,6 +16,8 @@ import java.util.List;
  */
 public interface SubjectRequestService extends IService<SubjectRequest> {
 
+    SubjectRequest getOkById(Long id);
+
     /**
      * 根据分类id获取题目列表
      *

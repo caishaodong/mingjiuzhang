@@ -22,6 +22,11 @@ import java.util.List;
 @Service
 public class SubjectRequestServiceImpl extends ServiceImpl<SubjectRequestMapper, SubjectRequest> implements SubjectRequestService {
 
+    @Override
+    public SubjectRequest getOkById(Long id) {
+        return getOne(new LambdaQueryWrapper<SubjectRequest>().eq(SubjectRequest::getId, id).eq(SubjectRequest::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
     /**
      * 根据分类id获取题目列表
      *

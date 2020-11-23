@@ -202,6 +202,7 @@ public class CourseWorkController extends BaseController {
         }
 
         courseWork.setIsFinishCorrect(YesNoEnum.YES.getValue());
+        courseWorkService.updateById(courseWork);
         return success();
     }
 
