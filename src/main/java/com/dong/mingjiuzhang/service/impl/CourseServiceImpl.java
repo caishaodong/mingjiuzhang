@@ -8,6 +8,8 @@ import com.dong.mingjiuzhang.domain.entity.CourseSeries;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseVo;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
@@ -48,7 +50,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public List<Course> getListByCourseSeriesId(Long courseSeriesId) {
         return this.list(new LambdaQueryWrapper<Course>().eq(Course::getCourseSeriesId, courseSeriesId)
                 .eq(Course::getIsDeleted, YesNoEnum.NO.getValue())
-                .orderByAsc(Course::getSort));
+                .orderByAsc(Course::getSort).orderByAsc(Course::getId));
     }
 
     /**
@@ -85,6 +87,30 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO) {
         return this.baseMapper.pageList(courseWorkSearchDTO);
+    }
+
+    /**
+     * 根据老师id获取待批改作业数量
+     *
+     * @param teacherId
+     * @return
+     */
+    @Override
+    public List<CourseWorkCountVO> courseWorkCount(Long teacherId) {
+        return this.baseMapper.courseWorkCount(teacherId);
+    }
+
+    /**
+     * 根据课程id获取待修改作业列表
+     *
+     * @param teacherId
+     * @param courseCateId
+     * @param courseWorkId
+     * @return
+     */
+    @Override
+    public List<CourseWorkVO> courseWorkList(Long teacherId, Long courseCateId, Long courseWorkId) {
+        return this.baseMapper.courseWorkList(teacherId, courseCateId, courseWorkId);
     }
 
     /**

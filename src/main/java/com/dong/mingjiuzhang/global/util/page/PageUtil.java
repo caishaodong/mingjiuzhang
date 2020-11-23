@@ -14,7 +14,7 @@ public class PageUtil<T> implements IPage<T> {
 
     private List<T> records;
     private long total;
-    private long size = 5;
+    private long size = 10;
     private long current = 1;
 
     @Override

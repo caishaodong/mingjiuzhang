@@ -24,7 +24,8 @@ public enum BusinessEnum {
     MOBILE_FORMAT_ERROR(409, "手机号格式不正确"),
     HAVE_NO_PERMISSION(410, "暂无权限访问该资源"),
     SMS_CODE_INVALID(411, "请重新获取验证码"),
-    SMS_CODE_ERROR(411, "验证码错误"),
+    SMS_CODE_ERROR(412, "验证码错误"),
+    NOT_TEACHER(413, "您的身份不是老师"),
     ;
     private Integer code;
     private String desc;

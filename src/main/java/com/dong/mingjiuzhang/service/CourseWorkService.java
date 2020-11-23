@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-11-22
  */
 public interface CourseWorkService extends IService<CourseWork> {
-
+    CourseWork getOkById(Long id);
 }

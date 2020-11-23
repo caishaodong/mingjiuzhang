@@ -123,6 +123,21 @@
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList">
                         获取上传作业列表（分页）
                     </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkCount">
+                        获取待批改作业数量
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkList">
+                        根据课程id获取待修改作业列表
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork">
+                        获取作业详情
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#correctWork">
+                        批改作业
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#finishCorrect">
+                        完成批改作业
+                    </a>
             </div>
         </div>
         <div class="panel">
@@ -176,9 +191,53 @@
         <div class="panel">
             <div id="heading10" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse10" aria-controls="collapse10">
-                <i class="glyphicon glyphicon-align-justify"></i> (API)用户管理
+                <i class="glyphicon glyphicon-align-justify"></i> (API)学科题目分类
             </div>
             <div id="collapse10" class="collapse " aria-labelledby="heading10">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_SubjectCateApiController.html#list">
+                        根据二级类目获取分类列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading11" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse11" aria-controls="collapse11">
+                <i class="glyphicon glyphicon-align-justify"></i> (API)学科一级类目
+            </div>
+            <div id="collapse11" class="collapse " aria-labelledby="heading11">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_SubjectFirstDictApiController.html#list">
+                        根据学科id获取一级类目列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading12" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse12" aria-controls="collapse12">
+                <i class="glyphicon glyphicon-align-justify"></i> (API)学科题目
+            </div>
+            <div id="collapse12" class="collapse " aria-labelledby="heading12">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_SubjectRequestApiController.html#list">
+                        根据分类id获取题目列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading13" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse13" aria-controls="collapse13">
+                <i class="glyphicon glyphicon-align-justify"></i> (API)学科二级类目
+            </div>
+            <div id="collapse13" class="collapse " aria-labelledby="heading13">
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_SubjectSecondDictApiController.html#list">
+                        根据一级类目获取二级类目列表
+                    </a>
+            </div>
+        </div>
+        <div class="panel">
+            <div id="heading14" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse14" aria-controls="collapse14">
+                <i class="glyphicon glyphicon-align-justify"></i> (API)用户管理
+            </div>
+            <div id="collapse14" class="collapse " aria-labelledby="heading14">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword">
                         修改密码
                     </a>
@@ -191,33 +250,33 @@
             </div>
         </div>
         <div class="panel">
-            <div id="heading11" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse11" aria-controls="collapse11">
+            <div id="heading15" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse15" aria-controls="collapse15">
                 <i class="glyphicon glyphicon-align-justify"></i> (API)消息
             </div>
-            <div id="collapse11" class="collapse " aria-labelledby="heading11">
+            <div id="collapse15" class="collapse " aria-labelledby="heading15">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_UserMessageApiController.html#pageList">
                         获取消息列表（分页）
                     </a>
             </div>
         </div>
         <div class="panel">
-            <div id="heading12" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse12" aria-controls="collapse12">
+            <div id="heading16" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse16" aria-controls="collapse16">
                 <i class="glyphicon glyphicon-align-justify"></i> (公共)短信管理
             </div>
-            <div id="collapse12" class="collapse " aria-labelledby="heading12">
+            <div id="collapse16" class="collapse " aria-labelledby="heading16">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SmsController.html#smsSendCode">
                         发送短信
                     </a>
             </div>
         </div>
         <div class="panel">
-            <div id="heading13" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
-                 aria-expanded="true" data-target="#collapse13" aria-controls="collapse13">
+            <div id="heading17" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
+                 aria-expanded="true" data-target="#collapse17" aria-controls="collapse17">
                 <i class="glyphicon glyphicon-align-justify"></i> (公共)中国省市区地区表
             </div>
-            <div id="collapse13" class="collapse " aria-labelledby="heading13">
+            <div id="collapse17" class="collapse " aria-labelledby="heading17">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_common_SysCityController.html#getNameByAreaCode">
                         根据地区编码获取地区名称
                     </a>
@@ -411,6 +470,11 @@
             {name: '(API)课程系列.根据课程类目id获取课程系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
             {name: '(API)作业.上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
             {name: '(API)作业.获取上传作业列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList'},
+            {name: '(API)作业.获取待批改作业数量', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkCount'},
+            {name: '(API)作业.根据课程id获取待修改作业列表', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkList'},
+            {name: '(API)作业.获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork'},
+            {name: '(API)作业.批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#correctWork'},
+            {name: '(API)作业.完成批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#finishCorrect'},
             {name: '(API)文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_api_FileApiController.html#upload'},
             {name: '(API)登入登出.用户注册', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#register'},
             {name: '(API)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},
@@ -419,6 +483,10 @@
             {name: '(API)问题.提交问题', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#save'},
             {name: '(API)问题.获取问题列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#pageList'},
             {name: '(API)问题.根据问题id获取问题及回复信息', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#getProblemInfo'},
+            {name: '(API)学科题目分类.根据二级类目获取分类列表', url: 'com_dong_mingjiuzhang_controller_api_SubjectCateApiController.html#list'},
+            {name: '(API)学科一级类目.根据学科id获取一级类目列表', url: 'com_dong_mingjiuzhang_controller_api_SubjectFirstDictApiController.html#list'},
+            {name: '(API)学科题目.根据分类id获取题目列表', url: 'com_dong_mingjiuzhang_controller_api_SubjectRequestApiController.html#list'},
+            {name: '(API)学科二级类目.根据一级类目获取二级类目列表', url: 'com_dong_mingjiuzhang_controller_api_SubjectSecondDictApiController.html#list'},
             {name: '(API)用户管理.修改密码', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
             {name: '(API)用户管理.获取用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updatePassword'},
             {name: '(API)用户管理.修改用户信息', url: 'com_dong_mingjiuzhang_controller_api_UserApiController.html#updateAvatar'},

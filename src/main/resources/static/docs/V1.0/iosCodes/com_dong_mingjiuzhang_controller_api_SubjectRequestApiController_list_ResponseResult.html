@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface ResponseResult : NSObject
+
+//
+@property (nonatomic, strong) NSInteger code;
+//
+@property (nonatomic, assign) NSString message;
+//
+@property (nonatomic, strong) SubjectRequest[] data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface SubjectRequest : NSObject
+
+//
+@property (nonatomic, strong) unknow log;
+//
+@property (nonatomic, strong) long id;
+//学科id
+@property (nonatomic, strong) long subjectDictId;
+//学科一级类目id
+@property (nonatomic, strong) long subjectFirstDictId;
+//学科二级类目id
+@property (nonatomic, strong) long subjectSecondDictId;
+//题目分类id
+@property (nonatomic, strong) long subjectCateId;
+//题目类型：1选择题  2填空题
+@property (nonatomic, strong) NSInteger type;
+//题目内容
+@property (nonatomic, assign) NSString title;
+//题目图片（json）
+@property (nonatomic, assign) NSString titleImage;
+//题目选项（json）
+@property (nonatomic, assign) NSString requestOption;
+//填空题空格数量
+@property (nonatomic, strong) NSInteger spacesCount;
+//答案内容（json）
+@property (nonatomic, assign) NSString answer;
+//答案图片（json）
+@property (nonatomic, assign) NSString answerImage;
+//题目所属的活动id
+@property (nonatomic, strong) long activityId;
+//排序
+@property (nonatomic, strong) NSInteger sort;
+//是否删除：0否 1是
+@property (nonatomic, strong) NSInteger isDeleted;
+//创建时间
+@property (nonatomic, assign) NSString gmtCreate;
+//修改时间
+@property (nonatomic, assign) NSString gmtModified;
+
+
+@end
+</xmp>
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

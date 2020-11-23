@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ResponseResult implements Serializable{
+
+    private int code; //
+    private String message; //
+    private SubjectCate[] data; //
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    public SubjectCate[] getData(){
+        return data;
+    }
+
+    public void setData(SubjectCate[] data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class SubjectCate implements Serializable{
+
+    private unknow log; //
+    private long id; //
+    private long subjectSecondDictId; //学科二级类目id
+    private long pid; //上级id
+    private String subjectCateName; //题目分类名称
+    private int isLeaf; //是否是叶子节点：0否 1是
+    private int isDeleted; //是否删除：0否 1是
+    private int sort; //排序
+    private String gmtCreate; //创建时间
+    private String gmtModified; //修改时间
+
+    public unknow getLog(){
+        return log;
+    }
+
+    public void setLog(unknow log){
+        this.log = log;
+    }
+
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getSubjectSecondDictId(){
+        return subjectSecondDictId;
+    }
+
+    public void setSubjectSecondDictId(long subjectSecondDictId){
+        this.subjectSecondDictId = subjectSecondDictId;
+    }
+
+    public long getPid(){
+        return pid;
+    }
+
+    public void setPid(long pid){
+        this.pid = pid;
+    }
+
+    public String getSubjectCateName(){
+        return subjectCateName;
+    }
+
+    public void setSubjectCateName(String subjectCateName){
+        this.subjectCateName = subjectCateName;
+    }
+
+    public int getIsLeaf(){
+        return isLeaf;
+    }
+
+    public void setIsLeaf(int isLeaf){
+        this.isLeaf = isLeaf;
+    }
+
+    public int getIsDeleted(){
+        return isDeleted;
+    }
+
+    public void setIsDeleted(int isDeleted){
+        this.isDeleted = isDeleted;
+    }
+
+    public int getSort(){
+        return sort;
+    }
+
+    public void setSort(int sort){
+        this.sort = sort;
+    }
+
+    public String getGmtCreate(){
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(String gmtCreate){
+        this.gmtCreate = gmtCreate;
+    }
+
+    public String getGmtModified(){
+        return gmtModified;
+    }
+
+    public void setGmtModified(String gmtModified){
+        this.gmtModified = gmtModified;
+    }
+
+}
+</pre>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

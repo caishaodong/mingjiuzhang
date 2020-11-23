@@ -14,10 +14,7 @@ import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
@@ -27,7 +24,7 @@ import java.util.Objects;
  * @Date 2020-09-18 15:16
  * @Description (API)用户管理
  **/
-@Controller
+@RestController
 @RequestMapping("api/user")
 public class UserApiController extends BaseController {
     @Autowired

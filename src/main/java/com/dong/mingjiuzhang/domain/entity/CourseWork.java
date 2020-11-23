@@ -4,16 +4,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.dong.mingjiuzhang.global.enums.BusinessEnum;
-import com.dong.mingjiuzhang.global.exception.BusinessException;
-import com.dong.mingjiuzhang.global.util.string.StringUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * <p>
@@ -63,6 +59,11 @@ public class CourseWork extends Model<CourseWork> {
      * 老师id
      */
     private Long teacherId;
+
+    /**
+     * 是否完成批改：0否 1是
+     */
+    private Integer isFinishCorrect;
 
     /**
      * 是否删除：0否 1是

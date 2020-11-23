@@ -1,9 +1,11 @@
 package com.dong.mingjiuzhang.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
+import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.mapper.CourseWorkMapper;
 import com.dong.mingjiuzhang.service.CourseWorkService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CourseWorkServiceImpl extends ServiceImpl<CourseWorkMapper, CourseWork> implements CourseWorkService {
 
+    @Override
+    public CourseWork getOkById(Long id) {
+        return this.getOne(new LambdaQueryWrapper<CourseWork>().eq(CourseWork::getId, id).eq(CourseWork::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
 }

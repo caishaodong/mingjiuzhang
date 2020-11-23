@@ -36,6 +36,6 @@ public class CourseSeriesServiceImpl extends ServiceImpl<CourseSeriesMapper, Cou
     public List<CourseSeries> getListByCourseCateId(Long courseCateId) {
         return this.list(new LambdaQueryWrapper<CourseSeries>().eq(CourseSeries::getCourseCateId, courseCateId)
                 .eq(CourseSeries::getIsDeleted, YesNoEnum.NO.getValue())
-                .orderByAsc(CourseSeries::getSort));
+                .orderByAsc(CourseSeries::getSort).orderByAsc(CourseSeries::getId));
     }
 }

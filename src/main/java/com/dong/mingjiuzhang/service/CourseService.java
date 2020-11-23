@@ -6,6 +6,8 @@ import com.dong.mingjiuzhang.domain.entity.Course;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseVo;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 
 import java.util.List;
 
@@ -44,4 +46,22 @@ public interface CourseService extends IService<Course> {
      * @return
      */
     IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
+
+    /**
+     * 根据老师id获取待批改作业数量
+     *
+     * @param teacherId
+     * @return
+     */
+    List<CourseWorkCountVO> courseWorkCount(Long teacherId);
+
+    /**
+     * 根据课程id获取待修改作业列表
+     *
+     * @param teacherId
+     * @param courseCateId
+     * @param courseWorkId
+     * @return
+     */
+    List<CourseWorkVO> courseWorkList(Long teacherId, Long courseCateId, Long courseWorkId);
 }

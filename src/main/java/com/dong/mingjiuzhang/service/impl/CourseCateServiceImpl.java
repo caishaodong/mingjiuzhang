@@ -34,6 +34,6 @@ public class CourseCateServiceImpl extends ServiceImpl<CourseCateMapper, CourseC
     @Override
     public List<CourseCate> getList() {
         return this.list(new LambdaQueryWrapper<CourseCate>().eq(CourseCate::getIsDeleted, YesNoEnum.NO)
-                .orderByAsc(CourseCate::getSort));
+                .orderByAsc(CourseCate::getSort).orderByAsc(CourseCate::getId));
     }
 }

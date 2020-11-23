@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface ResponseResult : NSObject
+
+//
+@property (nonatomic, strong) NSInteger code;
+//
+@property (nonatomic, assign) NSString message;
+//
+@property (nonatomic, strong) PageUtil data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface PageUtil : NSObject
+
+//
+@property (nonatomic, strong) CourseWork[] records;
+//
+@property (nonatomic, strong) long total;
+//
+@property (nonatomic, strong) long size;
+//
+@property (nonatomic, strong) long current;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface CourseWork : NSObject
+
+//
+@property (nonatomic, strong) unknow log;
+//
+@property (nonatomic, strong) long id;
+//用户ID
+@property (nonatomic, strong) long userId;
+//课程类目id
+@property (nonatomic, strong) long courseCateId;
+//课程系列id
+@property (nonatomic, strong) long courseSeriesId;
+//课程id
+@property (nonatomic, strong) long courseId;
+//作业图片（json）
+@property (nonatomic, assign) NSString workImage;
+//老师id
+@property (nonatomic, strong) long teacherId;
+//是否完成批改：0否 1是
+@property (nonatomic, strong) NSInteger isFinishCorrect;
+//是否删除：0否 1是
+@property (nonatomic, strong) NSInteger isDeleted;
+//创建时间
+@property (nonatomic, assign) NSString gmtCreate;
+//更新时间
+@property (nonatomic, assign) NSString gmtModified;
+
+
+@end
+</xmp>
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

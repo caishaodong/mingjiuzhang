@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ResponseResult implements Serializable{
+
+    private int code; //
+    private String message; //
+    private SubjectRequest[] data; //
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    public SubjectRequest[] getData(){
+        return data;
+    }
+
+    public void setData(SubjectRequest[] data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class SubjectRequest implements Serializable{
+
+    private unknow log; //
+    private long id; //
+    private long subjectDictId; //学科id
+    private long subjectFirstDictId; //学科一级类目id
+    private long subjectSecondDictId; //学科二级类目id
+    private long subjectCateId; //题目分类id
+    private int type; //题目类型：1选择题  2填空题
+    private String title; //题目内容
+    private String titleImage; //题目图片（json）
+    private String requestOption; //题目选项（json）
+    private int spacesCount; //填空题空格数量
+    private String answer; //答案内容（json）
+    private String answerImage; //答案图片（json）
+    private long activityId; //题目所属的活动id
+    private int sort; //排序
+    private int isDeleted; //是否删除：0否 1是
+    private String gmtCreate; //创建时间
+    private String gmtModified; //修改时间
+
+    public unknow getLog(){
+        return log;
+    }
+
+    public void setLog(unknow log){
+        this.log = log;
+    }
+
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getSubjectDictId(){
+        return subjectDictId;
+    }
+
+    public void setSubjectDictId(long subjectDictId){
+        this.subjectDictId = subjectDictId;
+    }
+
+    public long getSubjectFirstDictId(){
+        return subjectFirstDictId;
+    }
+
+    public void setSubjectFirstDictId(long subjectFirstDictId){
+        this.subjectFirstDictId = subjectFirstDictId;
+    }
+
+    public long getSubjectSecondDictId(){
+        return subjectSecondDictId;
+    }
+
+    public void setSubjectSecondDictId(long subjectSecondDictId){
+        this.subjectSecondDictId = subjectSecondDictId;
+    }
+
+    public long getSubjectCateId(){
+        return subjectCateId;
+    }
+
+    public void setSubjectCateId(long subjectCateId){
+        this.subjectCateId = subjectCateId;
+    }
+
+    public int getType(){
+        return type;
+    }
+
+    public void setType(int type){
+        this.type = type;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public String getTitleImage(){
+        return titleImage;
+    }
+
+    public void setTitleImage(String titleImage){
+        this.titleImage = titleImage;
+    }
+
+    public String getRequestOption(){
+        return requestOption;
+    }
+
+    public void setRequestOption(String requestOption){
+        this.requestOption = requestOption;
+    }
+
+    public int getSpacesCount(){
+        return spacesCount;
+    }
+
+    public void setSpacesCount(int spacesCount){
+        this.spacesCount = spacesCount;
+    }
+
+    public String getAnswer(){
+        return answer;
+    }
+
+    public void setAnswer(String answer){
+        this.answer = answer;
+    }
+
+    public String getAnswerImage(){
+        return answerImage;
+    }
+
+    public void setAnswerImage(String answerImage){
+        this.answerImage = answerImage;
+    }
+
+    public long getActivityId(){
+        return activityId;
+    }
+
+    public void setActivityId(long activityId){
+        this.activityId = activityId;
+    }
+
+    public int getSort(){
+        return sort;
+    }
+
+    public void setSort(int sort){
+        this.sort = sort;
+    }
+
+    public int getIsDeleted(){
+        return isDeleted;
+    }
+
+    public void setIsDeleted(int isDeleted){
+        this.isDeleted = isDeleted;
+    }
+
+    public String getGmtCreate(){
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(String gmtCreate){
+        this.gmtCreate = gmtCreate;
+    }
+
+    public String getGmtModified(){
+        return gmtModified;
+    }
+
+    public void setGmtModified(String gmtModified){
+        this.gmtModified = gmtModified;
+    }
+
+}
+</pre>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>
