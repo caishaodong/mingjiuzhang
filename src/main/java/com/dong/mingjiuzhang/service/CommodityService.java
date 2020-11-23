@@ -14,6 +14,7 @@ import com.dong.mingjiuzhang.domain.entity.dto.CommoditySearchDTO;
  * @since 2020-11-23
  */
 public interface CommodityService extends IService<Commodity> {
+    Commodity getOkById(Long id);
 
     /**
      * 获取商品列表（分页）
@@ -22,4 +23,12 @@ public interface CommodityService extends IService<Commodity> {
      * @return
      */
     IPage<Commodity> pageList(CommoditySearchDTO commoditySearchDTO);
+
+    /**
+     * 兑换商品
+     *
+     * @param userId
+     * @param commodityId
+     */
+    void exchangeCommodity(Long userId, Long commodityId);
 }

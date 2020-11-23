@@ -29,6 +29,8 @@ public enum BusinessEnum {
     NO_YESTERDAY_REQUEST_ANALYSIS(414, "暂无昨日该年级题目解析"),
     NOT_START_ACTIVITY(415, "活动尚未开始"),
     ALREADY_END_ACTIVITY(416, "活动已经结束"),
+    COMMODITY_NOT_ENOUGH(417, "商品库存不足"),
+    USER_COMMODITY_NOT_ENOUGH(418, "积分不足"),
     ;
     private Integer code;
     private String desc;

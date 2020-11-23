@@ -1,7 +1,8 @@
 package com.dong.mingjiuzhang.mapper;
 
-import com.dong.mingjiuzhang.domain.entity.Commodity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.dong.mingjiuzhang.domain.entity.Commodity;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CommodityMapper extends BaseMapper<Commodity> {
 
+    /**
+     * 兑换商品
+     *
+     * @param commodityId
+     * @return
+     */
+    int exchangeCommodity(@Param("commodityId") Long commodityId);
 }

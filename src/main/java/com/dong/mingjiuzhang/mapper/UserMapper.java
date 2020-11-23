@@ -21,4 +21,12 @@ public interface UserMapper extends BaseMapper<User> {
      * @param addIntegral
      */
     void addIntegral(@Param("userId") Long userId, @Param("addIntegral") Integer addIntegral);
+
+    /**
+     * 减去用户积分
+     *
+     * @param userId
+     * @param subtractIntegral
+     */
+    void subtractIntegral(@Param("userId") Long userId, @Param("subtractIntegral") Long subtractIntegral);
 }

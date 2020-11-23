@@ -80,4 +80,12 @@ public interface UserService extends IService<User> {
      * @param addIntegral
      */
     void addIntegral(Long userId, Integer addIntegral);
+
+    /**
+     * 减去用户积分
+     *
+     * @param userId
+     * @param commodityIntegral
+     */
+    void subtractIntegral(Long userId, Long subtractIntegral);
 }

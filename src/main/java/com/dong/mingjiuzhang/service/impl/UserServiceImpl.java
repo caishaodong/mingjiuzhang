@@ -195,4 +195,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public void addIntegral(Long userId, Integer addIntegral) {
         this.baseMapper.addIntegral(userId, addIntegral);
     }
+
+    /**
+     * 减去用户积分
+     *
+     * @param userId
+     * @param subtractIntegral
+     */
+
+    @Override
+    public void subtractIntegral(Long userId, Long subtractIntegral) {
+        this.baseMapper.subtractIntegral(userId, subtractIntegral);
+    }
 }

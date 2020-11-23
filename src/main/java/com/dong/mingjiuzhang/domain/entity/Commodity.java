@@ -58,6 +58,11 @@ public class Commodity extends Model<Commodity> {
     private Long commodityConvertedNumber;
 
     /**
+     * 商品剩余数量
+     */
+    private Long commodityRemainNumber;
+
+    /**
      * 排序
      */
     private Integer sort;
