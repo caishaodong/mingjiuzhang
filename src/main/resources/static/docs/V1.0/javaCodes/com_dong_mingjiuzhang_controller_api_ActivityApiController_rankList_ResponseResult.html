@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ResponseResult implements Serializable{
+
+    private int code; //
+    private String message; //
+    private ActivityRankVO data; //
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    public ActivityRankVO getData(){
+        return data;
+    }
+
+    public void setData(ActivityRankVO data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class ActivityRankVO implements Serializable{
+
+    private int isAnswered; //我是否参与过答题：0否 1是
+    private int randIndex; //我的排名
+    private ActivityUserIntegral activityUserIntegral; //我的积分信息
+    private ActivityUserIntegral[] list; //排行榜
+
+    public int getIsAnswered(){
+        return isAnswered;
+    }
+
+    public void setIsAnswered(int isAnswered){
+        this.isAnswered = isAnswered;
+    }
+
+    public int getRandIndex(){
+        return randIndex;
+    }
+
+    public void setRandIndex(int randIndex){
+        this.randIndex = randIndex;
+    }
+
+    public ActivityUserIntegral getActivityUserIntegral(){
+        return activityUserIntegral;
+    }
+
+    public void setActivityUserIntegral(ActivityUserIntegral activityUserIntegral){
+        this.activityUserIntegral = activityUserIntegral;
+    }
+
+    public ActivityUserIntegral[] getList(){
+        return list;
+    }
+
+    public void setList(ActivityUserIntegral[] list){
+        this.list = list;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class ActivityUserIntegral implements Serializable{
+
+    private unknow log; //
+    private long id; //
+    private long activityId; //活动id
+    private long userId; //用户id
+    private String username; //用户昵称
+    private int totalIntegral; //用户所得积分
+    private int isDeleted; //是否删除：0否 1是
+    private String gmtCreate; //添加时间
+    private String gmtModified; //更新时间
+
+    public unknow getLog(){
+        return log;
+    }
+
+    public void setLog(unknow log){
+        this.log = log;
+    }
+
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getActivityId(){
+        return activityId;
+    }
+
+    public void setActivityId(long activityId){
+        this.activityId = activityId;
+    }
+
+    public long getUserId(){
+        return userId;
+    }
+
+    public void setUserId(long userId){
+        this.userId = userId;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public int getTotalIntegral(){
+        return totalIntegral;
+    }
+
+    public void setTotalIntegral(int totalIntegral){
+        this.totalIntegral = totalIntegral;
+    }
+
+    public int getIsDeleted(){
+        return isDeleted;
+    }
+
+    public void setIsDeleted(int isDeleted){
+        this.isDeleted = isDeleted;
+    }
+
+    public String getGmtCreate(){
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(String gmtCreate){
+        this.gmtCreate = gmtCreate;
+    }
+
+    public String getGmtModified(){
+        return gmtModified;
+    }
+
+    public void setGmtModified(String gmtModified){
+        this.gmtModified = gmtModified;
+    }
+
+}
+</pre>
+
+
+
+<pre class="prettyprint lang-java">
+public class ActivityUserIntegral implements Serializable{
+
+    private unknow log; //
+    private long id; //
+    private long activityId; //活动id
+    private long userId; //用户id
+    private String username; //用户昵称
+    private int totalIntegral; //用户所得积分
+    private int isDeleted; //是否删除：0否 1是
+    private String gmtCreate; //添加时间
+    private String gmtModified; //更新时间
+
+    public unknow getLog(){
+        return log;
+    }
+
+    public void setLog(unknow log){
+        this.log = log;
+    }
+
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getActivityId(){
+        return activityId;
+    }
+
+    public void setActivityId(long activityId){
+        this.activityId = activityId;
+    }
+
+    public long getUserId(){
+        return userId;
+    }
+
+    public void setUserId(long userId){
+        this.userId = userId;
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public int getTotalIntegral(){
+        return totalIntegral;
+    }
+
+    public void setTotalIntegral(int totalIntegral){
+        this.totalIntegral = totalIntegral;
+    }
+
+    public int getIsDeleted(){
+        return isDeleted;
+    }
+
+    public void setIsDeleted(int isDeleted){
+        this.isDeleted = isDeleted;
+    }
+
+    public String getGmtCreate(){
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(String gmtCreate){
+        this.gmtCreate = gmtCreate;
+    }
+
+    public String getGmtModified(){
+        return gmtModified;
+    }
+
+    public void setGmtModified(String gmtModified){
+        this.gmtModified = gmtModified;
+    }
+
+}
+</pre>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

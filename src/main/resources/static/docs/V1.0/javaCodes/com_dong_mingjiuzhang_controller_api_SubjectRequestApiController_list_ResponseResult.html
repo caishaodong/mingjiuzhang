@@ -12,7 +12,7 @@ public class ResponseResult implements Serializable{
 
     private int code; //
     private String message; //
-    private SubjectRequest[] data; //
+    private SubjectRequestVO[] data; //
 
     public int getCode(){
         return code;
@@ -30,11 +30,11 @@ public class ResponseResult implements Serializable{
         this.message = message;
     }
 
-    public SubjectRequest[] getData(){
+    public SubjectRequestVO[] getData(){
         return data;
     }
 
-    public void setData(SubjectRequest[] data){
+    public void setData(SubjectRequestVO[] data){
         this.data = data;
     }
 
@@ -43,7 +43,7 @@ public class ResponseResult implements Serializable{
 
 
 <pre class="prettyprint lang-java">
-public class SubjectRequest implements Serializable{
+public class SubjectRequestVO implements Serializable{
 
     private unknow log; //
     private long id; //
@@ -55,7 +55,6 @@ public class SubjectRequest implements Serializable{
     private String title; //题目内容
     private String titleImage; //题目图片（json）
     private String requestOption; //题目选项（json）
-    private int spacesCount; //填空题空格数量
     private String answer; //答案内容（json）
     private String answerImage; //答案图片（json）
     private long activityId; //题目所属的活动id
@@ -63,6 +62,10 @@ public class SubjectRequest implements Serializable{
     private int isDeleted; //是否删除：0否 1是
     private String gmtCreate; //创建时间
     private String gmtModified; //修改时间
+    private String subjectDictName; //学科名称
+    private String subjectFirstDictName; //学科一级类目名称
+    private String subjectSecondDictName; //学科二级类目名称
+    private String subjectCateName; //题目分类名称
 
     public unknow getLog(){
         return log;
@@ -144,14 +147,6 @@ public class SubjectRequest implements Serializable{
         this.requestOption = requestOption;
     }
 
-    public int getSpacesCount(){
-        return spacesCount;
-    }
-
-    public void setSpacesCount(int spacesCount){
-        this.spacesCount = spacesCount;
-    }
-
     public String getAnswer(){
         return answer;
     }
@@ -206,6 +201,38 @@ public class SubjectRequest implements Serializable{
 
     public void setGmtModified(String gmtModified){
         this.gmtModified = gmtModified;
+    }
+
+    public String getSubjectDictName(){
+        return subjectDictName;
+    }
+
+    public void setSubjectDictName(String subjectDictName){
+        this.subjectDictName = subjectDictName;
+    }
+
+    public String getSubjectFirstDictName(){
+        return subjectFirstDictName;
+    }
+
+    public void setSubjectFirstDictName(String subjectFirstDictName){
+        this.subjectFirstDictName = subjectFirstDictName;
+    }
+
+    public String getSubjectSecondDictName(){
+        return subjectSecondDictName;
+    }
+
+    public void setSubjectSecondDictName(String subjectSecondDictName){
+        this.subjectSecondDictName = subjectSecondDictName;
+    }
+
+    public String getSubjectCateName(){
+        return subjectCateName;
+    }
+
+    public void setSubjectCateName(String subjectCateName){
+        this.subjectCateName = subjectCateName;
     }
 
 }

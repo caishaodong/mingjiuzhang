@@ -1,4 +1,4 @@
-package com.dong.mingjiuzhang.controller;
+package com.dong.mingjiuzhang.controller.api;
 
 
 import com.dong.mingjiuzhang.domain.entity.Commodity;

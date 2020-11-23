@@ -43,5 +43,8 @@
         total_integral = total_integral + #{addIntegral}
         WHERE id = #{userId}
     </update>
+    <update id="subtractIntegral">
+        UPDATE t_user SET integral = integral - #{subtractIntegral} WHERE id = #{userId}
+    </update>
 
 </mapper>

@@ -12,7 +12,7 @@ public class ResponseResult implements Serializable{
 
     private int code; //
     private String message; //
-    private CourseVo data; //
+    private CourseVO data; //
 
     public int getCode(){
         return code;
@@ -30,11 +30,11 @@ public class ResponseResult implements Serializable{
         this.message = message;
     }
 
-    public CourseVo getData(){
+    public CourseVO getData(){
         return data;
     }
 
-    public void setData(CourseVo data){
+    public void setData(CourseVO data){
         this.data = data;
     }
 
@@ -43,7 +43,7 @@ public class ResponseResult implements Serializable{
 
 
 <pre class="prettyprint lang-java">
-public class CourseVo implements Serializable{
+public class CourseVO implements Serializable{
 
     private unknow log; //
     private long id; //课程ID

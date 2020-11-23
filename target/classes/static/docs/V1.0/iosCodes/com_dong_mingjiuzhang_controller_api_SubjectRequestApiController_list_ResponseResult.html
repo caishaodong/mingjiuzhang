@@ -18,7 +18,7 @@
 //
 @property (nonatomic, assign) NSString message;
 //
-@property (nonatomic, strong) SubjectRequest[] data;
+@property (nonatomic, strong) SubjectRequestVO[] data;
 
 
 @end
@@ -29,7 +29,7 @@
 <xmp>
 #import <Foundation/Foundation>;
 
-@interface SubjectRequest : NSObject
+@interface SubjectRequestVO : NSObject
 
 //
 @property (nonatomic, strong) unknow log;
@@ -51,8 +51,6 @@
 @property (nonatomic, assign) NSString titleImage;
 //题目选项（json）
 @property (nonatomic, assign) NSString requestOption;
-//填空题空格数量
-@property (nonatomic, strong) NSInteger spacesCount;
 //答案内容（json）
 @property (nonatomic, assign) NSString answer;
 //答案图片（json）
@@ -67,6 +65,14 @@
 @property (nonatomic, assign) NSString gmtCreate;
 //修改时间
 @property (nonatomic, assign) NSString gmtModified;
+//学科名称
+@property (nonatomic, assign) NSString subjectDictName;
+//学科一级类目名称
+@property (nonatomic, assign) NSString subjectFirstDictName;
+//学科二级类目名称
+@property (nonatomic, assign) NSString subjectSecondDictName;
+//题目分类名称
+@property (nonatomic, assign) NSString subjectCateName;
 
 
 @end

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint lang-java">
+public class ResponseResult implements Serializable{
+
+    private int code; //
+    private String message; //
+    private ActivityUserVO data; //
+
+    public int getCode(){
+        return code;
+    }
+
+    public void setCode(int code){
+        this.code = code;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    public ActivityUserVO getData(){
+        return data;
+    }
+
+    public void setData(ActivityUserVO data){
+        this.data = data;
+    }
+
+}
+</pre>
+
+
+<pre class="prettyprint lang-java">
+public class ActivityUserVO implements Serializable{
+
+    private int totalIntegral; //用户所得积分
+    private int answerCount; //答题次数
+
+    public int getTotalIntegral(){
+        return totalIntegral;
+    }
+
+    public void setTotalIntegral(int totalIntegral){
+        this.totalIntegral = totalIntegral;
+    }
+
+    public int getAnswerCount(){
+        return answerCount;
+    }
+
+    public void setAnswerCount(int answerCount){
+        this.answerCount = answerCount;
+    }
+
+}
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>

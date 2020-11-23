@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ResponseResult</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
+<link href="../style.css" rel="stylesheet" />
+</head>
+<body onload="PR.prettyPrint()">
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface ResponseResult : NSObject
+
+//
+@property (nonatomic, strong) NSInteger code;
+//
+@property (nonatomic, assign) NSString message;
+//
+@property (nonatomic, strong) Activity data;
+
+
+@end
+</xmp>
+</pre>
+
+<pre class="prettyprint">
+<xmp>
+#import <Foundation/Foundation>;
+
+@interface Activity : NSObject
+
+//
+@property (nonatomic, strong) unknow log;
+//
+@property (nonatomic, strong) long id;
+//活动名称
+@property (nonatomic, assign) NSString activityName;
+//活动简介
+@property (nonatomic, assign) NSString activitySynopsis;
+//活动规则
+@property (nonatomic, assign) NSString activityContent;
+//活动开始时间
+@property (nonatomic, assign) NSString gmtStartEffect;
+//活动结束时间
+@property (nonatomic, assign) NSString gmtEndEffect;
+//活动参与人数
+@property (nonatomic, strong) long userCount;
+//是否删除：0否 1是
+@property (nonatomic, strong) NSInteger isDeleted;
+//添加时间
+@property (nonatomic, assign) NSString gmtCreate;
+//更新时间
+@property (nonatomic, assign) NSString gmtModified;
+
+
+@end
+</xmp>
+</pre>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
+</body>
+</html>
