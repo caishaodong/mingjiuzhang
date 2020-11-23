@@ -26,6 +26,9 @@ public enum BusinessEnum {
     SMS_CODE_INVALID(411, "请重新获取验证码"),
     SMS_CODE_ERROR(412, "验证码错误"),
     NOT_TEACHER(413, "您的身份不是老师"),
+    NO_YESTERDAY_REQUEST_ANALYSIS(414, "暂无昨日该年级题目解析"),
+    NOT_START_ACTIVITY(415, "活动尚未开始"),
+    ALREADY_END_ACTIVITY(416, "活动已经结束"),
     ;
     private Integer code;
     private String desc;

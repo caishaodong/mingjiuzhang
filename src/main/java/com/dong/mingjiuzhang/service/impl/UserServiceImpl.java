@@ -176,4 +176,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         this.updateById(user);
     }
+
+    /**
+     * 用户表用户积分增加
+     *
+     * @param userId
+     * @param addIntegral
+     */
+    @Override
+    public void addIntegral(Long userId, Integer addIntegral) {
+        this.baseMapper.addIntegral(userId, addIntegral);
+    }
 }

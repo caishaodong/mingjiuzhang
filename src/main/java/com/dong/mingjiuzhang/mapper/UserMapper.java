@@ -1,7 +1,8 @@
 package com.dong.mingjiuzhang.mapper;
 
-import com.dong.mingjiuzhang.domain.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.dong.mingjiuzhang.domain.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    /**
+     * 用户表用户积分增加
+     *
+     * @param userId
+     * @param addIntegral
+     */
+    void addIntegral(@Param("userId") Long userId, @Param("addIntegral") Integer addIntegral);
 }

@@ -72,4 +72,12 @@ public interface UserService extends IService<User> {
      * @param user
      */
     void updateUser(UserUpdateDTO userUpdateDTO, User user);
+
+    /**
+     * 用户表用户积分增加
+     *
+     * @param userId
+     * @param addIntegral
+     */
+    void addIntegral(Long userId, Integer addIntegral);
 }
