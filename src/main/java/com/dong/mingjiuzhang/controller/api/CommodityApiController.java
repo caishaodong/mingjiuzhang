@@ -9,6 +9,7 @@ import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.util.page.PageUtil;
 import com.dong.mingjiuzhang.service.CommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +32,7 @@ public class CommodityApiController extends BaseController {
      * @param commoditySearchDTO
      * @return
      */
+    @PostMapping("/pageList")
     public ResponseResult<PageUtil<Commodity>> pageList(@RequestBody CommoditySearchDTO commoditySearchDTO) {
         IPage<Commodity> page = commodityService.pageList(commoditySearchDTO);
         return success(page);

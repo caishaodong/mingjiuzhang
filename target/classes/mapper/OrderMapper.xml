@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.mingjiuzhang.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.Order">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="user_grade" property="userGrade" />
+        <result column="send_type" property="sendType" />
+        <result column="receiver_name" property="receiverName" />
+        <result column="receiver_mobile" property="receiverMobile" />
+        <result column="province_code" property="provinceCode" />
+        <result column="province" property="province" />
+        <result column="address" property="address" />
+        <result column="pay_status" property="payStatus" />
+        <result column="status" property="status" />
+        <result column="should_price" property="shouldPrice" />
+        <result column="real_price" property="realPrice" />
+        <result column="pay_type" property="payType" />
+        <result column="course_id" property="courseId" />
+        <result column="course_name" property="courseName" />
+        <result column="course_series_id" property="courseSeriesId" />
+        <result column="course_series_name" property="courseSeriesName" />
+        <result column="teacher_id" property="teacherId" />
+        <result column="teacher_name" property="teacherName" />
+        <result column="teacher_mobile" property="teacherMobile" />
+        <result column="is_group" property="isGroup" />
+        <result column="group_count" property="groupCount" />
+        <result column="is_group_finish" property="isGroupFinish" />
+        <result column="gmt_group_finish" property="gmtGroupFinish" />
+        <result column="is_deleted" property="isDeleted" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, user_grade, send_type, receiver_name, receiver_mobile, province_code, province, address, pay_status, status, should_price, real_price, pay_type, course_id, course_name, course_series_id, course_series_name, teacher_id, teacher_name, teacher_mobile, is_group, group_count, is_group_finish, gmt_group_finish, is_deleted, gmt_create, gmt_modified
+    </sql>
+
+</mapper>

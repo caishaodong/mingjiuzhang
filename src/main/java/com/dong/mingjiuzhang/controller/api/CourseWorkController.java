@@ -99,7 +99,7 @@ public class CourseWorkController extends BaseController {
      * @param courseWorkSearchDTO
      * @return
      */
-    @GetMapping("/pageList")
+    @PostMapping("/pageList")
     public ResponseResult<PageUtil<CourseWork>> pageList(@RequestBody CourseWorkSearchDTO courseWorkSearchDTO) {
         // 参数校验
 //        courseWorkSearchDTO.paramCheck();

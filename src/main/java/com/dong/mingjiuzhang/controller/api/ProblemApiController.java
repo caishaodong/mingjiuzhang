@@ -52,7 +52,7 @@ public class ProblemApiController extends BaseController {
      * @param problemSearchDTO
      * @return
      */
-    @GetMapping("/pageList")
+    @PostMapping("/pageList")
     public ResponseResult<PageUtil<ProblemVO>> pageList(@RequestBody ProblemSearchDTO problemSearchDTO) {
         IPage<ProblemVO> page = problemService.pageList(problemSearchDTO);
         return success(page);

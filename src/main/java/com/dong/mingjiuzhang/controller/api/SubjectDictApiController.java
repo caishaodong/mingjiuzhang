@@ -6,6 +6,7 @@ import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.service.SubjectDictService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +29,7 @@ public class SubjectDictApiController extends BaseController {
      *
      * @return
      */
+    @GetMapping("/list")
     public ResponseResult<List<SubjectDict>> list() {
         List<SubjectDict> list = subjectDictService.getList();
         return success(list);
