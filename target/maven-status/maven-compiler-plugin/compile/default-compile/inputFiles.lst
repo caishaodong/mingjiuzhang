@@ -13,6 +13,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\CommodityServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\file\excel\ExcelDataDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\SendSmsLogServiceImpl.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\OrderApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\SubjectFirstDictMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\ActivityUserIntegralServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\common\SmsController.java
@@ -31,6 +32,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\SubjectSecondDictApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\SysUser.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\aop\limiter\ApiRateLimiter.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\OrderGroupUserMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\UserMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\ActivityAnswerRequestDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\CourseSeriesController.java
@@ -46,6 +48,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\constant\Constant.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\file\excel\ExcelDataUtil.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\SubjectSecondDictService.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\OrderMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\ResponseResult.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\UserService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\CommodityService.java
@@ -64,10 +67,12 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\base\BaseController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\aop\permission\PermissionAspect.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\FileApiController.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\OrderGroupUserService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\ActivityUserIntegralLogApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\AnswerLogServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\tomcat\TomcatConfig.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\date\LocalDateTimeUtil.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\enums\PayTypeEnum.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\file\excel\ExcelVersion.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\ActivityUserIntegralMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\SmsServiceImpl.java
@@ -118,6 +123,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\geo\DisUtil.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\CourseSeriesServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\AnswerLogMapper.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\OrderGroupUserApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\SubjectRequestVO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\AnswerApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\SubjectRequestService.java
@@ -131,6 +137,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\SendSmsLog.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\ActivityService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\file\excel\ExcelUtil.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\enums\SendTypeEnum.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\WrongCollectionVO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\enums\FreeLoginURIEnum.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\ActivityUserIntegralService.java
@@ -143,6 +150,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\ActivityUserIntegralLogMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\decimal\DecimalUtil.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\geo\GeoHash.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\OrderGroupUser.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\ActivityUserIntegralLogService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\CourseService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\CommodityExchangeRecordServiceImpl.java
@@ -150,6 +158,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\mapper\ProblemReplyMapper.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\CourseCateController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\wrapper\ResponseBodyReturnValueWrapper.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\OrderService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\SysCityVO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\jwt\JwtUtil.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\ActivityUserVO.java
@@ -162,6 +171,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\AgentInfoServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\cors\CorsConfig.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\CourseWorkSearchDTO.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\enums\OrderStatusEnum.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\PasswordLoginDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\BaseUser.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\UserApiController.java
@@ -176,6 +186,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\constant\NumberConstants.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\ActivityUserIntegralLogServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\ProblemReplyService.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\Order.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\page\PageUtil.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\ProblemSaveDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\sms\TencentSmsUtil.java
@@ -184,8 +195,10 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\CommodityExchangeRecordApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\ProblemSearchDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\CourseWorkSaveDTO.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\ProblemReplyDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\MallIndexVO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\SubjectFirstDict.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\OrderGroupUserServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\AgentInfoService.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\exception\GlobalExceptionHandler.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\file\download\zip\ZipDownLoadUtil.java
@@ -199,6 +212,7 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\Problem.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\LoginApiController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\Activity.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\OrderServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\ProblemReplyVO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\admin\AgentInfoAdminController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\CourseWorkCountVO.java
@@ -214,13 +228,17 @@ D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiu
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\aop\permission\Permission.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\CourseWorkServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\CourseSeries.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\PreOrderDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\common\SysCityController.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\config\format\BigDecimalSerializer.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\util\file\excel\TailMapListUtil.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\impl\ActivityServiceImpl.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\UserMessage.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\vo\CourseWorkVO.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\enums\GroupStatusEnum.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\CommodityApiController.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\constant\OrderConstants.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\controller\api\AnswerLogApiController.java
+D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\domain\entity\dto\OrderSaveDTO.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\global\enums\MsgTypeEnum.java
 D:\install\Java\WorkTask\IDEA\waibao\mingjiuzhang\src\main\java\com\dong\mingjiuzhang\service\FileService.java

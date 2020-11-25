@@ -17,6 +17,7 @@
         <result column="province" property="province" />
         <result column="should_price" property="shouldPrice" />
         <result column="real_price" property="realPrice" />
+        <result column="gmt_order_expiration" property="gmtOrderExpiration" />
         <result column="is_deleted" property="isDeleted" />
         <result column="gmt_create" property="gmtCreate" />
         <result column="gmt_modified" property="gmtModified" />
@@ -24,7 +25,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, order_id, user_id, user_grade, send_type, pay_status, status, receiver_name, receiver_mobile, province_code, province, should_price, real_price, is_deleted, gmt_create, gmt_modified
+        id, order_id, user_id, user_grade, send_type, pay_status, status, receiver_name, receiver_mobile, province_code, province, should_price, real_price, gmt_order_expiration, is_deleted, gmt_create, gmt_modified
     </sql>
 
 </mapper>

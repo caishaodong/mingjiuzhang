@@ -103,7 +103,7 @@ public class CourseWorkController extends BaseController {
     public ResponseResult<PageUtil<CourseWork>> pageList(@RequestBody CourseWorkSearchDTO courseWorkSearchDTO) {
         // 参数校验
 //        courseWorkSearchDTO.paramCheck();
-        IPage<CourseWork> page = courseService.pageList(courseWorkSearchDTO);
+        IPage<CourseWork> page = courseWorkService.pageList(courseWorkSearchDTO);
         return success(page);
     }
 

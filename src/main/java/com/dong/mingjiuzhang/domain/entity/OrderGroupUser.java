@@ -73,7 +73,7 @@ public class OrderGroupUser extends Model<OrderGroupUser> {
     /**
      * 省编码
      */
-    private String provinceCode;
+    private Integer provinceCode;
 
     /**
      * 省

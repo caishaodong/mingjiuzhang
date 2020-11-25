@@ -22,14 +22,6 @@ import java.util.List;
 public interface CourseMapper extends BaseMapper<Course> {
 
     /**
-     * 获取上传作业列表（分页）
-     *
-     * @param courseWorkSearchDTO
-     * @return
-     */
-    IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
-
-    /**
      * 根据老师id获取待批改作业数量
      *
      * @param teacherId

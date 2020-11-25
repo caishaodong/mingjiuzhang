@@ -1,10 +1,7 @@
 package com.dong.mingjiuzhang.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.Course;
-import com.dong.mingjiuzhang.domain.entity.CourseWork;
-import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
@@ -39,13 +36,6 @@ public interface CourseService extends IService<Course> {
      */
     CourseVO getCourseInfoByCourseId(Long courseId);
 
-    /**
-     * 获取上传作业列表（分页）
-     *
-     * @param courseWorkSearchDTO
-     * @return
-     */
-    IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
 
     /**
      * 根据老师id获取待批改作业数量

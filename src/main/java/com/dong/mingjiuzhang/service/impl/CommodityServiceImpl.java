@@ -11,6 +11,7 @@ import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
 import com.dong.mingjiuzhang.mapper.CommodityMapper;
+import com.dong.mingjiuzhang.service.CommodityExchangeRecordService;
 import com.dong.mingjiuzhang.service.CommodityService;
 import com.dong.mingjiuzhang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements CommodityService {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CommodityExchangeRecordService commodityExchangeRecordService;
 
     @Override
     public Commodity getOkById(Long id) {
@@ -71,6 +74,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         commodityExchangeRecord.setIntegral(commodity.getCommodityIntegral());
         commodityExchangeRecord.setStatus(YesNoEnum.NO.getValue());
         ReflectUtil.setCreateInfo(commodityExchangeRecord, CommodityExchangeRecord.class);
+        commodityExchangeRecordService.save(commodityExchangeRecord);
         // 减去用户积分
         userService.subtractIntegral(userId, commodity.getCommodityIntegral());
     }

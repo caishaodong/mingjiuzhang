@@ -1,15 +1,16 @@
 package com.dong.mingjiuzhang.domain.entity;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -29,6 +30,11 @@ public class Order extends Model<Order> {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 订单编号
+     */
+    private String orderSn;
 
     /**
      * 用户id
@@ -58,12 +64,12 @@ public class Order extends Model<Order> {
     /**
      * 省编码
      */
-    private String provinceCode;
+    private Integer provinceCode;
 
     /**
      * 省
      */
-    private Integer province;
+    private String province;
 
     /**
      * 详细地址
@@ -71,7 +77,12 @@ public class Order extends Model<Order> {
     private String address;
 
     /**
-     * 支付状态：0未支付 1已支付
+     * 支付方式：1微信 2支付宝
+     */
+    private Integer payMethod;
+
+    /**
+     * 支付状态：0未支付 1已支付 2支付失败
      */
     private Integer payStatus;
 
@@ -79,6 +90,11 @@ public class Order extends Model<Order> {
      * 状态：0处理中 1待发货 2已发货 3已完成 4已失效
      */
     private Integer status;
+
+    /**
+     * 总金额
+     */
+    private BigDecimal totalPrice;
 
     /**
      * 应付金额

@@ -32,11 +32,15 @@ public class OrderSaveDTO {
     /**
      * 省编码（取件方式为邮寄的时候传递）
      */
-    private String provinceCode;
+    private Integer provinceCode;
     /**
      * 详细地址（取件方式为邮寄的时候传递）
      */
     private String address;
+    /**
+     * 支付方式：1微信 2支付宝
+     */
+    private Integer payMethod;
     /**
      * 购买类型：1课程 2：系列（必传）
      */
@@ -64,7 +68,7 @@ public class OrderSaveDTO {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
         if (Objects.equals(sendTypeEnum, SendTypeEnum.SELF) && (StringUtil.isBlank(this.receiverName) || StringUtil.isBlank(this.receiverMobile)
-                || StringUtil.isBlank(this.provinceCode) || StringUtil.isBlank(this.address))) {
+                || Objects.isNull(this.provinceCode) || StringUtil.isBlank(this.address))) {
             // 如果是自提，用户信息不能为空
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }

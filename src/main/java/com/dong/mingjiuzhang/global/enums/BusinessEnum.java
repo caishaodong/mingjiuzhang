@@ -31,6 +31,7 @@ public enum BusinessEnum {
     ALREADY_END_ACTIVITY(416, "活动已经结束"),
     COMMODITY_NOT_ENOUGH(417, "商品库存不足"),
     USER_COMMODITY_NOT_ENOUGH(418, "积分不足"),
+    PAY_FAILED(419, "支付失败"),
     ;
     private Integer code;
     private String desc;

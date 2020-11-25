@@ -1,7 +1,9 @@
 package com.dong.mingjiuzhang.service;
 
-import com.dong.mingjiuzhang.domain.entity.Order;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dong.mingjiuzhang.domain.entity.Order;
+import com.dong.mingjiuzhang.domain.entity.dto.PreOrderDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.OrderSaveVO;
 
 /**
  * <p>
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface OrderService extends IService<Order> {
 
+    /**
+     * 保存订单
+     *
+     * @param preOrderDTO
+     * @return
+     */
+    OrderSaveVO saveOrder(PreOrderDTO preOrderDTO);
 }

@@ -21,7 +21,7 @@
         id, user_id, problem_title, problem_content, problem_image, problem_status, reply_count, is_deleted, gmt_create, gmt_modified
     </sql>
     <select id="pageList" resultType="com.dong.mingjiuzhang.domain.entity.vo.ProblemVO">
-        SELECT p.problem_title, p.problem_content, p.problem_image, p.gmt_create, p.user_id, u.username, u.avatar
+        SELECT p.id, p.problem_title, p.problem_content, p.problem_image, p.gmt_create, p.user_id, u.username, u.avatar
         FROM t_problem p
         LEFT JOIN t_user u ON p.user_id = u.id
         WHERE p.is_deleted = 0 AND p.problem_status = 1
