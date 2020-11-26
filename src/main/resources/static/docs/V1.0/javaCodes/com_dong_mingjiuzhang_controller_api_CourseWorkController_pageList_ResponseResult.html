@@ -97,7 +97,8 @@ public class CourseWorkPageVO implements Serializable{
     private long courseId; //课程id
     private String workImage; //作业图片（json）
     private long teacherId; //老师id
-    private int isFinishCorrect; //是否完成批改：0否 1是
+    private int status; //状态：0待批改 1批改中 2批改完成 3驳回
+    private String reason; //原因
     private int isDeleted; //是否删除：0否 1是
     private String gmtCreate; //创建时间
     private String gmtModified; //更新时间
@@ -167,12 +168,20 @@ public class CourseWorkPageVO implements Serializable{
         this.teacherId = teacherId;
     }
 
-    public int getIsFinishCorrect(){
-        return isFinishCorrect;
+    public int getStatus(){
+        return status;
     }
 
-    public void setIsFinishCorrect(int isFinishCorrect){
-        this.isFinishCorrect = isFinishCorrect;
+    public void setStatus(int status){
+        this.status = status;
+    }
+
+    public String getReason(){
+        return reason;
+    }
+
+    public void setReason(String reason){
+        this.reason = reason;
     }
 
     public int getIsDeleted(){

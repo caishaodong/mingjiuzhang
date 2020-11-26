@@ -200,25 +200,28 @@
             </div>
             <div id="collapse11" class="collapse in " aria-labelledby="heading11">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save">
-                        上传作业
+                        学生上传作业
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList">
-                        获取上传作业列表（分页）
-                    </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkCount">
-                        获取待批改作业数量
-                    </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkList">
-                        根据课程id获取待修改作业列表
+                        学生获取上传作业列表（分页）
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork">
-                        获取作业详情
+                        学生获取作业详情
                     </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#correctWork">
-                        批改作业
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkCount">
+                        老师获取待批改作业数量
                     </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#finishCorrect">
-                        完成批改作业
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkList">
+                        老师根据课程id获取待修改作业列表
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWork">
+                        老师获取作业详情
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherUpdateCourseWorkStatus">
+                        老师修改作业状态
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCorrectWork">
+                        老师批改作业
                     </a>
             </div>
         </div>
@@ -416,7 +419,7 @@
                 <div class="page-inner">
                     <div class="action-list">
                         <div class="action-item">
-<h2 id="save"><a href="#">上传作业 </a></h2>
+<h2 id="save"><a href="#">学生上传作业 </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
@@ -444,7 +447,7 @@
                         </div>
                         <hr>
                         <div class="action-item">
-<h2 id="pageList"><a href="#">获取上传作业列表（分页） </a></h2>
+<h2 id="pageList"><a href="#">学生获取上传作业列表（分页） </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
@@ -473,7 +476,8 @@
 			"courseId":"long //课程id",
 			"workImage":"string //作业图片（json）",
 			"teacherId":"long //老师id",
-			"isFinishCorrect":"int //是否完成批改：0否 1是",
+			"status":"int //状态：0待批改 1批改中 2批改完成 3驳回",
+			"reason":"string //原因",
 			"isDeleted":"int //是否删除：0否 1是",
 			"gmtCreate":"date //创建时间",
 			"gmtModified":"date //更新时间",
@@ -494,11 +498,60 @@
                         </div>
                         <hr>
                         <div class="action-item">
-<h2 id="courseWorkCount"><a href="#">获取待批改作业数量 </a></h2>
+<h2 id="courseWork"><a href="#">学生获取作业详情 </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>api/courseWork/courseWorkCount</code>
+    <code>api/courseWork/{courseWorkId}</code>
+        <span class="label label-default">GET</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>courseWorkId</td>
+                        <td>long</td>
+                        <td>否</td>
+                        <td>作业id</td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"int",
+	"message":"string",
+	"data":{
+		"id":"long //作业id",
+		"workImage":"string //作业图片",
+		"username":"string //用户名称",
+		"avatar":"string //用户头像",
+		"courseCateName":"string //课程分类名称",
+		"courseSeriesName":"string //系列名称",
+		"courseName":"string //课程名称",
+		"gmtCreate":"string //上传时间",
+		"status":"int //状态：0待批改 1批改中 2批改完成 3驳回",
+		"reason":"string //原因"
+	}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWork_ResponseResult.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWork_ResponseResult.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="teacherCourseWorkCount"><a href="#">老师获取待批改作业数量 </a></h2>
+    <p class="text-muted"><em>作者: caishaodong</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>api/courseWork/teacher/courseWorkCount</code>
         <span class="label label-default">GET</span>
 </p>
     <p><strong>返回结果</strong></p>
@@ -512,20 +565,20 @@
 	}]
 }</pre>
         <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWorkCount_ResponseResult.html"><i
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCourseWorkCount_ResponseResult.html"><i
                         class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWorkCount_ResponseResult.html"><i class="fa fa-apple"
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCourseWorkCount_ResponseResult.html"><i class="fa fa-apple"
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>
                         </div>
                         <hr>
                         <div class="action-item">
-<h2 id="courseWorkList"><a href="#">根据课程id获取待修改作业列表 </a></h2>
+<h2 id="teacherCourseWorkList"><a href="#">老师根据课程id获取待修改作业列表 </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>api/courseWork/courseWorkList/{courseCateId}</code>
+    <code>api/courseWork/teacher/courseWorkList/{courseCateId}</code>
         <span class="label label-default">GET</span>
 </p>
         <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
@@ -555,24 +608,26 @@
 		"courseCateName":"string //课程分类名称",
 		"courseSeriesName":"string //系列名称",
 		"courseName":"string //课程名称",
-		"gmtCreate":"string //上传时间"
+		"gmtCreate":"string //上传时间",
+		"status":"int //状态：0待批改 1批改中 2批改完成 3驳回",
+		"reason":"string //原因"
 	}]
 }</pre>
         <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWorkList_ResponseResult.html"><i
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCourseWorkList_ResponseResult.html"><i
                         class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWorkList_ResponseResult.html"><i class="fa fa-apple"
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCourseWorkList_ResponseResult.html"><i class="fa fa-apple"
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>
                         </div>
                         <hr>
                         <div class="action-item">
-<h2 id="courseWork"><a href="#">获取作业详情 </a></h2>
+<h2 id="teacherCourseWork"><a href="#">老师获取作业详情 </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>api/courseWork/courseWork/{courseWorkId}</code>
+    <code>api/courseWork/teacher/{courseWorkId}</code>
         <span class="label label-default">GET</span>
 </p>
         <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
@@ -602,24 +657,55 @@
 		"courseCateName":"string //课程分类名称",
 		"courseSeriesName":"string //系列名称",
 		"courseName":"string //课程名称",
-		"gmtCreate":"string //上传时间"
+		"gmtCreate":"string //上传时间",
+		"status":"int //状态：0待批改 1批改中 2批改完成 3驳回",
+		"reason":"string //原因"
 	}
 }</pre>
         <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWork_ResponseResult.html"><i
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCourseWork_ResponseResult.html"><i
                         class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_courseWork_ResponseResult.html"><i class="fa fa-apple"
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCourseWork_ResponseResult.html"><i class="fa fa-apple"
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>
                         </div>
                         <hr>
                         <div class="action-item">
-<h2 id="correctWork"><a href="#">批改作业 </a></h2>
+<h2 id="teacherUpdateCourseWorkStatus"><a href="#">老师修改作业状态 </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>api/courseWork/correctWork</code>
+    <code>api/courseWork/teacher/status</code>
+        <span class="label label-default">PUT</span>
+</p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"courseWorkId":"long //作业id",
+	"status":"int //状态：0待批改 1批改中 2批改完成 3驳回",
+	"reason":"string //原因"
+}</pre>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"int",
+	"message":"string",
+	"data":{}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherUpdateCourseWorkStatus_ResponseResult.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherUpdateCourseWorkStatus_ResponseResult.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="teacherCorrectWork"><a href="#">老师批改作业 </a></h2>
+    <p class="text-muted"><em>作者: caishaodong</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>api/courseWork/teacher/correctWork</code>
         <span class="label label-default">PUT</span>
 </p>
         <p><strong>请求体</strong> <span class="badge">application/json</span></p>
@@ -634,47 +720,9 @@
 	"data":{}
 }</pre>
         <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_correctWork_ResponseResult.html"><i
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCorrectWork_ResponseResult.html"><i
                         class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_correctWork_ResponseResult.html"><i class="fa fa-apple"
-                                                                                                 aria-hidden="true"></i>
-                iOS Model</a>
-        </div>
-                        </div>
-                        <hr>
-                        <div class="action-item">
-<h2 id="finishCorrect"><a href="#">完成批改作业 </a></h2>
-    <p class="text-muted"><em>作者: caishaodong</em></p>
-<p><strong>请求URL</strong></p>
-<p>
-    <code>api/courseWork/finishCorrect/{courseWorkId}</code>
-        <span class="label label-default">PUT</span>
-</p>
-        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
-        <table class="table table-bordered">
-            <tr>
-                <th>参数名</th>
-                <th>类型</th>
-                <th>必须</th>
-                <th>描述</th>
-            </tr>
-                    <tr>
-                        <td>courseWorkId</td>
-                        <td>long</td>
-                        <td>否</td>
-                        <td>作业id</td>
-                    </tr>
-        </table>
-    <p><strong>返回结果</strong></p>
-    <pre class="prettyprint lang-json">{
-	"code":"int",
-	"message":"string",
-	"data":{}
-}</pre>
-        <div class="form-group">
-            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_finishCorrect_ResponseResult.html"><i
-                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
-            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_finishCorrect_ResponseResult.html"><i class="fa fa-apple"
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_CourseWorkController_teacherCorrectWork_ResponseResult.html"><i class="fa fa-apple"
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>
@@ -716,13 +764,14 @@
             {name: '(API)课程.根据系列id获取课程列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#list'},
             {name: '(API)课程.根据课程id获取课程详细信息', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo'},
             {name: '(API)课程系列.根据课程类目id获取课程系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
-            {name: '(API)作业.上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
-            {name: '(API)作业.获取上传作业列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList'},
-            {name: '(API)作业.获取待批改作业数量', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkCount'},
-            {name: '(API)作业.根据课程id获取待修改作业列表', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkList'},
-            {name: '(API)作业.获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork'},
-            {name: '(API)作业.批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#correctWork'},
-            {name: '(API)作业.完成批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#finishCorrect'},
+            {name: '(API)作业.学生上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
+            {name: '(API)作业.学生获取上传作业列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList'},
+            {name: '(API)作业.学生获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork'},
+            {name: '(API)作业.老师获取待批改作业数量', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkCount'},
+            {name: '(API)作业.老师根据课程id获取待修改作业列表', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkList'},
+            {name: '(API)作业.老师获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWork'},
+            {name: '(API)作业.老师修改作业状态', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherUpdateCourseWorkStatus'},
+            {name: '(API)作业.老师批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCorrectWork'},
             {name: '(API)文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_api_FileApiController.html#upload'},
             {name: '(API)登入登出.用户注册', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#register'},
             {name: '(API)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},

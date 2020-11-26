@@ -53,6 +53,8 @@ public class CourseWorkVO implements Serializable{
     private String courseSeriesName; //系列名称
     private String courseName; //课程名称
     private String gmtCreate; //上传时间
+    private int status; //状态：0待批改 1批改中 2批改完成 3驳回
+    private String reason; //原因
 
     public long getId(){
         return id;
@@ -116,6 +118,22 @@ public class CourseWorkVO implements Serializable{
 
     public void setGmtCreate(String gmtCreate){
         this.gmtCreate = gmtCreate;
+    }
+
+    public int getStatus(){
+        return status;
+    }
+
+    public void setStatus(int status){
+        this.status = status;
+    }
+
+    public String getReason(){
+        return reason;
+    }
+
+    public void setReason(String reason){
+        this.reason = reason;
     }
 
 }

@@ -67,8 +67,10 @@
 @property (nonatomic, assign) NSString workImage;
 //老师id
 @property (nonatomic, strong) long teacherId;
-//是否完成批改：0否 1是
-@property (nonatomic, strong) NSInteger isFinishCorrect;
+//状态：0待批改 1批改中 2批改完成 3驳回
+@property (nonatomic, strong) NSInteger status;
+//原因
+@property (nonatomic, assign) NSString reason;
 //是否删除：0否 1是
 @property (nonatomic, strong) NSInteger isDeleted;
 //创建时间

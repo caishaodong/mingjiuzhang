@@ -200,25 +200,28 @@
             </div>
             <div id="collapse11" class="collapse " aria-labelledby="heading11">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save">
-                        上传作业
+                        学生上传作业
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList">
-                        获取上传作业列表（分页）
-                    </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkCount">
-                        获取待批改作业数量
-                    </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkList">
-                        根据课程id获取待修改作业列表
+                        学生获取上传作业列表（分页）
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork">
-                        获取作业详情
+                        学生获取作业详情
                     </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#correctWork">
-                        批改作业
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkCount">
+                        老师获取待批改作业数量
                     </a>
-                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#finishCorrect">
-                        完成批改作业
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkList">
+                        老师根据课程id获取待修改作业列表
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWork">
+                        老师获取作业详情
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherUpdateCourseWorkStatus">
+                        老师修改作业状态
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCorrectWork">
+                        老师批改作业
                     </a>
             </div>
         </div>
@@ -546,13 +549,14 @@
             {name: '(API)课程.根据系列id获取课程列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#list'},
             {name: '(API)课程.根据课程id获取课程详细信息', url: 'com_dong_mingjiuzhang_controller_api_CourseController.html#getCourseInfo'},
             {name: '(API)课程系列.根据课程类目id获取课程系列列表（不分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseSeriesController.html#list'},
-            {name: '(API)作业.上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
-            {name: '(API)作业.获取上传作业列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList'},
-            {name: '(API)作业.获取待批改作业数量', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkCount'},
-            {name: '(API)作业.根据课程id获取待修改作业列表', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWorkList'},
-            {name: '(API)作业.获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork'},
-            {name: '(API)作业.批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#correctWork'},
-            {name: '(API)作业.完成批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#finishCorrect'},
+            {name: '(API)作业.学生上传作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#save'},
+            {name: '(API)作业.学生获取上传作业列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#pageList'},
+            {name: '(API)作业.学生获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#courseWork'},
+            {name: '(API)作业.老师获取待批改作业数量', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkCount'},
+            {name: '(API)作业.老师根据课程id获取待修改作业列表', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWorkList'},
+            {name: '(API)作业.老师获取作业详情', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCourseWork'},
+            {name: '(API)作业.老师修改作业状态', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherUpdateCourseWorkStatus'},
+            {name: '(API)作业.老师批改作业', url: 'com_dong_mingjiuzhang_controller_api_CourseWorkController.html#teacherCorrectWork'},
             {name: '(API)文件上传.文件上传', url: 'com_dong_mingjiuzhang_controller_api_FileApiController.html#upload'},
             {name: '(API)登入登出.用户注册', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#register'},
             {name: '(API)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},
