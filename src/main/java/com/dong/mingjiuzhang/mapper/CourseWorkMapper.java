@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO;
 
 /**
  * <p>
@@ -21,5 +22,5 @@ public interface CourseWorkMapper extends BaseMapper<CourseWork> {
      * @param courseWorkSearchDTO
      * @return
      */
-    IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
+    IPage<CourseWorkPageVO> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
 }

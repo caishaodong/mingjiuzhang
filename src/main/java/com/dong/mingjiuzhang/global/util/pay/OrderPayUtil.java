@@ -12,25 +12,25 @@ import java.util.Objects;
  * @Date 2020-11-25 22:03
  * @Description
  **/
-public class PayUtil {
+public class OrderPayUtil {
     /**
      * 支付
      *
-     * @param order
+     * @param orderPayDTO
      * @return
      */
-    public static PayResult pay(Order order) {
-        PayResult payResult = null;
-        if (Objects.equals(order.getPayMethod(), PayMethodEnum.WECHAT.getPayMethod())) {
+    public static OrderPayResult pay(OrderPayDTO orderPayDTO) {
+        OrderPayResult orderPayResult = null;
+        if (Objects.equals(orderPayDTO.getPayMethod(), PayMethodEnum.WECHAT.getPayMethod())) {
             // 微信支付
-            payResult = null;
-        } else if (Objects.equals(order.getPayMethod(), PayMethodEnum.ALIPAY.getPayMethod())) {
+            orderPayResult = null;
+        } else if (Objects.equals(orderPayDTO.getPayMethod(), PayMethodEnum.ALIPAY.getPayMethod())) {
             // 支付宝支付
-            payResult = null;
+            orderPayResult = null;
         } else {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
-        return payResult;
+        return orderPayResult;
     }
 
     /**
@@ -38,8 +38,8 @@ public class PayUtil {
      *
      * @return
      */
-    public static PayResult payBack() {
-        PayResult payResult = null;
-        return payResult;
+    public static OrderPayResult payBack() {
+        OrderPayResult orderPayResult = null;
+        return orderPayResult;
     }
 }

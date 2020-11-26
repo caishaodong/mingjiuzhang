@@ -45,16 +45,16 @@ public class ResponseResult implements Serializable{
 <pre class="prettyprint lang-java">
 public class PageUtil implements Serializable{
 
-    private CourseWork[] records; //
+    private CourseWorkPageVO[] records; //
     private long total; //
     private long size; //
     private long current; //
 
-    public CourseWork[] getRecords(){
+    public CourseWorkPageVO[] getRecords(){
         return records;
     }
 
-    public void setRecords(CourseWork[] records){
+    public void setRecords(CourseWorkPageVO[] records){
         this.records = records;
     }
 
@@ -87,7 +87,7 @@ public class PageUtil implements Serializable{
 
 
 <pre class="prettyprint lang-java">
-public class CourseWork implements Serializable{
+public class CourseWorkPageVO implements Serializable{
 
     private unknow log; //
     private long id; //
@@ -101,6 +101,7 @@ public class CourseWork implements Serializable{
     private int isDeleted; //是否删除：0否 1是
     private String gmtCreate; //创建时间
     private String gmtModified; //更新时间
+    private String courseName; //课程名称
 
     public unknow getLog(){
         return log;
@@ -196,6 +197,14 @@ public class CourseWork implements Serializable{
 
     public void setGmtModified(String gmtModified){
         this.gmtModified = gmtModified;
+    }
+
+    public String getCourseName(){
+        return courseName;
+    }
+
+    public void setCourseName(String courseName){
+        this.courseName = courseName;
     }
 
 }

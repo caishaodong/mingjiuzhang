@@ -26,6 +26,10 @@ public class CourseWorkVO {
      */
     private String avatar;
     /**
+     * 课程分类名称
+     */
+    private String courseCateName;
+    /**
      * 系列名称
      */
     private String courseSeriesName;

@@ -1,28 +1,23 @@
 package com.dong.mingjiuzhang.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.Order;
 import com.dong.mingjiuzhang.domain.entity.OrderGroupUser;
-import com.dong.mingjiuzhang.domain.entity.dto.PreOrderDTO;
-import com.dong.mingjiuzhang.domain.entity.vo.OrderSaveVO;
+import com.dong.mingjiuzhang.global.constant.OrderConstants;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
-import com.dong.mingjiuzhang.global.enums.PayStatusEnum;
+import com.dong.mingjiuzhang.global.enums.GroupStatusEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
-import com.dong.mingjiuzhang.global.util.pay.PayResult;
-import com.dong.mingjiuzhang.global.util.pay.PayUtil;
-import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
+import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.mapper.OrderMapper;
 import com.dong.mingjiuzhang.service.OrderGroupUserService;
 import com.dong.mingjiuzhang.service.OrderService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
-import java.util.Objects;
-import java.util.UUID;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -34,65 +29,70 @@ import java.util.UUID;
  */
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     private OrderGroupUserService orderGroupUserService;
 
+
+    @Override
+    public Order getOkById(Long id) {
+        return getOne(new LambdaQueryWrapper<Order>().eq(Order::getId, id).eq(Order::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
     /**
-     * 保存订单
+     * 获取当前该系列待拼团订单
      *
-     * @param preOrderDTO
+     * @param courseSeriesId
+     * @param userId
+     * @return
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public OrderSaveVO saveOrder(PreOrderDTO preOrderDTO) {
-        // 保存订单
-        Order order = new Order();
-        order.setOrderSn(UUID.randomUUID().toString().replaceAll("-", ""));
-        BeanUtils.copyProperties(preOrderDTO, order);
-        ReflectUtil.setCreateInfo(order, Order.class);
-        this.save(order);
-
-        if (Objects.equals(order.getGroupStatus(), YesNoEnum.YES.getValue())) {
-            // 如果是拼团订单，保存拼团用户信息
-            OrderGroupUser orderGroupUser = new OrderGroupUser();
-            orderGroupUser.setOrderId(order.getId());
-            orderGroupUser.setUserId(order.getUserId());
-            orderGroupUser.setUserGrade(order.getUserGrade());
-            orderGroupUser.setSendType(order.getSendType());
-            orderGroupUser.setPayStatus(YesNoEnum.NO.getValue());
-            orderGroupUser.setReceiverName(order.getReceiverName());
-            orderGroupUser.setReceiverMobile(order.getReceiverMobile());
-            orderGroupUser.setProvinceCode(order.getProvinceCode());
-            orderGroupUser.setProvince(order.getProvince());
-            orderGroupUser.setShouldPrice(order.getShouldPrice());
-            orderGroupUser.setGmtOrderExpiration(order.getGmtOrderExpiration());
-            ReflectUtil.setCreateInfo(orderGroupUser, OrderGroupUser.class);
-            orderGroupUserService.save(orderGroupUser);
+    public Order getGroupOrder(Long courseSeriesId, Long userId) {
+        List<Order> groupOrderList = this.baseMapper.selectList(new LambdaQueryWrapper<Order>().eq(Order::getCourseSeriesId, courseSeriesId)
+                .eq(Order::getIsGroup, YesNoEnum.YES.getValue())
+                .eq(Order::getGroupStatus, GroupStatusEnum.GROUPING.getStatus())
+                .eq(Order::getIsDeleted, YesNoEnum.NO.getValue())
+                .orderByAsc(Order::getId));
+        if (CollectionUtils.isEmpty(groupOrderList)) {
+            return null;
+        }
+        Order groupOrder = groupOrderList.get(0);
+        // 获取当前拼团的人数
+        Integer currentGroupCount = groupOrder.getCurrentGroupCount();
+        if (currentGroupCount.intValue() >= OrderConstants.GROUP_COUNT) {
+            // 如果当前拼团人数满了，则重新拼团
+            return null;
         }
 
-        // 调用第三方支付
-        PayResult payResult = PayUtil.pay(order);
-
-        // 支付结果校验
-        OrderSaveVO orderSaveVO = new OrderSaveVO();
-        if (Objects.isNull(payResult) || !payResult.getSuccess()) {
-            String errorCode = Objects.isNull(payResult) ? String.valueOf(BusinessEnum.PAY_FAILED.getCode()) : payResult.getErrorCode();
-            String errorDesc = Objects.isNull(payResult) ? BusinessEnum.PAY_FAILED.getDesc() : payResult.getErrorDesc();
-            LOGGER.info("支付失败，错误码：" + errorCode + "，错误描述：" + errorDesc);
-
-            // 返回支付失败信息
-            orderSaveVO.setShouldPrice(order.getShouldPrice());
-            orderSaveVO.setPayStatus(PayStatusEnum.PAY_FAILED.getPayStatus());
-            orderSaveVO.setGmtCreate(order.getGmtCreate());
-            orderSaveVO.setDesc(errorDesc);
-        } else {
-            // 返回支付成功信息
-            orderSaveVO.setShouldPrice(order.getShouldPrice());
-            orderSaveVO.setPayStatus(PayStatusEnum.PAY_SUCCESS.getPayStatus());
-            orderSaveVO.setGmtCreate(order.getGmtCreate());
+        // 获取当前拼团的用户信息
+        List<OrderGroupUser> orderGroupUserList = orderGroupUserService.getByOrderId(groupOrder.getId());
+        // 校验当前拼团的人有没有自己
+        List<Long> groupUserIdList = orderGroupUserList.stream().map(OrderGroupUser::getUserId).collect(Collectors.toList());
+        if (groupUserIdList.contains(userId)) {
+            throw new BusinessException(BusinessEnum.ALREADY_GROUPING);
         }
-        return orderSaveVO;
+        return groupOrder;
+    }
+
+    /**
+     * 拼团人数加1
+     *
+     * @param orderId
+     * @return
+     */
+    @Override
+    public int incrCurrentGroupCount(Long orderId) {
+        return this.baseMapper.incrCurrentGroupCount(orderId);
+    }
+
+    /**
+     * 根据订单编号获取订单
+     *
+     * @param orderSn
+     * @return
+     */
+    @Override
+    public Order getByOrderSn(String orderSn) {
+        return this.getOne(new LambdaQueryWrapper<Order>().eq(Order::getOrderSn, orderSn).eq(Order::getIsDeleted, YesNoEnum.NO.getValue()));
     }
 }

@@ -36,6 +36,16 @@ public class OrderGroupUser extends Model<OrderGroupUser> {
     private Long orderId;
 
     /**
+     * 订单编号
+     */
+    private String groupOrderSn;
+
+    /**
+     * 三方订单编号
+     */
+    private String thirdOrderSn;
+
+    /**
      * 拼团用户id
      */
     private Long userId;
@@ -51,7 +61,7 @@ public class OrderGroupUser extends Model<OrderGroupUser> {
     private Integer sendType;
 
     /**
-     * 支付状态（0未支付，1已支付）
+     * 支付状态（0未支付，1已支付，2支付失败）
      */
     private Integer payStatus;
 

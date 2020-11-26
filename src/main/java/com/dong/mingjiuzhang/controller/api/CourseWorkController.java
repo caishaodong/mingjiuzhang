@@ -10,6 +10,7 @@ import com.dong.mingjiuzhang.domain.entity.dto.CorrectWorkDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSaveDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
@@ -100,10 +101,10 @@ public class CourseWorkController extends BaseController {
      * @return
      */
     @PostMapping("/pageList")
-    public ResponseResult<PageUtil<CourseWork>> pageList(@RequestBody CourseWorkSearchDTO courseWorkSearchDTO) {
+    public ResponseResult<PageUtil<CourseWorkPageVO>> pageList(@RequestBody CourseWorkSearchDTO courseWorkSearchDTO) {
         // 参数校验
 //        courseWorkSearchDTO.paramCheck();
-        IPage<CourseWork> page = courseWorkService.pageList(courseWorkSearchDTO);
+        IPage<CourseWorkPageVO> page = courseWorkService.pageList(courseWorkSearchDTO);
         return success(page);
     }
 
@@ -147,7 +148,7 @@ public class CourseWorkController extends BaseController {
      * @param courseWorkId 作业id
      * @return
      */
-    @GetMapping("/courseWorkList/{courseWorkId}")
+    @GetMapping("/courseWork/{courseWorkId}")
     public ResponseResult<CourseWorkVO> courseWork(HttpServletRequest request, @PathVariable("courseWorkId") Long courseWorkId) {
         User user = userService.getUserByToken(request);
         if (!StringUtil.equals(user.getIdentity(), UserIdentityEnum.TEACHER.getIdentity())) {

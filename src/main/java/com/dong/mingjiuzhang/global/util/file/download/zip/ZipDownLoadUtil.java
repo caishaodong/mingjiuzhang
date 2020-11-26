@@ -49,7 +49,7 @@ public class ZipDownLoadUtil {
 
             for (int i = 0; i < urls.length; i++) {
                 String fileName = FileUtil.getNameNoGarbled(request, FileUtil.getFileNameByUrl(urls[i]));
-                LOGGER.info("fileName:" + fileName);
+                LOGGER.info("fileName={}", fileName);
 
                 File file = FileUtil.getFileByUrl(urls[i], fileName);
                 // 添加ZipEntry，并在ZipEntry中写入文件流

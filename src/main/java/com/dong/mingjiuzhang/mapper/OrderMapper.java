@@ -1,7 +1,8 @@
 package com.dong.mingjiuzhang.mapper;
 
-import com.dong.mingjiuzhang.domain.entity.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.dong.mingjiuzhang.domain.entity.Order;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface OrderMapper extends BaseMapper<Order> {
 
+    /**
+     * 拼团人数加1
+     *
+     * @param orderId
+     * @return
+     */
+    int incrCurrentGroupCount(@Param("orderId") Long orderId);
 }

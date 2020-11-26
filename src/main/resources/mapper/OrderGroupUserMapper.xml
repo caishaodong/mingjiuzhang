@@ -6,6 +6,8 @@
     <resultMap id="BaseResultMap" type="com.dong.mingjiuzhang.domain.entity.OrderGroupUser">
         <id column="id" property="id" />
         <result column="order_id" property="orderId" />
+        <result column="group_order_sn" property="groupOrderSn" />
+        <result column="third_order_sn" property="thirdOrderSn" />
         <result column="user_id" property="userId" />
         <result column="user_grade" property="userGrade" />
         <result column="send_type" property="sendType" />
@@ -25,7 +27,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, order_id, user_id, user_grade, send_type, pay_status, status, receiver_name, receiver_mobile, province_code, province, should_price, real_price, gmt_order_expiration, is_deleted, gmt_create, gmt_modified
+        id, order_id, group_order_sn, third_order_sn, user_id, user_grade, send_type, pay_status, status, receiver_name, receiver_mobile, province_code, province, should_price, real_price, gmt_order_expiration, is_deleted, gmt_create, gmt_modified
     </sql>
 
 </mapper>

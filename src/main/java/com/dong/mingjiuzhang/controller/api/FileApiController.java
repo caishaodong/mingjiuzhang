@@ -36,7 +36,7 @@ public class FileApiController extends BaseController {
     @RequestMapping("/upload")
     public ResponseResult<String> upload(@RequestParam("file") MultipartFile file) {
         String filePath = fileService.upload(file, uploadPath);
-        LOGGER.info("api upload file, filePath=" + filePath);
+        LOGGER.info("api upload file, filePath={}", filePath);
         return success(filePath);
     }
 }

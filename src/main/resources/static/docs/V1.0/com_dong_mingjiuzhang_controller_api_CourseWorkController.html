@@ -253,11 +253,14 @@
         <div class="panel">
             <div id="heading14" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse14" aria-controls="collapse14">
-                <i class="glyphicon glyphicon-align-justify"></i> 订单
+                <i class="glyphicon glyphicon-align-justify"></i> (API)订单
             </div>
             <div id="collapse14" class="collapse " aria-labelledby="heading14">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_OrderApiController.html#save">
                         提交订单
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_OrderApiController.html#payBack">
+                        支付回调
                     </a>
             </div>
         </div>
@@ -470,7 +473,8 @@
 			"isFinishCorrect":"int //是否完成批改：0否 1是",
 			"isDeleted":"int //是否删除：0否 1是",
 			"gmtCreate":"date //创建时间",
-			"gmtModified":"date //更新时间"
+			"gmtModified":"date //更新时间",
+			"courseName":"string //课程名称"
 		}],
 		"total":"long",
 		"size":"long",
@@ -545,6 +549,7 @@
 		"workImage":"string //作业图片",
 		"username":"string //用户名称",
 		"avatar":"string //用户头像",
+		"courseCateName":"string //课程分类名称",
 		"courseSeriesName":"string //系列名称",
 		"courseName":"string //课程名称",
 		"gmtCreate":"string //上传时间"
@@ -564,7 +569,7 @@
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>api/courseWork/courseWorkList/{courseWorkId}</code>
+    <code>api/courseWork/courseWork/{courseWorkId}</code>
         <span class="label label-default">GET</span>
 </p>
         <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
@@ -591,6 +596,7 @@
 		"workImage":"string //作业图片",
 		"username":"string //用户名称",
 		"avatar":"string //用户头像",
+		"courseCateName":"string //课程分类名称",
 		"courseSeriesName":"string //系列名称",
 		"courseName":"string //课程名称",
 		"gmtCreate":"string //上传时间"
@@ -718,7 +724,8 @@
             {name: '(API)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},
             {name: '(API)登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#smsLogin'},
             {name: '(API)登入登出.登出', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#logout'},
-            {name: '订单.提交订单', url: 'com_dong_mingjiuzhang_controller_api_OrderApiController.html#save'},
+            {name: '(API)订单.提交订单', url: 'com_dong_mingjiuzhang_controller_api_OrderApiController.html#save'},
+            {name: '(API)订单.支付回调', url: 'com_dong_mingjiuzhang_controller_api_OrderApiController.html#payBack'},
             {name: '(API)问题.提交问题', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#save'},
             {name: '(API)问题.获取问题列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#pageList'},
             {name: '(API)问题.根据问题id获取问题及回复信息', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#getProblemInfo'},

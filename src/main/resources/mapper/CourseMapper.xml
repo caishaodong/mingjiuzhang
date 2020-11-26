@@ -34,11 +34,12 @@
         ORDER BY c.sort, c.id
     </select>
     <select id="courseWorkList" resultType="com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO">
-        SELECT w.id, u.username, s.course_series_name, c.course_name, w.gmt_create, w.work_image, u.avatar
+        SELECT w.id, u.username, s.course_series_name, c.course_name, cc.course_cate_name, w.gmt_create, w.work_image, u.avatar
         FROM t_course_work w
         LEFT JOIN t_user u ON w.user_id = u.id
         LEFT JOIN t_course c ON w.course_id = c.id
         LEFT JOIN t_course_series s ON w.course_series_id = s.id
+        LEFT JOIN t_course_cate cc ON w.course_cate_id = cc.id
         WHERE w.is_deleted = 0 AND w.is_finish_correct = 0
         <if test="courseCateId != null">
             AND w.course_cate_id = #{courseCateId}

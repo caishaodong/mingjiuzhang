@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.mapper.CourseWorkMapper;
 import com.dong.mingjiuzhang.service.CourseWorkService;
@@ -33,7 +34,7 @@ public class CourseWorkServiceImpl extends ServiceImpl<CourseWorkMapper, CourseW
      * @return
      */
     @Override
-    public IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO) {
+    public IPage<CourseWorkPageVO> pageList(CourseWorkSearchDTO courseWorkSearchDTO) {
         return this.baseMapper.pageList(courseWorkSearchDTO);
     }
 }

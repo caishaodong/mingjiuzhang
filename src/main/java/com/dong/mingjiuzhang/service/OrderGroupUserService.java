@@ -1,7 +1,9 @@
 package com.dong.mingjiuzhang.service;
 
-import com.dong.mingjiuzhang.domain.entity.OrderGroupUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.dong.mingjiuzhang.domain.entity.OrderGroupUser;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,20 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface OrderGroupUserService extends IService<OrderGroupUser> {
 
+    /**
+     * 获取当前拼团的用户信息
+     *
+     * @param orderId
+     * @return
+     */
+    List<OrderGroupUser> getByOrderId(Long orderId);
+
+    /**
+     * 根据团购订单编号获取团购订单
+     *
+     * @param orderId
+     * @param groupOrderSn
+     * @return
+     */
+    OrderGroupUser getByOrderIdAndGroupOrderSn(Long orderId, String groupOrderSn);
 }

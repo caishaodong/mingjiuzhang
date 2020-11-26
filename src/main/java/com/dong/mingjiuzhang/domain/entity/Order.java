@@ -37,6 +37,11 @@ public class Order extends Model<Order> {
     private String orderSn;
 
     /**
+     * 三方订单编号
+     */
+    private String thirdOrderSn;
+
+    /**
      * 用户id
      */
     private Long userId;

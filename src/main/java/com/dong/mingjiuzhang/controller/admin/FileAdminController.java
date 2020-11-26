@@ -36,7 +36,7 @@ public class FileAdminController extends BaseController {
     @RequestMapping("/upload")
     public ResponseResult<String> upload(@RequestParam("file") MultipartFile file) {
         String filePath = fileService.upload(file, uploadPath);
-        LOGGER.info("admin upload file, filePath=" + filePath);
+        LOGGER.info("admin upload file, filePath={}", filePath);
         return success(filePath);
     }
 }

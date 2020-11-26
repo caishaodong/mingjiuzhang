@@ -1,10 +1,7 @@
 package com.dong.mingjiuzhang.controller.api;
 
 
-import com.dong.mingjiuzhang.domain.entity.Course;
-import com.dong.mingjiuzhang.domain.entity.CourseSeries;
-import com.dong.mingjiuzhang.domain.entity.SysCity;
-import com.dong.mingjiuzhang.domain.entity.User;
+import com.dong.mingjiuzhang.domain.entity.*;
 import com.dong.mingjiuzhang.domain.entity.dto.OrderSaveDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.PreOrderDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.OrderSaveVO;
@@ -13,7 +10,8 @@ import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.constant.OrderConstants;
 import com.dong.mingjiuzhang.global.enums.*;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
-import com.dong.mingjiuzhang.global.util.pay.PayUtil;
+import com.dong.mingjiuzhang.global.util.pay.OrderPayBackDTO;
+import com.dong.mingjiuzhang.global.util.pay.OrderPayService;
 import com.dong.mingjiuzhang.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +42,8 @@ public class OrderApiController extends BaseController {
     private SysCityService sysCityService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrderPayService orderPayService;
 
     /**
      * 提交订单
@@ -112,9 +112,20 @@ public class OrderApiController extends BaseController {
         setPreOrder(preOrderDTO, user, orderSaveDTO, course, courseSeries, sysCity, teacher);
 
         // 保存订单
-        OrderSaveVO orderSaveVO = orderService.saveOrder(preOrderDTO);
+        OrderSaveVO orderSaveVO = orderPayService.genOrder(preOrderDTO);
         return success(orderSaveVO);
     }
+
+    /**
+     * 支付回调
+     */
+    @PostMapping("/payBack")
+    public void payBack() {
+        OrderPayBackDTO orderPayBackDTO = new OrderPayBackDTO();
+        orderPayService.payBack(orderPayBackDTO);
+    }
+
+    /**************************************以上是支付相关接口，以下是公共方法**************************************/
 
     /**
      * 订单数据预处理
@@ -128,9 +139,96 @@ public class OrderApiController extends BaseController {
      * @param teacher
      */
     public void setPreOrder(PreOrderDTO preOrderDTO, User user, OrderSaveDTO orderSaveDTO, Course course, CourseSeries courseSeries, SysCity sysCity, User teacher) {
+        // 提取方式
+        preOrderDTO.setSendType(orderSaveDTO.getSendType());
         // 支付方式
         preOrderDTO.setPayMethod(orderSaveDTO.getPayMethod());
-        // 用户信息
+
+        // 支付状态
+        preOrderDTO.setPayStatus(PayStatusEnum.PROCESSING.getPayStatus());
+        preOrderDTO.setStatus(OrderStatusEnum.PROCESSING.getStatus());
+        // 购买类型
+        if (Objects.equals(orderSaveDTO.getPayType(), PayTypeEnum.COURSE.getType())) {
+            // 用户信息
+            setUserInfo(preOrderDTO, user, orderSaveDTO, sysCity);
+            // 购买课程
+            preOrderDTO.setShouldPrice(course.getCoursePrice());
+            preOrderDTO.setCourseId(course.getId());
+            preOrderDTO.setCourseName(course.getCourseName());
+            // 设置系列信息
+            setCourseSeriesInfo(preOrderDTO, courseSeries, teacher, PayTypeEnum.COURSE);
+            preOrderDTO.setIsGroup(YesNoEnum.NO.getValue());
+        } else {
+            // 购买系列
+            if (Objects.equals(orderSaveDTO.getIsGroup(), YesNoEnum.NO.getValue())) {
+                // 如果不是拼团
+                // 用户信息
+                setUserInfo(preOrderDTO, user, orderSaveDTO, sysCity);
+                // 设置系列信息
+                setCourseSeriesInfo(preOrderDTO, courseSeries, teacher, PayTypeEnum.COURSE_SERIES);
+
+                preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesPrice());
+                preOrderDTO.setIsGroup(YesNoEnum.NO.getValue());
+            } else {
+                // 如果是拼团
+                // 获取当前该系列待拼团订单
+                Order groupOrder = orderService.getGroupOrder(courseSeries.getId(), user.getId());
+                if (Objects.isNull(groupOrder)) {
+                    // 第一次拼团
+                    // 用户信息
+                    setUserInfo(preOrderDTO, user, orderSaveDTO, sysCity);
+                    // 设置系列信息
+                    setCourseSeriesInfo(preOrderDTO, courseSeries, teacher, PayTypeEnum.COURSE_SERIES);
+
+                    preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesGroupPrice());
+                    preOrderDTO.setIsGroup(YesNoEnum.YES.getValue());
+                    preOrderDTO.setGroupCount(OrderConstants.GROUP_COUNT);
+                    // 拼团人数默认为1
+                    preOrderDTO.setCurrentGroupCount(1);
+                    preOrderDTO.setGroupStatus(GroupStatusEnum.GROUPING.getStatus());
+                    preOrderDTO.setGmtGroupExpiration(LocalDateTime.now().plusSeconds(OrderConstants.GROUP_ORDER_EFFECTIVE_SECONDS));
+                } else {
+                    // 参与别人的拼团
+                    // 用户信息
+                    setUserInfo(preOrderDTO, user, orderSaveDTO, sysCity);
+                    preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesGroupPrice());
+
+                    preOrderDTO.setGroupOrder(groupOrder);
+                    preOrderDTO.setSlaveUser(user);
+                }
+
+            }
+        }
+        // 订单失效时间
+        preOrderDTO.setGmtOrderExpiration(LocalDateTime.now().plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
+
+    }
+
+    /**
+     * 设置系列信息
+     *
+     * @param courseSeries
+     * @param teacher
+     * @paramo preOrderDTO
+     */
+    public void setCourseSeriesInfo(PreOrderDTO preOrderDTO, CourseSeries courseSeries, User teacher, PayTypeEnum payTypeEnum) {
+        preOrderDTO.setPayType(payTypeEnum.getType());
+        preOrderDTO.setCourseSeriesId(courseSeries.getId());
+        preOrderDTO.setCourseSeriesName(courseSeries.getCourseSeriesName());
+        preOrderDTO.setTeacherId(teacher.getId());
+        preOrderDTO.setTeacherName(teacher.getUsername());
+        preOrderDTO.setTeacherMobile(teacher.getMobile());
+    }
+
+    /**
+     * 设置用户信息
+     *
+     * @param preOrderDTO
+     * @param user
+     * @param orderSaveDTO
+     * @param sysCity
+     */
+    public void setUserInfo(PreOrderDTO preOrderDTO, User user, OrderSaveDTO orderSaveDTO, SysCity sysCity) {
         preOrderDTO.setUserId(user.getId());
         preOrderDTO.setUserGrade(user.getGrade());
         preOrderDTO.setSendType(orderSaveDTO.getSendType());
@@ -141,54 +239,7 @@ public class OrderApiController extends BaseController {
             preOrderDTO.setProvince(sysCity.getName());
             preOrderDTO.setAddress(orderSaveDTO.getAddress());
         }
-        // 支付状态
-        preOrderDTO.setPayStatus(PayStatusEnum.PROCESSING.getPayStatus());
-        preOrderDTO.setStatus(OrderStatusEnum.PROCESSING.getStatus());
-        // 购买类型
-        if (Objects.equals(orderSaveDTO.getPayType(), PayTypeEnum.COURSE.getType())) {
-            // 购买课程
-            preOrderDTO.setShouldPrice(course.getCoursePrice());
-            preOrderDTO.setPayType(PayTypeEnum.COURSE.getType());
-            preOrderDTO.setCourseId(course.getId());
-            preOrderDTO.setCourseName(course.getCourseName());
-            preOrderDTO.setCourseSeriesId(courseSeries.getId());
-            preOrderDTO.setCourseSeriesName(courseSeries.getCourseSeriesName());
-            preOrderDTO.setTeacherId(teacher.getId());
-            preOrderDTO.setTeacherName(teacher.getUsername());
-            preOrderDTO.setTeacherMobile(teacher.getMobile());
-            preOrderDTO.setIsGroup(YesNoEnum.NO.getValue());
-        } else {
-            // 购买系列
-            if (Objects.equals(orderSaveDTO.getIsGroup(), YesNoEnum.NO.getValue())) {
-                // 如果不是拼团
-                preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesPrice());
-                preOrderDTO.setIsGroup(YesNoEnum.NO.getValue());
-            } else {
-                // 如果是拼团
-                preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesGroupPrice());
-                preOrderDTO.setIsGroup(YesNoEnum.YES.getValue());
-                preOrderDTO.setGroupCount(OrderConstants.GROUP_COUNT);
-                preOrderDTO.setCurrentGroupCount(0);
-                preOrderDTO.setGroupStatus(GroupStatusEnum.GROUPING.getStatus());
-                preOrderDTO.setGmtGroupExpiration(LocalDateTime.now().plusSeconds(OrderConstants.GROUP_ORDER_EFFECTIVE_SECONDS));
-            }
-            preOrderDTO.setPayType(PayTypeEnum.COURSE_SERIES.getType());
-            preOrderDTO.setCourseSeriesId(courseSeries.getId());
-            preOrderDTO.setCourseSeriesName(courseSeries.getCourseSeriesName());
-            preOrderDTO.setTeacherId(teacher.getId());
-            preOrderDTO.setTeacherName(teacher.getUsername());
-            preOrderDTO.setTeacherMobile(teacher.getMobile());
-        }
-        // 订单失效时间
-        preOrderDTO.setGmtOrderExpiration(LocalDateTime.now().plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
     }
 
-    /**
-     * 支付回调
-     */
-    @PostMapping("/payBack")
-    public void payBack() {
-        PayUtil.payBack();
-    }
 
 }

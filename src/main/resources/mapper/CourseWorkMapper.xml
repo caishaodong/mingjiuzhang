@@ -22,12 +22,13 @@
         id, user_id, course_cate_id, course_series_id, course_id, work_image, teacher_id, is_finish_correct, is_deleted, gmt_create, gmt_modified
     </sql>
 
-    <select id="pageList" resultType="com.dong.mingjiuzhang.domain.entity.CourseWork">
-        SELECT
-        <include refid="Base_Column_List"></include>
-        FROM t_course_work
-        WHERE is_deleted = 0
-        ORDER BY gmt_create DESC
+    <select id="pageList" resultType="com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO">
+        SELECT w.id, w.user_id, w.course_cate_id, w.course_series_id, w.course_id, w.work_image, w.teacher_id, w.is_finish_correct,
+        w.is_deleted, w.gmt_create, w.gmt_modified, c.course_name
+        FROM t_course_work w
+        LEFT JOIN t_course c ON w.course_id = c.id
+        WHERE w.is_deleted = 0
+        ORDER BY w.gmt_create DESC
     </select>
 
 </mapper>

@@ -10,6 +10,7 @@ public enum BusinessEnum {
     FAIL(500, "失败"),
     NO_ACCESS_PERMISSION(300, "您没有访问权限"),
     PARAM_ERROR(400, "参数错误"),
+    DATA_ERROR(501, "数据错误"),
 
     REQUEST_RATE_LIMIT(201, "网络繁忙，请稍后再试"),
 
@@ -32,6 +33,8 @@ public enum BusinessEnum {
     COMMODITY_NOT_ENOUGH(417, "商品库存不足"),
     USER_COMMODITY_NOT_ENOUGH(418, "积分不足"),
     PAY_FAILED(419, "支付失败"),
+    ALREADY_GROUPING(420, "您当前已经正在拼团中"),
+    GROUPING_FAILED(421, "拼团失败"),
     ;
     private Integer code;
     private String desc;

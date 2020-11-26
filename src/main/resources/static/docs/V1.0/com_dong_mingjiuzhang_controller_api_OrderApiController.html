@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>订单</title>
+    <title>(API)订单</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.css">
@@ -253,11 +253,14 @@
         <div class="panel">
             <div id="heading14" data-parent="#accordion" class="catalog-title" data-toggle="collapse"
                  aria-expanded="true" data-target="#collapse14" aria-controls="collapse14">
-                <i class="glyphicon glyphicon-align-justify"></i> 订单
+                <i class="glyphicon glyphicon-align-justify"></i> (API)订单
             </div>
             <div id="collapse14" class="collapse in " aria-labelledby="heading14">
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_OrderApiController.html#save">
                         提交订单
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_OrderApiController.html#payBack">
+                        支付回调
                     </a>
             </div>
         </div>
@@ -414,7 +417,7 @@
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
-    <code>/order/save</code>
+    <code>/api/order/save</code>
         <span class="label label-default">POST</span>
 </p>
         <p><strong>请求体</strong> <span class="badge">application/json</span></p>
@@ -424,6 +427,7 @@
 	"receiverMobile":"string //收件人电话（取件方式为邮寄的时候传递）",
 	"provinceCode":"int //省编码（取件方式为邮寄的时候传递）",
 	"address":"string //详细地址（取件方式为邮寄的时候传递）",
+	"payMethod":"int //支付方式：1微信 2支付宝",
 	"payType":"int //购买类型：1课程 2：系列（必传）",
 	"courseId":"long //课程id（购买类型为课程的时候传递）",
 	"courseSeriesId":"long //课程系列id（购买类型为系列的时候传递）",
@@ -442,6 +446,18 @@
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="payBack"><a href="#">支付回调 </a></h2>
+    <p class="text-muted"><em>作者: caishaodong</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/order/payBack</code>
+        <span class="label label-default">POST</span>
+</p>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{}</pre>
                         </div>
                         <hr>
                     </div>
@@ -491,7 +507,8 @@
             {name: '(API)登入登出.密码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#passwordLogin'},
             {name: '(API)登入登出.短信验证码登录', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#smsLogin'},
             {name: '(API)登入登出.登出', url: 'com_dong_mingjiuzhang_controller_api_LoginApiController.html#logout'},
-            {name: '订单.提交订单', url: 'com_dong_mingjiuzhang_controller_api_OrderApiController.html#save'},
+            {name: '(API)订单.提交订单', url: 'com_dong_mingjiuzhang_controller_api_OrderApiController.html#save'},
+            {name: '(API)订单.支付回调', url: 'com_dong_mingjiuzhang_controller_api_OrderApiController.html#payBack'},
             {name: '(API)问题.提交问题', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#save'},
             {name: '(API)问题.获取问题列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#pageList'},
             {name: '(API)问题.根据问题id获取问题及回复信息', url: 'com_dong_mingjiuzhang_controller_api_ProblemApiController.html#getProblemInfo'},

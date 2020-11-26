@@ -2,8 +2,6 @@ package com.dong.mingjiuzhang.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.Order;
-import com.dong.mingjiuzhang.domain.entity.dto.PreOrderDTO;
-import com.dong.mingjiuzhang.domain.entity.vo.OrderSaveVO;
 
 /**
  * <p>
@@ -15,11 +13,30 @@ import com.dong.mingjiuzhang.domain.entity.vo.OrderSaveVO;
  */
 public interface OrderService extends IService<Order> {
 
+    Order getOkById(Long id);
+
     /**
-     * 保存订单
+     * 获取当前该系列待拼团订单
      *
-     * @param preOrderDTO
+     * @param courseSeriesId
+     * @param userId
      * @return
      */
-    OrderSaveVO saveOrder(PreOrderDTO preOrderDTO);
+    Order getGroupOrder(Long courseSeriesId, Long userId);
+
+    /**
+     * 拼团人数加1
+     *
+     * @param orderId
+     * @return
+     */
+    int incrCurrentGroupCount(Long orderId);
+
+    /**
+     * 根据订单编号获取订单
+     *
+     * @param orderSn
+     * @return
+     */
+    Order getByOrderSn(String orderSn);
 }

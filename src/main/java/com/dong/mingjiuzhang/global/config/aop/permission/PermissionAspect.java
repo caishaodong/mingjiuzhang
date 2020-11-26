@@ -56,7 +56,7 @@ public class PermissionAspect {
                 LOGGER.info("请求当前接口需要的用户角色:{}", requiredUserPermission);
                 // 根据用户id从数据库中查询权限
                 List<RoleEnum> currentUserPermission = queryPermission(userId);
-                LOGGER.info("当前用户的权限:" + currentUserPermission);
+                LOGGER.info("当前用户的权限:{}", currentUserPermission);
                 // 取交集，判断是否拥有权限
                 requiredUserPermission.retainAll(currentUserPermission);
                 if (CollectionUtils.isEmpty(requiredUserPermission)) {

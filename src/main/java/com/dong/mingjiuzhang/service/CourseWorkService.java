@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.CourseWork;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
+import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO;
 
 /**
  * <p>
@@ -22,5 +23,5 @@ public interface CourseWorkService extends IService<CourseWork> {
      * @param courseWorkSearchDTO
      * @return
      */
-    IPage<CourseWork> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
+    IPage<CourseWorkPageVO> pageList(CourseWorkSearchDTO courseWorkSearchDTO);
 }

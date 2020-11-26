@@ -32,7 +32,7 @@
 @interface PageUtil : NSObject
 
 //
-@property (nonatomic, strong) CourseWork[] records;
+@property (nonatomic, strong) CourseWorkPageVO[] records;
 //
 @property (nonatomic, strong) long total;
 //
@@ -49,7 +49,7 @@
 <xmp>
 #import <Foundation/Foundation>;
 
-@interface CourseWork : NSObject
+@interface CourseWorkPageVO : NSObject
 
 //
 @property (nonatomic, strong) unknow log;
@@ -75,6 +75,8 @@
 @property (nonatomic, assign) NSString gmtCreate;
 //更新时间
 @property (nonatomic, assign) NSString gmtModified;
+//课程名称
+@property (nonatomic, assign) NSString courseName;
 
 
 @end

@@ -8,7 +8,7 @@ import lombok.Data;
  * @Description
  **/
 @Data
-public class PayResult {
+public class OrderPayResult {
     /**
      * 是否支付成功
      */
