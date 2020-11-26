@@ -6,7 +6,6 @@ import com.dong.mingjiuzhang.domain.entity.Course;
 import com.dong.mingjiuzhang.domain.entity.CourseSeries;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
-import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
@@ -84,19 +83,6 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public List<CourseWorkCountVO> courseWorkCount(Long teacherId) {
         return this.baseMapper.courseWorkCount(teacherId);
-    }
-
-    /**
-     * 根据课程id获取待修改作业列表
-     *
-     * @param teacherId
-     * @param courseCateId
-     * @param courseWorkId
-     * @return
-     */
-    @Override
-    public List<CourseWorkVO> courseWorkList(Long teacherId, Long courseCateId, Long courseWorkId) {
-        return this.baseMapper.courseWorkList(teacherId, courseCateId, courseWorkId);
     }
 
     /**

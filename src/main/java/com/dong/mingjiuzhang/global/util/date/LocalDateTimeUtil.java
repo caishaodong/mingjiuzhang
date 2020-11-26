@@ -61,6 +61,17 @@ public class LocalDateTimeUtil {
     }
 
     /**
+     * 获取本周一日期（yyyyMMdd）
+     *
+     * @return
+     */
+    public static String getStringThisMonday() {
+        LocalDate thisMonday = LocalDate.now().with(DayOfWeek.MONDAY);
+        String thisMondayStr = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(thisMonday);
+        return thisMondayStr;
+    }
+
+    /**
      * 获取上周一日期（yyyyMMdd）
      *
      * @return
@@ -201,10 +212,11 @@ public class LocalDateTimeUtil {
 //        System.out.println(getLongToday());
 //        System.out.println(getLongYesterday());
 //        System.out.println(getLongThisMonday());
+        System.out.println(getStringThisMonday());
 //        System.out.println(getLongLastMonday());
 //        System.out.println(getByLocalDatePattern("20200230", "yyyyMMdd", LocalDateTimeUtil.DAY));
 //        System.out.println(getDays("",""));
-        System.out.println(getBetween("2020-11-03 12:00:00", "2020-11-03 12:30:00", HOUR));
+//        System.out.println(getBetween("2020-11-03 12:00:00", "2020-11-03 12:30:00", HOUR));
 
 //        LocalDate localDate = LocalDate.parse("2020-10-10");
 //        System.out.println(plus(localDate, 3L));

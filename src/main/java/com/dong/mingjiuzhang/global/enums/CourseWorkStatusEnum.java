@@ -4,19 +4,19 @@ import java.util.Objects;
 
 /**
  * @Author caishaodong
- * @Date 2020-11-25 20:52
+ * @Date 2020-11-26 22:08
  * @Description
  **/
-public enum GroupStatusEnum {
-
-    GROUPING(0, "拼团中"),
-    GROUP_SUCCESS(1, "拼团成功"),
-    GROUP_FAIL(2, "拼团失败");
+public enum CourseWorkStatusEnum {
+    WAITING_CORRECT(0, "待批改"),
+    CORRECTING(1, "批改中"),
+    FINISH_CORRECT(2, "批改完成"),
+    REFUSE_CORRECT(3, "驳回");
 
     private Integer status;
     private String desc;
 
-    GroupStatusEnum(Integer status, String desc) {
+    CourseWorkStatusEnum(Integer status, String desc) {
         this.status = status;
         this.desc = desc;
     }
@@ -43,17 +43,17 @@ public enum GroupStatusEnum {
      * @param status
      * @return
      */
-    public static GroupStatusEnum getGroupStatusEnumByStatus(Integer status) {
+    public static CourseWorkStatusEnum getCourseWorkStatusEnumByStatus(Integer status) {
         if (Objects.isNull(status)) {
             return null;
         }
-        GroupStatusEnum groupStatusEnum = null;
-        for (GroupStatusEnum value : GroupStatusEnum.values()) {
+        CourseWorkStatusEnum courseWorkStatusEnum = null;
+        for (CourseWorkStatusEnum value : CourseWorkStatusEnum.values()) {
             if (Objects.equals(status, value.getStatus())) {
-                groupStatusEnum = value;
+                courseWorkStatusEnum = value;
                 break;
             }
         }
-        return groupStatusEnum;
+        return courseWorkStatusEnum;
     }
 }

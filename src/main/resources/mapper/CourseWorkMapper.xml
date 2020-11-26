@@ -11,7 +11,8 @@
         <result column="course_id" property="courseId"/>
         <result column="work_image" property="workImage"/>
         <result column="teacher_id" property="teacherId"/>
-        <result column="is_finish_correct" property="isFinishCorrect"/>
+        <result column="status" property="status"/>
+        <result column="reason" property="reason"/>
         <result column="is_deleted" property="isDeleted"/>
         <result column="gmt_create" property="gmtCreate"/>
         <result column="gmt_modified" property="gmtModified"/>
@@ -19,16 +20,57 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, user_id, course_cate_id, course_series_id, course_id, work_image, teacher_id, is_finish_correct, is_deleted, gmt_create, gmt_modified
+        id, user_id, course_cate_id, course_series_id, course_id, work_image, teacher_id, status, is_deleted, gmt_create, gmt_modified
     </sql>
 
     <select id="pageList" resultType="com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO">
-        SELECT w.id, w.user_id, w.course_cate_id, w.course_series_id, w.course_id, w.work_image, w.teacher_id, w.is_finish_correct,
+        SELECT w.id, w.user_id, w.course_cate_id, w.course_series_id, w.course_id, w.work_image, w.teacher_id, w.status,
+        w.reason,
         w.is_deleted, w.gmt_create, w.gmt_modified, c.course_name
         FROM t_course_work w
         LEFT JOIN t_course c ON w.course_id = c.id
         WHERE w.is_deleted = 0
+        <if test="courseWorkSearchDTO.type == 'week'">
+            AND w.gmt_create >= #{courseWorkSearchDTO.thisMonday}
+        </if>
+        <if test="courseWorkSearchDTO.type == 'history'">
+            AND w.gmt_create <![CDATA[ < ]]>> #{courseWorkSearchDTO.thisMonday}
+        </if>
         ORDER BY w.gmt_create DESC
+    </select>
+
+    <select id="courseWorkList" resultType="com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO">
+        SELECT w.id, u.username, s.course_series_name, c.course_name, cc.course_cate_name, w.gmt_create, w.work_image,
+        u.avatar, w.status, w.reason
+        FROM t_course_work w
+        LEFT JOIN t_user u ON w.user_id = u.id
+        LEFT JOIN t_course c ON w.course_id = c.id
+        LEFT JOIN t_course_series s ON w.course_series_id = s.id
+        LEFT JOIN t_course_cate cc ON w.course_cate_id = cc.id
+        WHERE w.is_deleted = 0 AND w.status = 0
+        <if test="courseCateId != null">
+            AND w.course_cate_id = #{courseCateId}
+        </if>
+        <if test="teacherId != null">
+            AND w.teacher_id = #{teacherId}
+        </if>
+        <if test="courseWorkId != null">
+            AND w.id = #{courseWorkId}
+        </if>
+        ORDER BY w.gmt_create
+    </select>
+
+    <select id="getCourseWorkInfo" resultType="com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO">
+        SELECT w.id, u.username, s.course_series_name, c.course_name, cc.course_cate_name, w.gmt_create, w.work_image,
+        u.avatar, w.status, w.reason
+        FROM t_course_work w
+        LEFT JOIN t_user u ON w.user_id = u.id
+        LEFT JOIN t_course c ON w.course_id = c.id
+        LEFT JOIN t_course_series s ON w.course_series_id = s.id
+        LEFT JOIN t_course_cate cc ON w.course_cate_id = cc.id
+        WHERE w.is_deleted = 0
+        AND w.id = #{courseWorkId}
+        AND w.user_id = #{userId}
     </select>
 
 </mapper>

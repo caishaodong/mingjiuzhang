@@ -41,4 +41,12 @@ public class CourseWorkVO {
      * 上传时间
      */
     private String gmtCreate;
+    /**
+     * 状态：0待批改 1批改中 2批改完成 3驳回
+     */
+    private Integer status;
+    /**
+     * 原因
+     */
+    private String reason;
 }

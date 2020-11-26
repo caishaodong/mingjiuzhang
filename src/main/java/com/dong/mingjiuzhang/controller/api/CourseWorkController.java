@@ -9,14 +9,15 @@ import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.CorrectWorkDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSaveDTO;
 import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkSearchDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.CourseWorkStatusDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkPageVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
+import com.dong.mingjiuzhang.global.enums.CourseWorkStatusEnum;
 import com.dong.mingjiuzhang.global.enums.UserIdentityEnum;
-import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
 import com.dong.mingjiuzhang.global.util.page.PageUtil;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
@@ -51,8 +52,9 @@ public class CourseWorkController extends BaseController {
     @Autowired
     private CourseWorkService courseWorkService;
 
+    /**************************************************** 学生操作 ****************************************************/
     /**
-     * 上传作业
+     * 学生上传作业
      *
      * @param request
      * @param courseWorkSaveDTO
@@ -88,14 +90,14 @@ public class CourseWorkController extends BaseController {
         courseWork.setCourseId(course.getId());
         courseWork.setWorkImage(courseWorkSaveDTO.getWorkImage());
         courseWork.setTeacherId(courseSeries.getTeacherId());
-        courseWork.setIsFinishCorrect(YesNoEnum.NO.getValue());
+        courseWork.setStatus(CourseWorkStatusEnum.WAITING_CORRECT.getStatus());
         ReflectUtil.setCreateInfo(courseWork, CourseWork.class);
         courseWorkService.save(courseWork);
         return success();
     }
 
     /**
-     * 获取上传作业列表（分页）
+     * 学生获取上传作业列表（分页）
      *
      * @param courseWorkSearchDTO
      * @return
@@ -103,108 +105,149 @@ public class CourseWorkController extends BaseController {
     @PostMapping("/pageList")
     public ResponseResult<PageUtil<CourseWorkPageVO>> pageList(@RequestBody CourseWorkSearchDTO courseWorkSearchDTO) {
         // 参数校验
-//        courseWorkSearchDTO.paramCheck();
+        courseWorkSearchDTO.paramCheck();
         IPage<CourseWorkPageVO> page = courseWorkService.pageList(courseWorkSearchDTO);
         return success(page);
     }
 
     /**
-     * 获取待批改作业数量
-     *
-     * @param request
-     * @return
-     */
-    @GetMapping("/courseWorkCount")
-    public ResponseResult<List<CourseWorkCountVO>> courseWorkCount(HttpServletRequest request) {
-        User user = userService.getUserByToken(request);
-        if (!StringUtil.equals(user.getIdentity(), UserIdentityEnum.TEACHER.getIdentity())) {
-            throw new BusinessException(BusinessEnum.NOT_TEACHER);
-        }
-        List<CourseWorkCountVO> list = courseService.courseWorkCount(user.getId());
-        return success(list);
-    }
-
-    /**
-     * 根据课程id获取待修改作业列表
-     *
-     * @param request
-     * @param courseCateId 课程类目id
-     * @return
-     */
-    @GetMapping("/courseWorkList/{courseCateId}")
-    public ResponseResult<List<CourseWorkVO>> courseWorkList(HttpServletRequest request, @PathVariable("courseCateId") Long courseCateId) {
-        User user = userService.getUserByToken(request);
-        if (!StringUtil.equals(user.getIdentity(), UserIdentityEnum.TEACHER.getIdentity())) {
-            throw new BusinessException(BusinessEnum.NOT_TEACHER);
-        }
-        List<CourseWorkVO> list = courseService.courseWorkList(user.getId(), courseCateId, null);
-        return success(list);
-    }
-
-    /**
-     * 获取作业详情
+     * 学生获取作业详情
      *
      * @param request
      * @param courseWorkId 作业id
      * @return
      */
-    @GetMapping("/courseWork/{courseWorkId}")
+    @GetMapping("/{courseWorkId}")
     public ResponseResult<CourseWorkVO> courseWork(HttpServletRequest request, @PathVariable("courseWorkId") Long courseWorkId) {
+        // 获取学生信息
         User user = userService.getUserByToken(request);
-        if (!StringUtil.equals(user.getIdentity(), UserIdentityEnum.TEACHER.getIdentity())) {
-            throw new BusinessException(BusinessEnum.NOT_TEACHER);
-        }
-        List<CourseWorkVO> list = courseService.courseWorkList(user.getId(), null, courseWorkId);
+        CourseWorkVO courseWorkVO = courseWorkService.getCourseWorkInfo(user.getId(), courseWorkId);
+        return success(courseWorkVO);
+    }
+
+
+    /**************************************************** 老师操作 ****************************************************/
+    /**
+     * 老师获取待批改作业数量
+     *
+     * @param request
+     * @return
+     */
+    @GetMapping("/teacher/courseWorkCount")
+    public ResponseResult<List<CourseWorkCountVO>> teacherCourseWorkCount(HttpServletRequest request) {
+        // 获取老师信息
+        User user = getTeacherUser(request);
+        List<CourseWorkCountVO> list = courseService.courseWorkCount(user.getId());
+        return success(list);
+    }
+
+    /**
+     * 老师根据课程id获取待修改作业列表
+     *
+     * @param request
+     * @param courseCateId 课程类目id
+     * @return
+     */
+    @GetMapping("/teacher/courseWorkList/{courseCateId}")
+    public ResponseResult<List<CourseWorkVO>> teacherCourseWorkList(HttpServletRequest request, @PathVariable("courseCateId") Long courseCateId) {
+        // 获取老师信息
+        User user = getTeacherUser(request);
+        List<CourseWorkVO> list = courseWorkService.courseWorkList(user.getId(), courseCateId, null);
+        return success(list);
+    }
+
+    /**
+     * 老师获取作业详情
+     *
+     * @param request
+     * @param courseWorkId 作业id
+     * @return
+     */
+    @GetMapping("/teacher/{courseWorkId}")
+    public ResponseResult<CourseWorkVO> teacherCourseWork(HttpServletRequest request, @PathVariable("courseWorkId") Long courseWorkId) {
+        // 获取老师信息
+        User user = getTeacherUser(request);
+        List<CourseWorkVO> list = courseWorkService.courseWorkList(user.getId(), null, courseWorkId);
         CourseWorkVO courseWorkVO = CollectionUtils.isEmpty(list) ? null : list.get(0);
         return success(courseWorkVO);
     }
 
     /**
-     * 批改作业
+     * 老师修改作业状态
+     *
+     * @param request
+     * @param courseWorkStatusDTO
+     * @return
+     */
+    @PutMapping("/teacher/status")
+    public ResponseResult teacherUpdateCourseWorkStatus(HttpServletRequest request, @RequestBody CourseWorkStatusDTO courseWorkStatusDTO) {
+        // 参数校验
+        courseWorkStatusDTO.paramCheck();
+        // 获取老师信息
+        User user = getTeacherUser(request);
+        CourseWork courseWork = courseWorkService.getOkById(courseWorkStatusDTO.getCourseWorkId());
+        if (Objects.isNull(courseWork)) {
+            throw new BusinessException(BusinessEnum.PARAM_ERROR);
+        }
+
+        // 校验老师权限
+        checkTeacherPermission(user, courseWork);
+        // 状态设置为批改中
+        courseWork.setStatus(courseWorkStatusDTO.getStatus());
+        courseWork.setReason(courseWorkStatusDTO.getReason());
+        courseWorkService.updateById(courseWork);
+        return success();
+    }
+
+    /**
+     * 老师批改作业
      *
      * @param request
      * @param correctWorkDTO
      * @return
      */
-    @PutMapping("/correctWork")
-    public ResponseResult correctWork(HttpServletRequest request, @RequestBody CorrectWorkDTO correctWorkDTO) {
-        User user = userService.getUserByToken(request);
-        if (!StringUtil.equals(user.getIdentity(), UserIdentityEnum.TEACHER.getIdentity())) {
-            throw new BusinessException(BusinessEnum.NOT_TEACHER);
-        }
-
+    @PutMapping("/teacher/correctWork")
+    public ResponseResult teacherCorrectWork(HttpServletRequest request, @RequestBody CorrectWorkDTO correctWorkDTO) {
+        // 获取老师信息
+        User user = getTeacherUser(request);
         CourseWork courseWork = courseWorkService.getOkById(correctWorkDTO.getCourseWorkId());
         if (Objects.isNull(courseWork)) {
             throw new BusinessException(BusinessEnum.PARAM_ERROR);
         }
+        // 校验老师权限
+        checkTeacherPermission(user, courseWork);
 
         courseWork.setWorkImage(correctWorkDTO.getWorkImage());
         courseWorkService.updateById(courseWork);
         return success();
     }
 
+    /***************************************************************** 公共方法 ***********************************************************/
+
     /**
-     * 完成批改作业
+     * 获取老师信息
      *
      * @param request
-     * @param courseWorkId 作业id
      * @return
      */
-    @PutMapping("/finishCorrect/{courseWorkId}")
-    public ResponseResult finishCorrect(HttpServletRequest request, @PathVariable("courseWorkId") Long courseWorkId) {
+    private User getTeacherUser(HttpServletRequest request) {
         User user = userService.getUserByToken(request);
         if (!StringUtil.equals(user.getIdentity(), UserIdentityEnum.TEACHER.getIdentity())) {
             throw new BusinessException(BusinessEnum.NOT_TEACHER);
         }
+        return user;
+    }
 
-        CourseWork courseWork = courseWorkService.getOkById(courseWorkId);
-        if (Objects.isNull(courseWork)) {
-            throw new BusinessException(BusinessEnum.PARAM_ERROR);
+    /**
+     * 校验老师权限
+     *
+     * @param teacherUser
+     * @param courseWork
+     */
+    private void checkTeacherPermission(User teacherUser, CourseWork courseWork) {
+        if (!Objects.equals(teacherUser.getId(), courseWork.getTeacherId())) {
+            throw new BusinessException(BusinessEnum.HAVE_NO_PERMISSION);
         }
-
-        courseWork.setIsFinishCorrect(YesNoEnum.YES.getValue());
-        courseWorkService.updateById(courseWork);
-        return success();
     }
 
 

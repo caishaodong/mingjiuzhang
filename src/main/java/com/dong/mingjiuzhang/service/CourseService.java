@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.Course;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseVO;
 import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkCountVO;
-import com.dong.mingjiuzhang.domain.entity.vo.CourseWorkVO;
 
 import java.util.List;
 
@@ -45,13 +44,4 @@ public interface CourseService extends IService<Course> {
      */
     List<CourseWorkCountVO> courseWorkCount(Long teacherId);
 
-    /**
-     * 根据课程id获取待修改作业列表
-     *
-     * @param teacherId
-     * @param courseCateId
-     * @param courseWorkId
-     * @return
-     */
-    List<CourseWorkVO> courseWorkList(Long teacherId, Long courseCateId, Long courseWorkId);
 }

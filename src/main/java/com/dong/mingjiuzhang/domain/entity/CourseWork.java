@@ -61,9 +61,14 @@ public class CourseWork extends Model<CourseWork> {
     private Long teacherId;
 
     /**
-     * 是否完成批改：0否 1是
+     * 状态：0待批改 1批改中 2批改完成 3驳回
      */
-    private Integer isFinishCorrect;
+    private Integer status;
+
+    /**
+     * 原因
+     */
+    private String reason;
 
     /**
      * 是否删除：0否 1是
