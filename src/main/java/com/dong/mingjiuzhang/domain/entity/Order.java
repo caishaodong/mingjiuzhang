@@ -182,11 +182,6 @@ public class Order extends Model<Order> {
     private LocalDateTime gmtGroupFinish;
 
     /**
-     * 拼团失效时间
-     */
-    private LocalDateTime gmtGroupExpiration;
-
-    /**
      * 是否删除：0否 1是
      */
     private Integer isDeleted;

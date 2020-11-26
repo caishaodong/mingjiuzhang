@@ -1,9 +1,12 @@
 package com.dong.mingjiuzhang.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dong.mingjiuzhang.domain.entity.Answer;
 import com.dong.mingjiuzhang.domain.entity.AnswerLog;
 import com.dong.mingjiuzhang.domain.entity.dto.AnswerLogSaveDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.WrongCollectionDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.WrongCollectionVO;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
@@ -30,6 +33,11 @@ import java.util.Objects;
 public class AnswerLogServiceImpl extends ServiceImpl<AnswerLogMapper, AnswerLog> implements AnswerLogService {
     @Autowired
     private AnswerService answerService;
+
+    @Override
+    public AnswerLog getOkById(Long answerLogId) {
+        return this.getOne(new LambdaQueryWrapper<AnswerLog>().eq(AnswerLog::getId, answerLogId).eq(AnswerLog::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
 
     /**
      * 保存答题记录
@@ -61,11 +69,22 @@ public class AnswerLogServiceImpl extends ServiceImpl<AnswerLogMapper, AnswerLog
     /**
      * 错题集
      *
-     * @param userId
+     * @param wrongCollectionDTO
      * @return
      */
     @Override
-    public List<WrongCollectionVO> wrongCollectionList(Long userId) {
-        return this.baseMapper.wrongCollectionList(userId);
+    public IPage<List<WrongCollectionVO>> wrongCollectionList(WrongCollectionDTO wrongCollectionDTO) {
+        return this.baseMapper.wrongCollectionList(wrongCollectionDTO);
+    }
+
+    /**
+     * 删除错题集
+     *
+     * @param answerLog
+     */
+    @Override
+    public void wrongCollectionRemove(AnswerLog answerLog) {
+        answerLog.setIsWrongCollection(YesNoEnum.NO.getValue());
+        this.updateById(answerLog);
     }
 }

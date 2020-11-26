@@ -6,7 +6,7 @@ package com.dong.mingjiuzhang.global.enums;
  * @Description
  **/
 public enum PayStatusEnum {
-    PROCESSING(0, "处理中"),
+    PROCESSING(0, "未支付"),
     PAY_SUCCESS(1, "支付成功"),
     PAY_FAILED(2, "支付失败");
 

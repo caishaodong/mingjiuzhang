@@ -41,7 +41,7 @@ public class OrderGroupUserServiceImpl extends ServiceImpl<OrderGroupUserMapper,
     }
 
     /**
-     * 根据团购订单编号获取团购订单
+     * 根据订单id和团购订单编号获取团购订单
      *
      * @param orderId
      * @param groupOrderSn
@@ -51,6 +51,18 @@ public class OrderGroupUserServiceImpl extends ServiceImpl<OrderGroupUserMapper,
     public OrderGroupUser getByOrderIdAndGroupOrderSn(Long orderId, String groupOrderSn) {
         return this.getOne(new LambdaQueryWrapper<OrderGroupUser>().eq(OrderGroupUser::getOrderId, orderId)
                 .eq(OrderGroupUser::getGroupOrderSn, groupOrderSn)
+                .eq(OrderGroupUser::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
+    /**
+     * 根据团购订单编号获取团购订单
+     *
+     * @param groupOrderSn
+     * @return
+     */
+    @Override
+    public OrderGroupUser getByGroupOrderSn(String groupOrderSn) {
+        return this.getOne(new LambdaQueryWrapper<OrderGroupUser>().eq(OrderGroupUser::getGroupOrderSn, groupOrderSn)
                 .eq(OrderGroupUser::getIsDeleted, YesNoEnum.NO.getValue()));
     }
 }

@@ -35,6 +35,7 @@ public enum BusinessEnum {
     PAY_FAILED(419, "支付失败"),
     ALREADY_GROUPING(420, "您当前已经正在拼团中"),
     GROUPING_FAILED(421, "拼团失败"),
+    GROUP_ORDER_EXPIRED(422, "当前拼团已经失效"),
     ;
     private Integer code;
     private String desc;

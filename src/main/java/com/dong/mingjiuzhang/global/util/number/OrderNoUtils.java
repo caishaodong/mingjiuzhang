@@ -16,7 +16,8 @@ import java.util.stream.IntStream;
  * @Description
  **/
 public class OrderNoUtils {
-    protected static final AtomicLong SEQ = new AtomicLong(1000);
+    protected static final AtomicLong ORDER_SEQ = new AtomicLong(1000);
+    protected static final AtomicLong GROUP_ORDER_SEQ = new AtomicLong(1000);
     protected static final String PATTERN = "yyyyMMdd";
     protected static final DateTimeFormatter FORMATTER;
     static OrderNoUtils orderNoUtils;
@@ -28,12 +29,30 @@ public class OrderNoUtils {
         return OrderNoUtils.orderNoUtils;
     }
 
-    public static String getSerialNumber() {
+    /**
+     * 获取订单编号
+     *
+     * @return
+     */
+    public static String getOrderSerialNumber() {
         int hashCode = UUID.randomUUID().toString().hashCode();
         if (hashCode < 0) {
             hashCode = -hashCode;
         }
-        return OrderNoUtils.FORMATTER.format(LocalDateTime.now()).substring(2, 8) + SEQ.getAndIncrement() + String.format("%010d", hashCode);
+        return OrderNoUtils.FORMATTER.format(LocalDateTime.now()).substring(2, 8) + ORDER_SEQ.getAndIncrement() + String.format("%010d", hashCode);
+    }
+
+    /**
+     * 获取拼团订单编号
+     *
+     * @return
+     */
+    public static String getGroupOrderSerialNumber() {
+        int hashCode = UUID.randomUUID().toString().hashCode();
+        if (hashCode < 0) {
+            hashCode = -hashCode;
+        }
+        return OrderNoUtils.FORMATTER.format(LocalDateTime.now()).substring(2, 8) + GROUP_ORDER_SEQ.getAndIncrement() + String.format("%010d", hashCode);
     }
 
     static {
@@ -44,7 +63,7 @@ public class OrderNoUtils {
     public static void main(String[] args) {
         List<String> orderNos = Collections.synchronizedList(new ArrayList<String>());
         IntStream.range(0, 100).parallel().forEach(i -> {
-            orderNos.add(getSerialNumber());
+            orderNos.add(getOrderSerialNumber());
         });
 
         Collections.sort(orderNos);

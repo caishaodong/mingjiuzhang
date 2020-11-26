@@ -139,6 +139,7 @@ public class OrderApiController extends BaseController {
      * @param teacher
      */
     public void setPreOrder(PreOrderDTO preOrderDTO, User user, OrderSaveDTO orderSaveDTO, Course course, CourseSeries courseSeries, SysCity sysCity, User teacher) {
+        LocalDateTime now = LocalDateTime.now();
         // 提取方式
         preOrderDTO.setSendType(orderSaveDTO.getSendType());
         // 支付方式
@@ -158,6 +159,9 @@ public class OrderApiController extends BaseController {
             // 设置系列信息
             setCourseSeriesInfo(preOrderDTO, courseSeries, teacher, PayTypeEnum.COURSE);
             preOrderDTO.setIsGroup(YesNoEnum.NO.getValue());
+            // 设置订单失效时间
+            preOrderDTO.setGmtOrderExpiration(now.plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
+
         } else {
             // 购买系列
             if (Objects.equals(orderSaveDTO.getIsGroup(), YesNoEnum.NO.getValue())) {
@@ -169,6 +173,8 @@ public class OrderApiController extends BaseController {
 
                 preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesPrice());
                 preOrderDTO.setIsGroup(YesNoEnum.NO.getValue());
+                // 设置订单失效时间
+                preOrderDTO.setGmtOrderExpiration(now.plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
             } else {
                 // 如果是拼团
                 // 获取当前该系列待拼团订单
@@ -186,21 +192,36 @@ public class OrderApiController extends BaseController {
                     // 拼团人数默认为1
                     preOrderDTO.setCurrentGroupCount(1);
                     preOrderDTO.setGroupStatus(GroupStatusEnum.GROUPING.getStatus());
-                    preOrderDTO.setGmtGroupExpiration(LocalDateTime.now().plusSeconds(OrderConstants.GROUP_ORDER_EFFECTIVE_SECONDS));
+                    // 设置订单失效时间
+                    preOrderDTO.setGmtOrderExpiration(now.plusSeconds(OrderConstants.GROUP_ORDER_EFFECTIVE_SECONDS));
+                    // 设置拼团用户订单失效时间
+                    preOrderDTO.setGmtGroupOrderExpiration(now.plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
                 } else {
                     // 参与别人的拼团
+                    if (!Objects.equals(groupOrder.getGroupStatus(), GroupStatusEnum.GROUPING.getStatus())) {
+                        // 拼团已经失效
+                        throw new BusinessException(BusinessEnum.GROUP_ORDER_EXPIRED);
+                    }
+                    // 校验拼团是否已经过了有效期
+                    LocalDateTime gmtOrderExpiration = groupOrder.getGmtOrderExpiration();
+                    if (gmtOrderExpiration.isBefore(now)) {
+                        // 拼团超时，修改订单拼团状态为已经失效
+                        groupOrder.setGroupStatus(GroupStatusEnum.GROUP_FAIL.getStatus());
+                        orderService.updateById(groupOrder);
+                        throw new BusinessException(BusinessEnum.GROUP_ORDER_EXPIRED);
+                    }
                     // 用户信息
                     setUserInfo(preOrderDTO, user, orderSaveDTO, sysCity);
                     preOrderDTO.setShouldPrice(courseSeries.getCourseSeriesGroupPrice());
 
                     preOrderDTO.setGroupOrder(groupOrder);
                     preOrderDTO.setSlaveUser(user);
+                    // 设置拼团用户订单失效时间
+                    preOrderDTO.setGmtGroupOrderExpiration(now.plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
                 }
 
             }
         }
-        // 订单失效时间
-        preOrderDTO.setGmtOrderExpiration(LocalDateTime.now().plusSeconds(OrderConstants.ORDER_EFFECTIVE_SECONDS));
 
     }
 

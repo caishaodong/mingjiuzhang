@@ -1,15 +1,19 @@
 package com.dong.mingjiuzhang.controller.api;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.dong.mingjiuzhang.domain.entity.Answer;
+import com.dong.mingjiuzhang.domain.entity.AnswerLog;
 import com.dong.mingjiuzhang.domain.entity.SubjectRequest;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.AnswerLogSaveDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.WrongCollectionDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.WrongCollectionVO;
 import com.dong.mingjiuzhang.global.ResponseResult;
 import com.dong.mingjiuzhang.global.base.BaseController;
 import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
+import com.dong.mingjiuzhang.global.util.page.PageUtil;
 import com.dong.mingjiuzhang.service.AnswerLogService;
 import com.dong.mingjiuzhang.service.AnswerService;
 import com.dong.mingjiuzhang.service.SubjectRequestService;
@@ -65,15 +69,35 @@ public class AnswerLogApiController extends BaseController {
     }
 
     /**
-     * 错题集
+     * 错题集（分页）
      *
      * @param request
+     * @param wrongCollectionDTO
      * @return
      */
-    @GetMapping("/wrongCollectionList")
-    public ResponseResult<List<WrongCollectionVO>> wrongCollectionList(HttpServletRequest request) {
+    @PostMapping("/wrongCollectionList")
+    public ResponseResult<PageUtil<List<WrongCollectionVO>>> wrongCollectionList(HttpServletRequest request, @RequestBody WrongCollectionDTO wrongCollectionDTO) {
         User user = userService.getUserByToken(request);
-        List<WrongCollectionVO> list = answerLogService.wrongCollectionList(user.getId());
-        return success(list);
+        wrongCollectionDTO.setUserId(user.getId());
+        IPage<List<WrongCollectionVO>> page = answerLogService.wrongCollectionList(wrongCollectionDTO);
+        return success(page);
+    }
+
+    /**
+     * 删除错题集
+     *
+     * @param request
+     * @param answerLogId 题目id
+     * @return
+     */
+    @PutMapping("/wrongCollectionRemove/{answerLogId}")
+    public ResponseResult wrongCollectionRemove(HttpServletRequest request, @PathVariable("answerLogId") Long answerLogId) {
+        User user = userService.getUserByToken(request);
+        AnswerLog answerLog = answerLogService.getOkById(answerLogId);
+        if (Objects.isNull(answerLog)) {
+            throw new BusinessException(BusinessEnum.PARAM_ERROR);
+        }
+        answerLogService.wrongCollectionRemove(answerLog);
+        return success();
     }
 }

@@ -16,6 +16,20 @@ public interface OrderService extends IService<Order> {
     Order getOkById(Long id);
 
     /**
+     * 获取订单编号
+     *
+     * @return
+     */
+    String getOrderSn();
+
+    /**
+     * 获取拼团订单编号
+     *
+     * @return
+     */
+    String getGroupOrderSn();
+
+    /**
      * 获取当前该系列待拼团订单
      *
      * @param courseSeriesId
@@ -39,4 +53,6 @@ public interface OrderService extends IService<Order> {
      * @return
      */
     Order getByOrderSn(String orderSn);
+
+
 }

@@ -125,7 +125,10 @@
                         保存答题记录
                     </a>
                     <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_AnswerLogApiController.html#wrongCollectionList">
-                        错题集
+                        错题集（分页）
+                    </a>
+                    <a class="catalog-item" href="com_dong_mingjiuzhang_controller_api_AnswerLogApiController.html#wrongCollectionRemove">
+                        删除错题集
                     </a>
             </div>
         </div>
@@ -445,36 +448,74 @@
                         </div>
                         <hr>
                         <div class="action-item">
-<h2 id="wrongCollectionList"><a href="#">错题集 </a></h2>
+<h2 id="wrongCollectionList"><a href="#">错题集（分页） </a></h2>
     <p class="text-muted"><em>作者: caishaodong</em></p>
 <p><strong>请求URL</strong></p>
 <p>
     <code>/api/answerLog/wrongCollectionList</code>
-        <span class="label label-default">GET</span>
+        <span class="label label-default">POST</span>
 </p>
+        <p><strong>请求体</strong> <span class="badge">application/json</span></p>
+        <pre class="prettyprint lang-json">{
+	"records":[],
+	"total":"long",
+	"size":"long",
+	"current":"long",
+	"userId":"long //用户id"
+}</pre>
     <p><strong>返回结果</strong></p>
     <pre class="prettyprint lang-json">{
 	"code":"int",
 	"message":"string",
-	"data":[{
-		"id":"long //答题记录id",
-		"subjectDictName":"string //学科名称",
-		"subjectFirstDictName":"string //学科以一级分类名称",
-		"subjectSecondDictName":"string //学科二级分类名称",
-		"subjectCateName":"string //学科分类名称",
-		"gmtCreate":"date //收录时间",
-		"type":"int //题目类型：1选择题  2填空题",
-		"title":"string //题目内容",
-		"titleImage":"string //题目图片（json）",
-		"requestOption":"string //题目选项（json）",
-		"answer":"string //答案内容（json）",
-		"answerImage":"string //答案图片（json）"
-	}]
+	"data":{
+		"records":[],
+		"total":"long",
+		"size":"long",
+		"current":"long"
+	}
 }</pre>
         <div class="form-group">
             <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_AnswerLogApiController_wrongCollectionList_ResponseResult.html"><i
                         class="fa fa-android" aria-hidden="true"></i> Android Model</a>
             <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_AnswerLogApiController_wrongCollectionList_ResponseResult.html"><i class="fa fa-apple"
+                                                                                                 aria-hidden="true"></i>
+                iOS Model</a>
+        </div>
+                        </div>
+                        <hr>
+                        <div class="action-item">
+<h2 id="wrongCollectionRemove"><a href="#">删除错题集 </a></h2>
+    <p class="text-muted"><em>作者: caishaodong</em></p>
+<p><strong>请求URL</strong></p>
+<p>
+    <code>/api/answerLog/wrongCollectionRemove/{answerLogId}</code>
+        <span class="label label-default">PUT</span>
+</p>
+        <p><strong>请求参数</strong> <span class="badge">application/x-www-form-urlencoded</span></p>
+        <table class="table table-bordered">
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必须</th>
+                <th>描述</th>
+            </tr>
+                    <tr>
+                        <td>answerLogId</td>
+                        <td>long</td>
+                        <td>否</td>
+                        <td>题目id</td>
+                    </tr>
+        </table>
+    <p><strong>返回结果</strong></p>
+    <pre class="prettyprint lang-json">{
+	"code":"int",
+	"message":"string",
+	"data":{}
+}</pre>
+        <div class="form-group">
+            <a type="button" class="btn btn-sm btn-default" href="javaCodes/com_dong_mingjiuzhang_controller_api_AnswerLogApiController_wrongCollectionRemove_ResponseResult.html"><i
+                        class="fa fa-android" aria-hidden="true"></i> Android Model</a>
+            <a type="button" class="btn btn-sm btn-default" href="iosCodes/com_dong_mingjiuzhang_controller_api_AnswerLogApiController_wrongCollectionRemove_ResponseResult.html"><i class="fa fa-apple"
                                                                                                  aria-hidden="true"></i>
                 iOS Model</a>
         </div>
@@ -507,7 +548,8 @@
             {name: '(API)代理信息.提交代理信息', url: 'com_dong_mingjiuzhang_controller_api_AgentInfoApiController.html#save'},
             {name: '(API)答题.开始答题', url: 'com_dong_mingjiuzhang_controller_api_AnswerApiController.html#save'},
             {name: '(API)答题记录.保存答题记录', url: 'com_dong_mingjiuzhang_controller_api_AnswerLogApiController.html#save'},
-            {name: '(API)答题记录.错题集', url: 'com_dong_mingjiuzhang_controller_api_AnswerLogApiController.html#wrongCollectionList'},
+            {name: '(API)答题记录.错题集（分页）', url: 'com_dong_mingjiuzhang_controller_api_AnswerLogApiController.html#wrongCollectionList'},
+            {name: '(API)答题记录.删除错题集', url: 'com_dong_mingjiuzhang_controller_api_AnswerLogApiController.html#wrongCollectionRemove'},
             {name: '(API)商品.获取商品列表（分页）', url: 'com_dong_mingjiuzhang_controller_api_CommodityApiController.html#pageList'},
             {name: '(API)商品兑换记录.获取商品兑换记录', url: 'com_dong_mingjiuzhang_controller_api_CommodityExchangeRecordApiController.html#list'},
             {name: '(API)商品兑换记录.兑换商品', url: 'com_dong_mingjiuzhang_controller_api_CommodityExchangeRecordApiController.html#exchangeCommodity'},

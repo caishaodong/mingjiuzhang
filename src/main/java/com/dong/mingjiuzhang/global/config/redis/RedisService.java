@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -48,6 +49,38 @@ public class RedisService {
      */
     public Boolean deleteString(String key) {
         return stringRedisTemplate.delete(key);
+    }
+
+    /**
+     * 添加Long
+     *
+     * @param key
+     * @param value
+     * @param second
+     */
+    public void setLong(String key, Long value, long second) {
+        redisTemplate.opsForValue().set(key, value, second, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 获取Long
+     *
+     * @param key
+     * @return
+     */
+    public Long getLong(String key) {
+        Object value = redisTemplate.opsForValue().get(key);
+        return Objects.isNull(value) ? null : Long.valueOf(String.valueOf(value));
+    }
+
+    /**
+     * 删除Long
+     *
+     * @param key
+     * @return
+     */
+    public Boolean deleteLong(String key) {
+        return redisTemplate.delete(key);
     }
 
     /**

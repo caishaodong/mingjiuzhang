@@ -1,8 +1,11 @@
 package com.dong.mingjiuzhang.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.dong.mingjiuzhang.domain.entity.AnswerLog;
+import com.dong.mingjiuzhang.domain.entity.dto.WrongCollectionDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.WrongCollectionVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,8 +22,8 @@ public interface AnswerLogMapper extends BaseMapper<AnswerLog> {
     /**
      * 错题集
      *
-     * @param userId
+     * @param wrongCollectionDTO
      * @return
      */
-    List<WrongCollectionVO> wrongCollectionList(Long userId);
+    IPage<List<WrongCollectionVO>> wrongCollectionList(@Param("wrongCollectionDTO") WrongCollectionDTO wrongCollectionDTO);
 }

@@ -1,8 +1,10 @@
 package com.dong.mingjiuzhang.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dong.mingjiuzhang.domain.entity.AnswerLog;
 import com.dong.mingjiuzhang.domain.entity.dto.AnswerLogSaveDTO;
+import com.dong.mingjiuzhang.domain.entity.dto.WrongCollectionDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.WrongCollectionVO;
 
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
  */
 public interface AnswerLogService extends IService<AnswerLog> {
 
+    AnswerLog getOkById(Long answerLogId);
+
     /**
      * 保存答题记录
      *
@@ -28,8 +32,15 @@ public interface AnswerLogService extends IService<AnswerLog> {
     /**
      * 错题集
      *
-     * @param userId
+     * @param wrongCollectionDTO
      * @return
      */
-    List<WrongCollectionVO> wrongCollectionList(Long userId);
+    IPage<List<WrongCollectionVO>> wrongCollectionList(WrongCollectionDTO wrongCollectionDTO);
+
+    /**
+     * 删除错题集
+     *
+     * @param answerLog
+     */
+    void wrongCollectionRemove(AnswerLog answerLog);
 }

@@ -24,11 +24,19 @@ public interface OrderGroupUserService extends IService<OrderGroupUser> {
     List<OrderGroupUser> getByOrderId(Long orderId);
 
     /**
-     * 根据团购订单编号获取团购订单
+     * 根据订单id和团购订单编号获取团购订单
      *
      * @param orderId
      * @param groupOrderSn
      * @return
      */
     OrderGroupUser getByOrderIdAndGroupOrderSn(Long orderId, String groupOrderSn);
+
+    /**
+     * 根据团购订单编号获取团购订单
+     *
+     * @param groupOrderSn
+     * @return
+     */
+    OrderGroupUser getByGroupOrderSn(String groupOrderSn);
 }

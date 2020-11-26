@@ -9,6 +9,7 @@ import com.dong.mingjiuzhang.global.enums.BusinessEnum;
 import com.dong.mingjiuzhang.global.enums.GroupStatusEnum;
 import com.dong.mingjiuzhang.global.enums.YesNoEnum;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
+import com.dong.mingjiuzhang.global.util.number.OrderNoUtils;
 import com.dong.mingjiuzhang.mapper.OrderMapper;
 import com.dong.mingjiuzhang.service.OrderGroupUserService;
 import com.dong.mingjiuzhang.service.OrderService;
@@ -37,6 +38,26 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Override
     public Order getOkById(Long id) {
         return getOne(new LambdaQueryWrapper<Order>().eq(Order::getId, id).eq(Order::getIsDeleted, YesNoEnum.NO.getValue()));
+    }
+
+    /**
+     * 获取订单编号
+     *
+     * @return
+     */
+    @Override
+    public String getOrderSn() {
+        return OrderConstants.ORDER_PREFIX + OrderNoUtils.getOrderSerialNumber();
+    }
+
+    /**
+     * 获取拼团订单编号
+     *
+     * @return
+     */
+    @Override
+    public String getGroupOrderSn() {
+        return OrderConstants.GROUP_ORDER_PREFIX + OrderNoUtils.getGroupOrderSerialNumber();
     }
 
     /**

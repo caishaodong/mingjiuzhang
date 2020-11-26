@@ -35,7 +35,6 @@
         <result column="current_group_count" property="currentGroupCount"/>
         <result column="group_status" property="groupStatus"/>
         <result column="gmt_group_finish" property="gmtGroupFinish"/>
-        <result column="gmt_group_expiration" property="gmtGroupExpiration"/>
         <result column="is_deleted" property="isDeleted"/>
         <result column="gmt_create" property="gmtCreate"/>
         <result column="gmt_modified" property="gmtModified"/>
@@ -43,7 +42,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, order_sn, third_order_sn, user_id, user_grade, send_type, receiver_name, receiver_mobile, province_code, province, address, pay_method, pay_status, status, total_price, should_price, real_price, pay_type, course_id, course_name, course_series_id, course_series_name, teacher_id, teacher_name, teacher_mobile, gmt_order_expiration, is_group, group_count, current_group_count, group_status, gmt_group_finish, gmt_group_expiration, is_deleted, gmt_create, gmt_modified
+        id, order_sn, third_order_sn, user_id, user_grade, send_type, receiver_name, receiver_mobile, province_code, province, address, pay_method, pay_status, status, total_price, should_price, real_price, pay_type, course_id, course_name, course_series_id, course_series_name, teacher_id, teacher_name, teacher_mobile, gmt_order_expiration, is_group, group_count, current_group_count, group_status, gmt_group_finish, is_deleted, gmt_create, gmt_modified
     </sql>
 
     <update id="incrCurrentGroupCount">

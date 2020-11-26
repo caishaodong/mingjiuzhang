@@ -1,15 +1,16 @@
 package com.dong.mingjiuzhang.domain.entity;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -66,7 +67,7 @@ public class OrderGroupUser extends Model<OrderGroupUser> {
     private Integer payStatus;
 
     /**
-     * 状态：1待发货 2已发货 3已完成 4已失效
+     * 状态：1待发货 2已发货 3已完成 4已失效 5已退款
      */
     private Integer status;
 

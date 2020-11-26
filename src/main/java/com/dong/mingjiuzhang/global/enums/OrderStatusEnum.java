@@ -10,7 +10,8 @@ public enum OrderStatusEnum {
     TO_BE_DELIVERED(1, "待发货"),
     DELIVERED(2, "已发货"),
     FINISH(3, "已完成"),
-    INVALID(4, "已失效");
+    INVALID(4, "已失效"),
+    REFUND(5, "已退款");
 
     private Integer status;
     private String desc;

@@ -5,9 +5,10 @@ import com.dong.mingjiuzhang.domain.entity.OrderGroupUser;
 import com.dong.mingjiuzhang.domain.entity.User;
 import com.dong.mingjiuzhang.domain.entity.dto.PreOrderDTO;
 import com.dong.mingjiuzhang.domain.entity.vo.OrderSaveVO;
+import com.dong.mingjiuzhang.global.config.redis.RedisService;
+import com.dong.mingjiuzhang.global.constant.OrderConstants;
 import com.dong.mingjiuzhang.global.enums.*;
 import com.dong.mingjiuzhang.global.exception.BusinessException;
-import com.dong.mingjiuzhang.global.util.number.OrderNoUtils;
 import com.dong.mingjiuzhang.global.util.reflect.ReflectUtil;
 import com.dong.mingjiuzhang.service.OrderGroupUserService;
 import com.dong.mingjiuzhang.service.OrderService;
@@ -31,6 +32,8 @@ public class OrderPayService {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderPayService.class);
 
     @Autowired
+    private RedisService redisService;
+    @Autowired
     private OrderService orderService;
     @Autowired
     private OrderGroupUserService orderGroupUserService;
@@ -47,6 +50,9 @@ public class OrderPayService {
             // 如果不是拼团
             // 保存订单
             order = saveOrder(preOrderDTO);
+
+            // 设置支付订单redis
+            redisService.setLong(order.getOrderSn(), OrderConstants.ORDER_EFFECTIVE_SECONDS, OrderConstants.ORDER_EFFECTIVE_SECONDS);
         } else {
             // 如果是拼团
             Order groupOrder = preOrderDTO.getGroupOrder();
@@ -55,7 +61,11 @@ public class OrderPayService {
                 // 保存订单
                 order = saveOrder(preOrderDTO);
                 // 保存拼团发起人用户拼团订单
-                saveMasterOrderGroupUser(order);
+                OrderGroupUser orderGroupUser = saveMasterOrderGroupUser(order, preOrderDTO);
+                // 设置拼团订单redis
+                redisService.setLong(order.getOrderSn(), OrderConstants.GROUP_ORDER_EFFECTIVE_SECONDS, OrderConstants.GROUP_ORDER_EFFECTIVE_SECONDS);
+                // 设置支付订单redis
+                redisService.setLong(orderGroupUser.getGroupOrderSn(), OrderConstants.ORDER_EFFECTIVE_SECONDS, OrderConstants.ORDER_EFFECTIVE_SECONDS);
             } else {
                 // 如果是参加别人的拼团
                 order = groupOrder;
@@ -65,7 +75,9 @@ public class OrderPayService {
                     throw new BusinessException(BusinessEnum.GROUPING_FAILED);
                 }
                 // 保存拼团参与者用户拼团订单
-                saveSlaveOrderGroupUser(preOrderDTO);
+                OrderGroupUser orderGroupUser = saveSlaveOrderGroupUser(preOrderDTO);
+                // 设置支付订单redis
+                redisService.setLong(orderGroupUser.getGroupOrderSn(), OrderConstants.ORDER_EFFECTIVE_SECONDS, OrderConstants.ORDER_EFFECTIVE_SECONDS);
             }
         }
 
@@ -83,7 +95,7 @@ public class OrderPayService {
      */
     private Order saveOrder(PreOrderDTO preOrderDTO) {
         Order order = new Order();
-        order.setOrderSn(OrderNoUtils.getSerialNumber());
+        order.setOrderSn(orderService.getOrderSn());
         BeanUtils.copyProperties(preOrderDTO, order);
         ReflectUtil.setCreateInfo(order, Order.class);
         orderService.save(order);
@@ -93,11 +105,11 @@ public class OrderPayService {
     /**
      * 保存拼团发起人用户拼团订单
      */
-    private void saveMasterOrderGroupUser(Order order) {
+    private OrderGroupUser saveMasterOrderGroupUser(Order order, PreOrderDTO preOrderDTO) {
         // 如果是拼团订单，保存拼团用户信息
         OrderGroupUser orderGroupUser = new OrderGroupUser();
         orderGroupUser.setOrderId(order.getId());
-        orderGroupUser.setGroupOrderSn(order.getOrderSn());
+        orderGroupUser.setGroupOrderSn(orderService.getGroupOrderSn());
         orderGroupUser.setUserId(order.getUserId());
         orderGroupUser.setUserGrade(order.getUserGrade());
         orderGroupUser.setSendType(order.getSendType());
@@ -107,9 +119,10 @@ public class OrderPayService {
         orderGroupUser.setProvinceCode(order.getProvinceCode());
         orderGroupUser.setProvince(order.getProvince());
         orderGroupUser.setShouldPrice(order.getShouldPrice());
-        orderGroupUser.setGmtOrderExpiration(order.getGmtOrderExpiration());
+        orderGroupUser.setGmtOrderExpiration(preOrderDTO.getGmtGroupOrderExpiration());
         ReflectUtil.setCreateInfo(orderGroupUser, OrderGroupUser.class);
         orderGroupUserService.save(orderGroupUser);
+        return orderGroupUser;
     }
 
     /**
@@ -117,12 +130,12 @@ public class OrderPayService {
      *
      * @param preOrderDTO
      */
-    private void saveSlaveOrderGroupUser(PreOrderDTO preOrderDTO) {
+    private OrderGroupUser saveSlaveOrderGroupUser(PreOrderDTO preOrderDTO) {
         Order order = preOrderDTO.getGroupOrder();
         User slaveUser = preOrderDTO.getSlaveUser();
         OrderGroupUser orderGroupUser = new OrderGroupUser();
         orderGroupUser.setOrderId(order.getId());
-        orderGroupUser.setGroupOrderSn(OrderNoUtils.getSerialNumber());
+        orderGroupUser.setGroupOrderSn(orderService.getGroupOrderSn());
         orderGroupUser.setUserId(slaveUser.getId());
         orderGroupUser.setUserGrade(slaveUser.getGrade());
         orderGroupUser.setSendType(preOrderDTO.getSendType());
@@ -132,9 +145,10 @@ public class OrderPayService {
         orderGroupUser.setProvinceCode(preOrderDTO.getProvinceCode());
         orderGroupUser.setProvince(preOrderDTO.getProvince());
         orderGroupUser.setShouldPrice(preOrderDTO.getShouldPrice());
-        orderGroupUser.setGmtOrderExpiration(preOrderDTO.getGmtOrderExpiration());
+        orderGroupUser.setGmtOrderExpiration(preOrderDTO.getGmtGroupOrderExpiration());
         ReflectUtil.setCreateInfo(orderGroupUser, OrderGroupUser.class);
         orderGroupUserService.save(orderGroupUser);
+        return orderGroupUser;
     }
 
     /**
@@ -232,4 +246,83 @@ public class OrderPayService {
         }
     }
 
+    /**
+     * 订单超时处理
+     *
+     * @param orderSn 订单编号
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void orderPayTimeout(String orderSn) {
+        // 校验订单是否存在
+        Order order = orderService.getByOrderSn(orderSn);
+        if (Objects.isNull(order)) {
+            return;
+        }
+        // 校验订单状态
+        if (Objects.equals(order.getIsGroup(), YesNoEnum.NO.getValue())) {
+            // 不是拼团订单
+            if (!Objects.equals(order.getPayStatus(), PayStatusEnum.PROCESSING.getPayStatus())) {
+                return;
+            }
+            // 未支付，则设置订单状态为超时失效
+            order.setStatus(OrderStatusEnum.INVALID.getStatus());
+            orderService.updateById(order);
+        } else {
+            // 是拼团订单
+            if (!Objects.equals(order.getGroupStatus(), GroupStatusEnum.GROUPING.getStatus())) {
+                return;
+            }
+            // 拼团中，设置为拼团失败
+            order.setGroupStatus(GroupStatusEnum.GROUP_FAIL.getStatus());
+            orderService.updateById(order);
+            // 已经拼团人员退款操作 // TODO
+            orderGroupRefund(order);
+        }
+    }
+
+
+    /**
+     * 拼团订单超时处理
+     *
+     * @param groupOrderSn 拼团订单编号
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public void groupOrderPayTimeout(String groupOrderSn) {
+        LocalDateTime now = LocalDateTime.now();
+        // 校验订单是否存在
+        OrderGroupUser orderGroupUser = orderGroupUserService.getByGroupOrderSn(groupOrderSn);
+        if (Objects.isNull(orderGroupUser)) {
+            return;
+        }
+        Long orderId = orderGroupUser.getOrderId();
+        Order order = orderService.getOkById(orderId);
+        if (Objects.isNull(order)) {
+            return;
+        }
+        if (!Objects.equals(orderGroupUser.getPayStatus(), PayStatusEnum.PROCESSING.getPayStatus())) {
+            // 校验订单状态
+            return;
+        }
+
+        // 未支付，订单设置为超时
+        orderGroupUser.setStatus(OrderStatusEnum.INVALID.getStatus());
+        orderGroupUser.setGmtOrderExpiration(now);
+        orderGroupUserService.updateById(orderGroupUser);
+        // 原订单拼团人数减一
+        order.setCurrentGroupCount(order.getCurrentGroupCount() - 1);
+        // 如果拼团人数只有1的话，则拼团设置为失败
+        Integer currentGroupCount = order.getCurrentGroupCount();
+        if (currentGroupCount.intValue() == 1) {
+            order.setGroupStatus(GroupStatusEnum.GROUP_FAIL.getStatus());
+        }
+        orderService.updateById(order);
+    }
+
+    /**
+     * 拼团订单超时，给已经支付的用户退款
+     *
+     * @param order
+     */
+    private void orderGroupRefund(Order order) {
+    }
 }

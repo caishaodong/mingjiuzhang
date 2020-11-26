@@ -7,6 +7,14 @@ package com.dong.mingjiuzhang.global.constant;
  **/
 public class OrderConstants {
     /**
+     * 订单前缀
+     */
+    public static String ORDER_PREFIX = "DD_";
+    /**
+     * 拼团订单前缀
+     */
+    public static String GROUP_ORDER_PREFIX = "GD_";
+    /**
      * 拼团人数
      */
     public static Integer GROUP_COUNT = 3;

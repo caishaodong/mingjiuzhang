@@ -18,7 +18,7 @@
 //
 @property (nonatomic, assign) NSString message;
 //
-@property (nonatomic, strong) WrongCollectionVO[] data;
+@property (nonatomic, strong) PageUtil data;
 
 
 @end
@@ -29,37 +29,22 @@
 <xmp>
 #import <Foundation/Foundation>;
 
-@interface WrongCollectionVO : NSObject
+@interface PageUtil : NSObject
 
-//答题记录id
-@property (nonatomic, strong) long id;
-//学科名称
-@property (nonatomic, assign) NSString subjectDictName;
-//学科以一级分类名称
-@property (nonatomic, assign) NSString subjectFirstDictName;
-//学科二级分类名称
-@property (nonatomic, assign) NSString subjectSecondDictName;
-//学科分类名称
-@property (nonatomic, assign) NSString subjectCateName;
-//收录时间
-@property (nonatomic, assign) NSString gmtCreate;
-//题目类型：1选择题  2填空题
-@property (nonatomic, strong) NSInteger type;
-//题目内容
-@property (nonatomic, assign) NSString title;
-//题目图片（json）
-@property (nonatomic, assign) NSString titleImage;
-//题目选项（json）
-@property (nonatomic, assign) NSString requestOption;
-//答案内容（json）
-@property (nonatomic, assign) NSString answer;
-//答案图片（json）
-@property (nonatomic, assign) NSString answerImage;
+//
+@property (nonatomic, strong) Object[] records;
+//
+@property (nonatomic, strong) long total;
+//
+@property (nonatomic, strong) long size;
+//
+@property (nonatomic, strong) long current;
 
 
 @end
 </xmp>
 </pre>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/google-code-prettify@1.0.5/bin/prettify.min.js"></script>
